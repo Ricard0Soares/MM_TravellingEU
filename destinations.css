@@ -1,0 +1,79 @@
+body{
+    background-image: url('images/background.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.search-container {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.search-bar {
+    padding: 10px;
+    border-radius: 20px; 
+    border: 1px solid #ccc; 
+    width: 500px;
+    background-image: url('images/image_2.png'); 
+    background-repeat: no-repeat; 
+    background-position: right 10px center; 
+    background-size: 20px; 
+}
+
+.search-container {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.search-bar {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 1200px;
+    background-image: url('images/image_2.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    margin-top: 30px;
+}
+
+.destinations {
+    margin-top: -50px;
+    font-size: 50px;
+    color: white;
+}
+
+.ellipse-container {
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin: 10px auto 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 1400px;
+    height: 500px;
+}
+
+.image-container {
+    width: 30%;
+    margin: 10px;
+    text-align: center;
+}
+
+.image-container img {
+    width: 50%;
+    height: 80%;
+}
+
+.image-container span {
+    display: block;
+    margin-top: 5px;
+    color: white;
+}
+
+
+
