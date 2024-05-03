@@ -1,0 +1,49 @@
+body{
+    background-image: url('images/background.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.aboutus {
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+    font-size: 24px;
+}
+
+.image-container {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.image-container img {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+
+.image-container p {
+    color: white;
+    margin-top: 10px;
+    margin-right: 50px;
+}
+
+.text-container {
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin: 10px auto 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 1000px;
+    height: auto;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}
+
