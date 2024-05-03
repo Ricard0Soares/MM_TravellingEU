@@ -6,41 +6,42 @@ body{
     padding: 0;
 }
 
-.search-container {
-    text-align: center;
-    padding: 100px 0;
-}
-
-.search-bar {
+.location {
     padding: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    width: 1200px;
-    background-image: url('images/image_2.png');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 20px;
-    margin-top: 30px;
+    color: white;
+    position: absolute;
+    top: 50px;
+    left: 10px;
 }
 
-.destinations {
-    margin-top: -50px;
-    font-size: 50px;
+.title {
+    text-align: center;
     color: white;
+    margin-top: 100px;
+    font-size: 24px;
+}
+
+
+.normal-text {
+    font-weight: normal;
+}
+
+.bold-text {
+    font-weight: bold;
 }
 
 .ellipse-container {
     border-radius: 145px;
     background-color: rgba(128, 116, 116, 0.5);
-    margin: 10px auto 20px;
+    margin: 50px auto 20px;
     backdrop-filter: blur(10px);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
-    max-width: 1400px;
+    max-width: 1200px;
     height: 500px;
 }
+
 
 .image-container {
     width: 30%;
@@ -49,7 +50,7 @@ body{
 }
 
 .image-container img {
-    width: 50%;
+    width: 60%;
     height: 80%;
 }
 
@@ -58,6 +59,3 @@ body{
     margin-top: 5px;
     color: white;
 }
-
-
-
