@@ -18,7 +18,14 @@
     </nav>
 
     <div class="search-container">
-        <input type="text" placeholder="Search..." class="search-bar">
+        <input type="search" onchange="navigateToDestination()" placeholder="Search..." 
+                list="search-suggestions" autocomplete="off" class="search-bar">
+        <datalist id="search-suggestions">
+            <option value="Lisboa">
+            <option value="Porto">
+            <option value="Aveiro">
+            <option value="Paris">
+        </datalist>
         <div class="intro-text">Europe on The Palm of Your Hand</div>
     </div>
 
@@ -37,6 +44,8 @@
             <span>Paris</span>
         </div>
     </div>
+
+    <script src = "./searchbarHome.js"></script>
 
 </body>
 

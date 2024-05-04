@@ -22,7 +22,7 @@ body{
     border-radius: 20px;
     border: 1px solid #ccc;
     width: 500px;
-    background-image: url('images/image_2.png');
+    /*background-image: url('images/image_2.png');*/
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 20px;

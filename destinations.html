@@ -19,7 +19,16 @@
 
     <div class="search-container">
         <div class="destinations">Destinations</div>
-        <input type="text" placeholder="What Country Are You Looking For?" class="search-bar">
+        <input type="search" onchange="navigateToCountry()" placeholder="What Country Are You Looking For?" 
+                list="search-suggestions" autocomplete="off" class="search-bar">
+        <datalist id="search-suggestions">
+            <option value="Belgium">
+            <option value="France">
+            <option value="Germany">
+            <option value="Croatia">
+            <option value="Portugal">
+            <option value="Spain">
+        </datalist>
     </div>
 
     <div class="ellipse-container">
@@ -51,6 +60,7 @@
         </div>
     </div>
     
+    <script src = "./searchbarDestinations.js"></script>
 
 </body>
 
