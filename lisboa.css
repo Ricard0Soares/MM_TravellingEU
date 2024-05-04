@@ -7,6 +7,12 @@ body{
     display: flex;
 }
 
+.logo a {
+    text-decoration: none;
+    color: white;
+    cursor: default;
+}
+
 .ellipse-container,
 .second-ellipse-container {
     flex: 1;
