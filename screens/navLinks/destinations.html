@@ -4,14 +4,14 @@
     <meta charset = "utf-8">
     <meta name="viewport" content = "width=device-width, initial-scale=1">
     <link rel ="stylesheet" type="text/css" href="destinations.css">
-    <link rel="stylesheet" type="text/css" href="navBar.css">
+    <link rel="stylesheet" type="text/css" href="../../navBar.css">
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo"><a href="home.html">TravellingEU</a></div>
+        <div class="logo"><a href="../../home.html">TravellingEU</a></div>
         <ul class="nav-links">
             <li><a href="destinations.html">Destinations</a></li>
-            <li><a href="videos.html">Videos</a></li>
+            <li><a href="../videos/videos.html">Videos</a></li>
             <li><a href="howitworks.html">How it works</a></li>
             <li><a href="aboutus.html">About Us</a></li>
         </ul>
@@ -20,7 +20,7 @@
     <div class="search-container">
         <div class="destinations">Destinations</div>
         <input type="search" onchange="navigateToCountry()" placeholder="What Country Are You Looking For?" 
-                list="search-suggestions" autocomplete="off" class="search-bar">
+                list="search-suggestions" autocomplete="on" class="search-bar">
         <datalist id="search-suggestions">
             <option value="Belgium">
             <option value="France">
@@ -33,34 +33,34 @@
 
     <div class="ellipse-container">
         <div class="image-container">
-            <img src="images/belgium.png" alt="cidade1">
+            <img src="../../images/belgium.png" alt="cidade1">
             <span>Belgium</span>
         </div>
         <div class="image-container">
-            <img src="images/croatia.png" alt="cidade2">
+            <img src="../../images/croatia.png" alt="cidade2">
             <span>Croatia</span>
         </div>
         <div class="image-container">
-            <img src="images/france.png" alt="cidade3">
+            <img src="../../images/france.png" alt="cidade3">
             <span>France</span>
         </div>
         <div class="image-container">
-            <img src="images/germany.png" alt="cidade1">
+            <img src="../../images/germany.png" alt="cidade1">
             <span>Germany</span>
         </div>
         <div class="image-container">
-            <a href="cities_portugal.html">
-            <img src="images/portugal.png" alt="cidade2">
+            <a href="../../cities_portugal.html">
+            <img src="../../images/portugal.png" alt="cidade2">
             <span>Portugal</span>
         </a>
         </div>
         <div class="image-container">
-            <img src="images/spain.png" alt="cidade3">
+            <img src="../../images/spain.png" alt="cidade3">
             <span>Spain</span>
         </div>
     </div>
     
-    <script src = "./searchbarDestinations.js"></script>
+    <script src = "../.././searchbarDestinations.js"></script>
 
 </body>
 

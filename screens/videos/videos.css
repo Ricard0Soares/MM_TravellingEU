@@ -1,5 +1,5 @@
 body{
-    background-image: url('images/background.png');
+    background-image: url('../../images/background.png');
     background-size: cover;
     background-position: center;
     margin: 0;
@@ -23,7 +23,7 @@ body{
     border-radius: 20px;
     border: 1px solid #ccc;
     width: 1200px;
-    background-image: url('images/image_2.png');
+    background-image: url('../../images/image_2.png');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 20px;
@@ -99,7 +99,7 @@ body{
     cursor: pointer;
 
     padding-right: 20px;
-    background-image: url('images/seta.png');
+    background-image: url('../../images/seta.png');
     background-repeat: no-repeat;
     background-position: right 1px center;
     background-size: 15px;

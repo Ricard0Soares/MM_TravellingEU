@@ -3,5 +3,7 @@ function navigateToDestination(){
     var selectedOption = input.value;
     if(selectedOption =="Lisboa"){
         window.location.href = "lisboa.html";
+    }else{
+        alert("Destination not found!");
     }
 }
