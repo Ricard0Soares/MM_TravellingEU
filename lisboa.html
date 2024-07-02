@@ -83,16 +83,19 @@
             
             const video = document.getElementById("myVideo");
             const thumbnailsContainer = document.getElementById("thumbnails");
-            const canvas = document.createElement("canvas");
+            const canvas = document.createElement("canvas"); //para capturar frames e converter para thumbnails
             const ctx = canvas.getContext("2d");
             const thumbnailWidth = 160;
             const thumbnailHeight = 90;
+            video.currentTime = 0;
+
+            detectChanges();
 
             // Function to generate a thumbnail
             function generateThumbnail(time, callback) {
                 video.currentTime = time;
                 video.addEventListener('seeked', function captureFrame() {
-                    ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
+                    ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight); //gerar thumbnail
                     const dataURL = canvas.toDataURL();
                     callback(dataURL, time);
                     video.removeEventListener('seeked', captureFrame);
@@ -121,14 +124,21 @@
 
                             if (!lastImageData) {
                                 thumbnailsContainer.appendChild(img);
+                                console.log("added first");
+                                console.log(img);
                                 lastImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
+                                
                             } else {
                                 const currentImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
                                 if (hasSignificantChange(lastImageData.data, currentImageData.data)) {
                                     thumbnailsContainer.appendChild(img);
                                     lastImageData = currentImageData;
                                 }
+                                console.log("added 2nd");
+                                console.log(img);
                             }
+
+                            console.log("t -> " + thumbnailsContainer);
                         });
                     }
                 });
@@ -142,22 +152,18 @@
 
                 for (let i = 0; i < data1.length; i += 4) {
                     const diff = Math.abs(data1[i] - data2[i])
-                        + Math.abs(data1[i + 1] - data2[i + 1])
-                        + Math.abs(data1[i + 2] - data2[i + 2]);
+                    + Math.abs(data1[i + 1] - data2[i + 1])
+                    + Math.abs(data1[i + 2] - data2[i + 2]);
 
                     if (diff > threshold) {
-                        changedPixels++;
-                    }
-
-                    if (changedPixels > maxChangedPixels) {
-                        return true;
+                    changedPixels++;
                     }
                 }
 
-                return false;
+                return changedPixels > maxChangedPixels;
             }
 
-            detectChanges();
+            
 
             video.addEventListener('timeupdate', function() {  
                 var currentTime = video.currentTime;
@@ -176,28 +182,6 @@
                 }
             });
         });
-
-
-
-        
-
-        /*document.addEventListener('fullscreenchange', function() {
-            if (document.fullscreenElement) {
-                //fullscreen
-                overlay.style.position = 'fixed';
-                overlay.style.top = '0';
-                overlay.style.left = '0';
-                overlay.style.width = '100vw';
-                overlay.style.height = '100vh';
-            } else {
-                //not fullscreen
-                overlay.style.position = 'absolute';
-                overlay.style.width = '100%';
-                overlay.style.height = '100%';
-            }
-        });*/
-
-
     </script>
 
 </body>
