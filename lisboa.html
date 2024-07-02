@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="lisboa.css">
     <link rel="stylesheet" type="text/css" href="navBar.css">
+
+    <style>
+        #thumbnails{
+            display:flex;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail{
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -37,7 +50,9 @@
                 <a href="home.html" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
                 <a href="paris.html" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
             </div>
-            <div class="thumbnails" id="thumbnails" ></div>
+            <div id="thumbnails" class="thumbnails">
+                
+            </div>
         </div>
     </div>
 
@@ -61,72 +76,127 @@
     
     
     <script>
-        var video = document.getElementById('myVideo');
-        var overlay = document.getElementById('overlay');
-        var thumbnailsContainer = document.getElementById('thumbnails');
+        document.addEventListener("DOMContentLoaded", () => {
+            var overlay = document.getElementById('overlay');
 
-        // Função para gerar thumbnails
-        function generateThumbnails() {
-            var interval = video.duration / 5; // Gera 5 thumbnails para um vídeo de duração total
-            var index = 1;
 
-            function captureThumbnail(time, index) {
-                var canvas = document.createElement('canvas');
-                canvas.width = 100;
-                canvas.height = 56; // Ajuste conforme necessário para manter a proporção
-                var ctx = canvas.getContext('2d');
+            
+            const video = document.getElementById("myVideo");
+            const thumbnailsContainer = document.getElementById("thumbnails");
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const thumbnailWidth = 160;
+            const thumbnailHeight = 90;
 
+            // Function to generate a thumbnail
+            function generateThumbnail(time, callback) {
                 video.currentTime = time;
-                video.pause();
-
-                setTimeout(function() {
-                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                    var thumbnail = document.createElement('img');
-                    thumbnail.src = canvas.toDataURL('image/jpeg'); // Exporta o canvas como imagem
-                    thumbnail.alt = 'Thumbnail ' + index;
-                    thumbnail.setAttribute('data-time', time.toFixed(2)); // Armazena o tempo associado ao thumbnail
-
-                    thumbnail.onclick = function() {
-                        video.currentTime = time;
-                    };
-
-                    thumbnailsContainer.appendChild(thumbnail);
-                }, 200); // Aguarda um breve momento para garantir que o quadro esteja capturado
+                video.addEventListener('seeked', function captureFrame() {
+                    ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
+                    const dataURL = canvas.toDataURL();
+                    callback(dataURL, time);
+                    video.removeEventListener('seeked', captureFrame);
+                });
             }
 
-            // Espera que o vídeo esteja pronto antes de capturar miniaturas
-            video.onloadeddata = function() {
-                var currentTime = 0;
+            // Function to detect significant changes in frames
+            function detectChanges() {
+                let lastImageData = null;
+                const interval = 10; // seconds
 
-                while (currentTime < video.duration) {
-                    captureThumbnail(currentTime, index);
-                    currentTime += interval;
-                    index++;
+                video.addEventListener('loadeddata', () => {
+                    const duration = video.duration;
+                    for (let t = 0; t < duration; t += interval) {
+                        generateThumbnail(t, (dataURL, time) => {
+                            const img = new Image();
+                            img.src = dataURL;
+                            img.width = thumbnailWidth;
+                            img.height = thumbnailHeight;
+                            img.classList.add("thumbnail");
+
+                            img.addEventListener("click", () => {
+                                video.currentTime = time;
+                                video.play();
+                            });
+
+                            if (!lastImageData) {
+                                thumbnailsContainer.appendChild(img);
+                                lastImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
+                            } else {
+                                const currentImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
+                                if (hasSignificantChange(lastImageData.data, currentImageData.data)) {
+                                    thumbnailsContainer.appendChild(img);
+                                    lastImageData = currentImageData;
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Function to compare two frames
+            function hasSignificantChange(data1, data2) {
+                let changedPixels = 0;
+                const threshold = 25; // change threshold per pixel
+                const maxChangedPixels = 0.02 * data1.length / 4; // 2% of the pixels
+
+                for (let i = 0; i < data1.length; i += 4) {
+                    const diff = Math.abs(data1[i] - data2[i])
+                        + Math.abs(data1[i + 1] - data2[i + 1])
+                        + Math.abs(data1[i + 2] - data2[i + 2]);
+
+                    if (diff > threshold) {
+                        changedPixels++;
+                    }
+
+                    if (changedPixels > maxChangedPixels) {
+                        return true;
+                    }
                 }
-            };
-        }
 
-        // Gera as thumbnails quando o vídeo estiver carregado
-        video.addEventListener('loadedmetadata', function() {
-            generateThumbnails();
-        });
-
-        video.addEventListener('timeupdate', function() {
-            var currentTime = video.currentTime;
-
-            //links em intervalos de tempo especificos
-            if (currentTime >= 5 && currentTime < 10) {
-                document.getElementById('link1').style.display = 'block';
-                document.getElementById('link2').style.display = 'none';
-                overlay.style.display = 'block';
-            } else if (currentTime >= 10 && currentTime < 15) {
-                document.getElementById('link1').style.display = 'none';
-                document.getElementById('link2').style.display = 'block';
-                overlay.style.display = 'block';
-            } else {
-                overlay.style.display = 'none';
+                return false;
             }
+
+            detectChanges();
+
+            video.addEventListener('timeupdate', function() {  
+                var currentTime = video.currentTime;
+
+                //links em intervalos de tempo especificos
+                if (currentTime >= 5 && currentTime < 10) {
+                    document.getElementById('link1').style.display = 'block';
+                    document.getElementById('link2').style.display = 'none';
+                    overlay.style.display = 'block';
+                } else if (currentTime >= 10 && currentTime < 15) {
+                    document.getElementById('link1').style.display = 'none';
+                    document.getElementById('link2').style.display = 'block';
+                    overlay.style.display = 'block';
+                } else {
+                    overlay.style.display = 'none';
+                }
+            });
         });
+
+
+
+        
+
+        /*document.addEventListener('fullscreenchange', function() {
+            if (document.fullscreenElement) {
+                //fullscreen
+                overlay.style.position = 'fixed';
+                overlay.style.top = '0';
+                overlay.style.left = '0';
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+            } else {
+                //not fullscreen
+                overlay.style.position = 'absolute';
+                overlay.style.width = '100%';
+                overlay.style.height = '100%';
+            }
+        });*/
+
 
     </script>
 

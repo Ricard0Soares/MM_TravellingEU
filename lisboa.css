@@ -134,14 +134,25 @@ video {
 }
 
 
-.thumbnails {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+.thumbnails ul {
+    list-style: none;
+    padding: 0;
 }
-.thumbnails img {
-    width: 100px;
-    height: auto;
-    cursor: pointer;
+
+.thumbnails ul li {
+    display: inline-block;
+    margin-right: 10px;
 }
+
+.thumbnails ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.thumbnails ul li a.current {
+    font-weight: bold;
+    color: #f00;
+}
+
 
