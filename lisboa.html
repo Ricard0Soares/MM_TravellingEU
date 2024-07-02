@@ -30,22 +30,14 @@
 
     <div class="second-ellipse-container">
         <div class="video-container">
-            <video id="myVideo" controls>
+            <video id="myVideo" controls muted>
                 <source src="teste.mp4" type="video/mp4">
             </video>
             <div id="overlay" class="overlay">
                 <a href="home.html" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
                 <a href="paris.html" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
             </div>
-            <div id="thumbnails" class="thumbnails">
-                <ul>
-                    <li><a href="#" data-time="0">Início</a></li>
-                    <li><a href="#" data-time="10">Introdução</a></li>
-                    <li><a href="#" data-time="20">Ponto 1</a></li>
-                    <li><a href="#" data-time="30">Ponto 2</a></li>
-                    <li><a href="#" data-time="40">Conclusão</a></li>
-                </ul>
-            </div>
+            <div class="thumbnails" id="thumbnails" ></div>
         </div>
     </div>
 
@@ -71,27 +63,56 @@
     <script>
         var video = document.getElementById('myVideo');
         var overlay = document.getElementById('overlay');
-        var thumbnails = document.getElementById('thumbnails').getElementsByTagName('a'); //todos os elementos
+        var thumbnailsContainer = document.getElementById('thumbnails');
 
-        for(var i = 0; i < thumbnails.length; i++){
-            thumbnails[i].addEventListener('click', function(e){
-                //e.preventDefault();
-                var time = parseFloat(this.getAttribute('data-time'));
-                video.currentTime = time; //tempo faz com que salta para este ponto do video
-            });
+        // Função para gerar thumbnails
+        function generateThumbnails() {
+            var interval = video.duration / 5; // Gera 5 thumbnails para um vídeo de duração total
+            var index = 1;
+
+            function captureThumbnail(time, index) {
+                var canvas = document.createElement('canvas');
+                canvas.width = 100;
+                canvas.height = 56; // Ajuste conforme necessário para manter a proporção
+                var ctx = canvas.getContext('2d');
+
+                video.currentTime = time;
+                video.pause();
+
+                setTimeout(function() {
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    var thumbnail = document.createElement('img');
+                    thumbnail.src = canvas.toDataURL('image/jpeg'); // Exporta o canvas como imagem
+                    thumbnail.alt = 'Thumbnail ' + index;
+                    thumbnail.setAttribute('data-time', time.toFixed(2)); // Armazena o tempo associado ao thumbnail
+
+                    thumbnail.onclick = function() {
+                        video.currentTime = time;
+                    };
+
+                    thumbnailsContainer.appendChild(thumbnail);
+                }, 200); // Aguarda um breve momento para garantir que o quadro esteja capturado
+            }
+
+            // Espera que o vídeo esteja pronto antes de capturar miniaturas
+            video.onloadeddata = function() {
+                var currentTime = 0;
+
+                while (currentTime < video.duration) {
+                    captureThumbnail(currentTime, index);
+                    currentTime += interval;
+                    index++;
+                }
+            };
         }
+
+        // Gera as thumbnails quando o vídeo estiver carregado
+        video.addEventListener('loadedmetadata', function() {
+            generateThumbnails();
+        });
 
         video.addEventListener('timeupdate', function() {
             var currentTime = video.currentTime;
-
-            for (var i = 0; i < thumbnails.length; i++) {
-                var time = parseFloat(thumbnails[i].getAttribute('data-time'));
-                if (currentTime >= time && (i === thumbnails.length - 1 || currentTime < parseFloat(thumbnails[i + 1].getAttribute('data-time')))) {
-                    thumbnails[i].classList.add('current'); //thumbnail i passa a ser a atual.
-                } else {
-                    thumbnails[i].classList.remove('current'); //deixa de ser
-                }
-            }
 
             //links em intervalos de tempo especificos
             if (currentTime >= 5 && currentTime < 10) {
@@ -106,23 +127,6 @@
                 overlay.style.display = 'none';
             }
         });
-
-        /*document.addEventListener('fullscreenchange', function() {
-            if (document.fullscreenElement) {
-                //fullscreen
-                overlay.style.position = 'fixed';
-                overlay.style.top = '0';
-                overlay.style.left = '0';
-                overlay.style.width = '100vw';
-                overlay.style.height = '100vh';
-            } else {
-                //not fullscreen
-                overlay.style.position = 'absolute';
-                overlay.style.width = '100%';
-                overlay.style.height = '100%';
-            }
-        });*/
-
 
     </script>
 
