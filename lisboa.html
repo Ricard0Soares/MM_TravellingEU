@@ -5,21 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="lisboa.css">
     <link rel="stylesheet" type="text/css" href="navBar.css">
-
     <style>
-        #thumbnails{
-            display:flex;
+        #thumbnails {
+            display: flex;
             flex-wrap: wrap;
         }
 
-        .thumbnail{
+        .thumbnail {
             margin: 5px;
             cursor: pointer;
         }
+
+        .info-card {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+
+        .overlay a {
+            position: absolute;
+            pointer-events: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            text-decoration: none;
+        }
     </style>
-
 </head>
-
 <body>
     <nav class="navbar">
         <div class="logo"><a href="home.html">TravellingEU</a></div>
@@ -45,14 +72,18 @@
         <div class="video-container">
             <video id="myVideo" controls muted>
                 <source src="teste.mp4" type="video/mp4">
+                <!-- Add the image map for interactive regions -->
+                <map name="videomap">
+                    <area shape="rect" coords="50,50,100,100" href="#" alt="Tower" data-info="This is a famous tower in Lisbon.">
+                    <!-- Add more areas as needed -->
+                </map>
             </video>
             <div id="overlay" class="overlay">
                 <a href="home.html" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
                 <a href="paris.html" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
             </div>
-            <div id="thumbnails" class="thumbnails">
-                
-            </div>
+            <div id="thumbnails" class="thumbnails"></div>
+            <div id="infoCard" class="info-card"></div>
         </div>
     </div>
 
@@ -73,39 +104,34 @@
             <img src="images/image_4.png" alt="cidade6">
         </div>
     </div>
-    
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            var overlay = document.getElementById('overlay');
-
-
-            
             const video = document.getElementById("myVideo");
             const thumbnailsContainer = document.getElementById("thumbnails");
-            const canvas = document.createElement("canvas"); //para capturar frames e converter para thumbnails
+            const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d");
             const thumbnailWidth = 160;
             const thumbnailHeight = 90;
-            video.currentTime = 0;
+            const overlay = document.getElementById('overlay');
+            const infoCard = document.getElementById('infoCard');
 
+            video.currentTime = 0;
             detectChanges();
 
-            // Function to generate a thumbnail
             function generateThumbnail(time, callback) {
                 video.currentTime = time;
                 video.addEventListener('seeked', function captureFrame() {
-                    ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight); //gerar thumbnail
+                    ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
                     const dataURL = canvas.toDataURL();
                     callback(dataURL, time);
                     video.removeEventListener('seeked', captureFrame);
                 });
             }
 
-            // Function to detect significant changes in frames
             function detectChanges() {
                 let lastImageData = null;
-                const interval = 10; // seconds
+                const interval = 10;
 
                 video.addEventListener('loadeddata', () => {
                     const duration = video.duration;
@@ -124,51 +150,101 @@
 
                             if (!lastImageData) {
                                 thumbnailsContainer.appendChild(img);
-                                console.log("added first");
-                                console.log(img);
                                 lastImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
-                                
                             } else {
                                 const currentImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
                                 if (hasSignificantChange(lastImageData.data, currentImageData.data)) {
                                     thumbnailsContainer.appendChild(img);
                                     lastImageData = currentImageData;
                                 }
-                                console.log("added 2nd");
-                                console.log(img);
                             }
-
-                            console.log("t -> " + thumbnailsContainer);
                         });
                     }
                 });
             }
 
-            // Function to compare two frames
             function hasSignificantChange(data1, data2) {
                 let changedPixels = 0;
-                const threshold = 25; // change threshold per pixel
-                const maxChangedPixels = 0.02 * data1.length / 4; // 2% of the pixels
+                const threshold = 25;
+                const maxChangedPixels = 0.02 * data1.length / 4;
 
                 for (let i = 0; i < data1.length; i += 4) {
                     const diff = Math.abs(data1[i] - data2[i])
-                    + Math.abs(data1[i + 1] - data2[i + 1])
-                    + Math.abs(data1[i + 2] - data2[i + 2]);
+                        + Math.abs(data1[i + 1] - data2[i + 1])
+                        + Math.abs(data1[i + 2] - data2[i + 2]);
 
                     if (diff > threshold) {
-                    changedPixels++;
+                        changedPixels++;
                     }
                 }
-
                 return changedPixels > maxChangedPixels;
             }
 
-            
+            function checkVideoOverlays(currentTime) {
+                // Example overlay data
+                const overlays = [
+                    { start: 5, end: 10, type: 'rectangle', data: { x: '10%', y: '10%', width: '80%', height: '80%', text: 'Explore this area' }},
+                    { start: 10, end: 15, type: 'question', data: { question: 'What is this place?', options: ['Option 1', 'Option 2', 'Option 3'] }}
+                ];
 
-            video.addEventListener('timeupdate', function() {  
-                var currentTime = video.currentTime;
+                overlays.forEach(overlay => {
+                    if (currentTime >= overlay.start && currentTime < overlay.end) {
+                        if (overlay.type === 'rectangle') {
+                            drawRectangleOverlay(overlay.data);
+                        } else if (overlay.type === 'question') {
+                            drawQuestionOverlay(overlay.data);
+                        }
+                    }
+                });
+            }
 
-                //links em intervalos de tempo especificos
+            function drawRectangleOverlay(data) {
+                const overlayElement = document.createElement('div');
+                overlayElement.style.position = 'absolute';
+                overlayElement.style.top = data.y;
+                overlayElement.style.left = data.x;
+                overlayElement.style.width = data.width;
+                overlayElement.style.height = data.height;
+                overlayElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                overlayElement.style.color = 'white';
+                overlayElement.style.display = 'flex';
+                overlayElement.style.alignItems = 'center';
+                overlayElement.style.justifyContent = 'center';
+                overlayElement.innerText = data.text;
+                overlay.appendChild(overlayElement);
+                overlay.style.display = 'block';
+            }
+
+            function drawQuestionOverlay(data) {
+                const overlayElement = document.createElement('div');
+                overlayElement.style.position = 'absolute';
+                overlayElement.style.top = '50%';
+                overlayElement.style.left = '50%';
+                overlayElement.style.transform = 'translate(-50%, -50%)';
+                overlayElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                overlayElement.style.color = 'white';
+                overlayElement.style.padding = '10px';
+                overlayElement.style.borderRadius = '5px';
+
+                const questionText = document.createElement('p');
+                questionText.innerText = data.question;
+                overlayElement.appendChild(questionText);
+
+                data.options.forEach(option => {
+                    const optionButton = document.createElement('button');
+                    optionButton.innerText = option;
+                    optionButton.style.margin = '5px';
+                    overlayElement.appendChild(optionButton);
+                });
+
+                overlay.appendChild(overlayElement);
+                overlay.style.display = 'block';
+            }
+
+            video.addEventListener('timeupdate', () => {
+                const currentTime = video.currentTime;
+                checkVideoOverlays(currentTime);
+
                 if (currentTime >= 5 && currentTime < 10) {
                     document.getElementById('link1').style.display = 'block';
                     document.getElementById('link2').style.display = 'none';
@@ -181,8 +257,24 @@
                     overlay.style.display = 'none';
                 }
             });
+
+            // Add hover functionality for the image map areas
+            const areas = document.querySelectorAll('area');
+
+            areas.forEach(area => {
+                area.addEventListener('mouseenter', event => {
+                    const info = event.target.getAttribute('data-info');
+                    infoCard.innerHTML = info;
+                    infoCard.style.display = 'block';
+                    infoCard.style.top = event.pageY + 'px';
+                    infoCard.style.left = event.pageX + 'px';
+                });
+
+                area.addEventListener('mouseleave', () => {
+                    infoCard.style.display = 'none';
+                });
+            });
         });
     </script>
-
 </body>
 </html>
