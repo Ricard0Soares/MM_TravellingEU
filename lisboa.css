@@ -134,6 +134,16 @@ video {
 }
 
 
+#thumbnails{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.thumbnail{
+    margin: 5px;
+    cursor: pointer;
+}
+
 .thumbnails ul {
     list-style: none;
     padding: 0;
