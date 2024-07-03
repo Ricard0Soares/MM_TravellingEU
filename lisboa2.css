@@ -1,0 +1,157 @@
+body{
+    background-image: url('images/background.png');
+    background-size: contain;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    cursor: default;
+}
+
+.ellipse-container,
+.second-ellipse-container {
+    flex: 1;
+    margin: 10px;
+}
+
+.ellipse-container {
+    border-radius: 145px;
+    background-color: rgba(63, 54, 54, 0.5);
+    margin: 100px 0 20px 50px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 400px;
+    height: 600px;
+}
+
+.ellipse-container p{
+    color: white;
+    font-size: 36px;
+    text-align: center;
+}
+
+.ellipse-container img {
+    max-width: 100%;
+    height: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+.image-container{
+    position: relative;
+    text-align: center;
+    max-height: 100%;
+    width: 100%;
+}
+
+.image-container span {
+    position: absolute;
+    display: block;
+    margin-top: 10px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+.second-ellipse-container{
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin: 100px 0 20px 150px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+    height: 600px;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+video {
+    width: 100%;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.overlay.visible{
+    display: block;
+    pointer-events: auto;
+}
+
+.overlay a {
+    position: absolute;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    pointer-events: auto;
+}
+
+.third-ellipse-container {
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.photos-container{
+    width: 30%;
+    margin: 10px;
+    text-align: center;
+}
+
+.photos-container img{
+    width: 50%;
+    height: 80%;
+}
+
+
+.thumbnails ul {
+    list-style: none;
+    padding: 0;
+}
+
+.thumbnails ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.thumbnails ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.thumbnails ul li a.current {
+    font-weight: bold;
+    color: #f00;
+}
+

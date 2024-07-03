@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="lisboa.css">
     <link rel="stylesheet" type="text/css" href="navBar.css">
 
@@ -44,7 +45,7 @@
     <div class="second-ellipse-container">
         <div class="video-container">
             <video id="myVideo" controls muted>
-                <source src="teste.mp4" type="video/mp4">
+                <source src="clip.mp4" type="video/mp4">
             </video>
             <div id="overlay" class="overlay">
                 <a href="home.html" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
@@ -53,6 +54,7 @@
             <div id="thumbnails" class="thumbnails">
                 
             </div>
+            
         </div>
     </div>
 
@@ -77,111 +79,141 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            var overlay = document.getElementById('overlay');
+        const overlay = document.getElementById('overlay');
+        const video = document.getElementById("myVideo");
+        const thumbnailsContainer = document.getElementById("thumbnails");
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const thumbnailWidth = 300;
+        const thumbnailHeight = 120;
+        const listOfMonuments = ['teste1', 'teste2', 'teste3', 'teste4', 'teste5'];
+        var counter = 0;
 
+        detectChanges();
 
+        function createCard(targetDivId, frame) {
             
-            const video = document.getElementById("myVideo");
-            const thumbnailsContainer = document.getElementById("thumbnails");
-            const canvas = document.createElement("canvas"); //para capturar frames e converter para thumbnails
-            const ctx = canvas.getContext("2d");
-            const thumbnailWidth = 160;
-            const thumbnailHeight = 90;
-            video.currentTime = 0;
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'card';
+            cardDiv.style.width = '8rem';
+            cardDiv.style.height = '8rem';
+            cardDiv.style.background = 'none';
 
-            detectChanges();
+            frame.className = 'card-img-top';
 
-            // Function to generate a thumbnail
-            function generateThumbnail(time, callback) {
+            const cardBodyDiv = document.createElement('div');
+            cardBodyDiv.className = 'card-body';
+
+            const cardText = document.createElement('p');
+            cardText.className = 'card-text';
+            cardText.style.color = 'yellow';
+            cardText.textContent = listOfMonuments[counter];
+
+            cardDiv.appendChild(frame);
+            cardBodyDiv.appendChild(cardText);
+            cardDiv.appendChild(cardBodyDiv);
+
+            const targetDiv = document.getElementById(targetDivId);
+            targetDiv.appendChild(cardDiv);
+
+
+            counter = (counter + 1) % listOfMonuments.length;
+        }
+
+  
+
+        // Generate a thumbnail at a specific time
+        function generateThumbnail(time) {
+            return new Promise((resolve) => {
                 video.currentTime = time;
                 video.addEventListener('seeked', function captureFrame() {
-                    ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight); //gerar thumbnail
+                    ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
                     const dataURL = canvas.toDataURL();
-                    callback(dataURL, time);
+                    const imageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight).data;
                     video.removeEventListener('seeked', captureFrame);
-                });
-            }
-
-            // Function to detect significant changes in frames
-            function detectChanges() {
-                let lastImageData = null;
-                const interval = 10; // seconds
-
-                video.addEventListener('loadeddata', () => {
-                    const duration = video.duration;
-                    for (let t = 0; t < duration; t += interval) {
-                        generateThumbnail(t, (dataURL, time) => {
-                            const img = new Image();
-                            img.src = dataURL;
-                            img.width = thumbnailWidth;
-                            img.height = thumbnailHeight;
-                            img.classList.add("thumbnail");
-
-                            img.addEventListener("click", () => {
-                                video.currentTime = time;
-                                video.play();
-                            });
-
-                            if (!lastImageData) {
-                                thumbnailsContainer.appendChild(img);
-                                console.log("added first");
-                                console.log(img);
-                                lastImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
-                                
-                            } else {
-                                const currentImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
-                                if (hasSignificantChange(lastImageData.data, currentImageData.data)) {
-                                    thumbnailsContainer.appendChild(img);
-                                    lastImageData = currentImageData;
-                                }
-                                console.log("added 2nd");
-                                console.log(img);
-                            }
-
-                            console.log("t -> " + thumbnailsContainer);
-                        });
-                    }
-                });
-            }
-
-            // Function to compare two frames
-            function hasSignificantChange(data1, data2) {
-                let changedPixels = 0;
-                const threshold = 25; // change threshold per pixel
-                const maxChangedPixels = 0.02 * data1.length / 4; // 2% of the pixels
-
-                for (let i = 0; i < data1.length; i += 4) {
-                    const diff = Math.abs(data1[i] - data2[i])
-                    + Math.abs(data1[i + 1] - data2[i + 1])
-                    + Math.abs(data1[i + 2] - data2[i + 2]);
-
-                    if (diff > threshold) {
-                    changedPixels++;
-                    }
-                }
-
-                return changedPixels > maxChangedPixels;
-            }
-
-            
-
-            video.addEventListener('timeupdate', function() {  
-                var currentTime = video.currentTime;
-
-                //links em intervalos de tempo especificos
-                if (currentTime >= 5 && currentTime < 10) {
-                    document.getElementById('link1').style.display = 'block';
-                    document.getElementById('link2').style.display = 'none';
-                    overlay.style.display = 'block';
-                } else if (currentTime >= 10 && currentTime < 15) {
-                    document.getElementById('link1').style.display = 'none';
-                    document.getElementById('link2').style.display = 'block';
-                    overlay.style.display = 'block';
-                } else {
-                    overlay.style.display = 'none';
-                }
+                    resolve({ dataURL, time, imageData });
+                }, { once: true });
             });
+        }
+
+        // Detect significant changes in frames
+        async function detectChanges() {
+            let lastImageData = null;
+            const interval = 1; // seconds
+
+            video.addEventListener('loadeddata', async () => {
+                const duration = video.duration;
+                for (let t = 0; t < duration; t += interval) {
+                    const { dataURL, time, imageData } = await generateThumbnail(t);
+                    const img = new Image();
+                    img.src = dataURL;
+                    img.width = thumbnailWidth;
+                    img.height = thumbnailHeight;
+                    img.classList.add("thumbnail");
+
+                    img.addEventListener("click", () => {
+                        video.currentTime = time;
+                        video.play();
+                    });
+
+                    if (!lastImageData) {
+                        //thumbnailsContainer.appendChild(img);
+                        createCard('thumbnails', img);
+                        lastImageData = imageData;
+                    } else {
+                        if (hasSignificantChange(lastImageData, imageData)) {
+
+                            createCard('thumbnails', img);
+                            
+                            //thumbnailsContainer.appendChild(img);
+                            lastImageData = imageData;
+                        }
+                    }
+                }
+                video.currentTime = 0;
+            });
+        }
+
+        // Compare two frames for significant changes
+        function hasSignificantChange(data1, data2) {
+            let changedPixels = 0;
+            const threshold = 100; // change threshold per pixel
+            const maxChangedPixels = 0.9 * data1.length / 4; // 2% of the pixels
+
+            for (let i = 0; i < data1.length; i += 4) {
+                const diff = Math.abs(data1[i] - data2[i])
+                            + Math.abs(data1[i + 1] - data2[i + 1])
+                            + Math.abs(data1[i + 2] - data2[i + 2]);
+
+                if (diff > threshold) {
+                    changedPixels++;
+                }
+            }
+
+            return changedPixels > maxChangedPixels;
+        }
+
+        // Show overlays at specific time intervals
+        video.addEventListener('timeupdate', () => {
+            const currentTime = video.currentTime;
+
+            if (currentTime >= 5 && currentTime < 10) {
+                document.getElementById('link1').style.display = 'block';
+                document.getElementById('link2').style.display = 'none';
+                overlay.style.display = 'block';
+            } else if (currentTime >= 10 && currentTime < 15) {
+                document.getElementById('link1').style.display = 'none';
+                document.getElementById('link2').style.display = 'block';
+                overlay.style.display = 'block';
+            } else {
+                overlay.style.display = 'none';
+            }
         });
+    });
+
+
+
+
     </script>
 
 </body>
