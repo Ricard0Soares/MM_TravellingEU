@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="lisboa.css">
-    <link rel="stylesheet" type="text/css" href="navBar.css">
+    <link rel="stylesheet" href="lisboa.css">
+    <link rel="stylesheet" href="navBar.css">
     <style>
         #thumbnails {
             display: flex;
@@ -45,6 +45,67 @@
             border-radius: 3px;
             text-decoration: none;
         }
+
+        .card-container {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            max-width: 80%
+            z-index: 100;
+        }
+
+        .image-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .image-list li {
+            margin: 0 10px;
+        }
+
+        .image-list img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        #overlayCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .overlay-area {
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            width: 40%;
+            height: 40%;
+            cursor: pointer;
+            background-color: rgba(255, 0, 0, 0.2);
+        }
+
+        .hover-message {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+
     </style>
 </head>
 <body>
@@ -61,7 +122,7 @@
     <div class="ellipse-container">
         <p>Lisboa</p>
         <div class="image-container">
-            <img src="images/lisboa.png" alt="lisboa">
+            <img src="images/lisboa.png" alt="Lisboa">
             <span>Lisboa é a capital e maior cidade de Portugal, com uma população estimada 
                 de 548.703 habitantes em 2022 dentro dos seus limites administrativos numa 
                 área de cerca de 100 quilómetros quadrados.</span>
@@ -69,177 +130,61 @@
     </div>
 
     <div class="second-ellipse-container">
-        <div class="video-container">
+        <div id="video-container" class="video-container">
             <video id="myVideo" controls muted>
-                <source src="teste.mp4" type="video/mp4">
-                <!-- Add the image map for interactive regions -->
-                <map name="videomap">
-                    <area shape="rect" coords="50,50,100,100" href="#" alt="Tower" data-info="This is a famous tower in Lisbon.">
-                    <!-- Add more areas as needed -->
-                </map>
+                <source src="clip.mp4" type="video/mp4">
             </video>
-            <div id="overlay" class="overlay">
-                <a href="home.html" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
-                <a href="paris.html" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
-            </div>
-            <div id="thumbnails" class="thumbnails"></div>
-            <div id="infoCard" class="info-card"></div>
-        </div>
-    </div>
 
-    <div class="third-ellipse-container">
-        <div class="photos-container">
-            <img src="images/image_3.png" alt="cidade1">
-        </div>
-        <div class="photos-container">
-            <img src="images/image_4.png" alt="cidade2">
-        </div>
-        <div class="photos-container">
-            <img src="images/image_5.png" alt="cidade3">
-        </div>
-        <div class="photos-container">
-            <img src="images/image_3.png" alt="cidade5">
-        </div>
-        <div class="photos-container">
-            <img src="images/image_4.png" alt="cidade6">
+            <div id="overlayArea" class="overlay-area"></div>
+
+            <canvas id="overlayCanvas"></canvas>
+
+            <div id="overlay" class="overlay">
+                <a href="#" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
+                <a href="#" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
+            </div>
+
+            <div id="thumbnails" class="thumbnails"></div>
+
+            <div id="infoCard" class="info-card"></div>
+
+            <div id="cardContainer" class="card-container">
+                <h2 id="cardTitle">Mosteiro</h2>
+                <p id="cardDescription">This is a monument</p>
+                <ul class="image-list">
+                    <li><img src="images/image_3.png" alt="cidade1"></li>
+                    <li><img src="images/image_4.png" alt="cidade2"></li>
+                    <li><img src="images/image_5.png" alt="cidade3"></li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const video = document.getElementById("myVideo");
-            const thumbnailsContainer = document.getElementById("thumbnails");
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
-            const thumbnailWidth = 160;
-            const thumbnailHeight = 90;
+            const canvas = document.getElementById("overlayCanvas");
             const overlay = document.getElementById('overlay');
             const infoCard = document.getElementById('infoCard');
+            const cardContainer = document.getElementById('cardContainer');
+            const link1 = document.getElementById('link1');
+            const overlayArea = document.getElementById('overlayArea');
 
             video.currentTime = 0;
-            detectChanges();
 
-            function generateThumbnail(time, callback) {
-                video.currentTime = time;
-                video.addEventListener('seeked', function captureFrame() {
-                    ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
-                    const dataURL = canvas.toDataURL();
-                    callback(dataURL, time);
-                    video.removeEventListener('seeked', captureFrame);
-                });
-            }
-
-            function detectChanges() {
-                let lastImageData = null;
-                const interval = 10;
-
-                video.addEventListener('loadeddata', () => {
-                    const duration = video.duration;
-                    for (let t = 0; t < duration; t += interval) {
-                        generateThumbnail(t, (dataURL, time) => {
-                            const img = new Image();
-                            img.src = dataURL;
-                            img.width = thumbnailWidth;
-                            img.height = thumbnailHeight;
-                            img.classList.add("thumbnail");
-
-                            img.addEventListener("click", () => {
-                                video.currentTime = time;
-                                video.play();
-                            });
-
-                            if (!lastImageData) {
-                                thumbnailsContainer.appendChild(img);
-                                lastImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
-                            } else {
-                                const currentImageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight);
-                                if (hasSignificantChange(lastImageData.data, currentImageData.data)) {
-                                    thumbnailsContainer.appendChild(img);
-                                    lastImageData = currentImageData;
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-
-            function hasSignificantChange(data1, data2) {
-                let changedPixels = 0;
-                const threshold = 25;
-                const maxChangedPixels = 0.02 * data1.length / 4;
-
-                for (let i = 0; i < data1.length; i += 4) {
-                    const diff = Math.abs(data1[i] - data2[i])
-                        + Math.abs(data1[i + 1] - data2[i + 1])
-                        + Math.abs(data1[i + 2] - data2[i + 2]);
-
-                    if (diff > threshold) {
-                        changedPixels++;
-                    }
+            /*function checkVideoOverlays(currentTime) {
+                if (currentTime >= 15 && currentTime < 20) {
+                    cardContainer.style.display = 'block';
+                } else {
+                    cardContainer.style.display = 'none';
                 }
-                return changedPixels > maxChangedPixels;
-            }
+            }*/
 
-            function checkVideoOverlays(currentTime) {
-                // Example overlay data
-                const overlays = [
-                    { start: 5, end: 10, type: 'rectangle', data: { x: '10%', y: '10%', width: '80%', height: '80%', text: 'Explore this area' }},
-                    { start: 10, end: 15, type: 'question', data: { question: 'What is this place?', options: ['Option 1', 'Option 2', 'Option 3'] }}
-                ];
-
-                overlays.forEach(overlay => {
-                    if (currentTime >= overlay.start && currentTime < overlay.end) {
-                        if (overlay.type === 'rectangle') {
-                            drawRectangleOverlay(overlay.data);
-                        } else if (overlay.type === 'question') {
-                            drawQuestionOverlay(overlay.data);
-                        }
-                    }
-                });
-            }
-
-            function drawRectangleOverlay(data) {
-                const overlayElement = document.createElement('div');
-                overlayElement.style.position = 'absolute';
-                overlayElement.style.top = data.y;
-                overlayElement.style.left = data.x;
-                overlayElement.style.width = data.width;
-                overlayElement.style.height = data.height;
-                overlayElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                overlayElement.style.color = 'white';
-                overlayElement.style.display = 'flex';
-                overlayElement.style.alignItems = 'center';
-                overlayElement.style.justifyContent = 'center';
-                overlayElement.innerText = data.text;
-                overlay.appendChild(overlayElement);
-                overlay.style.display = 'block';
-            }
-
-            function drawQuestionOverlay(data) {
-                const overlayElement = document.createElement('div');
-                overlayElement.style.position = 'absolute';
-                overlayElement.style.top = '50%';
-                overlayElement.style.left = '50%';
-                overlayElement.style.transform = 'translate(-50%, -50%)';
-                overlayElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                overlayElement.style.color = 'white';
-                overlayElement.style.padding = '10px';
-                overlayElement.style.borderRadius = '5px';
-
-                const questionText = document.createElement('p');
-                questionText.innerText = data.question;
-                overlayElement.appendChild(questionText);
-
-                data.options.forEach(option => {
-                    const optionButton = document.createElement('button');
-                    optionButton.innerText = option;
-                    optionButton.style.margin = '5px';
-                    overlayElement.appendChild(optionButton);
-                });
-
-                overlay.appendChild(overlayElement);
-                overlay.style.display = 'block';
-            }
+            // Set canvas dimensions to match video dimensions
+            video.addEventListener('loadedmetadata', () => {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+            });
 
             video.addEventListener('timeupdate', () => {
                 const currentTime = video.currentTime;
@@ -258,23 +203,60 @@
                 }
             });
 
-            // Add hover functionality for the image map areas
-            const areas = document.querySelectorAll('area');
+            // Add hover functionality for overlayArea
+            overlayArea.addEventListener('mouseenter', () => {
+                showHoverMessage("Está aqui!");
+            });
 
-            areas.forEach(area => {
-                area.addEventListener('mouseenter', event => {
-                    const info = event.target.getAttribute('data-info');
-                    infoCard.innerHTML = info;
-                    infoCard.style.display = 'block';
-                    infoCard.style.top = event.pageY + 'px';
-                    infoCard.style.left = event.pageX + 'px';
-                });
+            overlayArea.addEventListener('mouseleave', () => {
+                hideHoverMessage();
+            });
 
-                area.addEventListener('mouseleave', () => {
-                    infoCard.style.display = 'none';
-                });
+            overlayArea.addEventListener('click', () => {
+                cardContainer.style.display = 'block';
+                video.pause();
+            });
+
+            function showHoverMessage(message) {
+                const hoverMessage = document.createElement('div');
+                hoverMessage.textContent = message;
+                hoverMessage.classList.add('hover-message');
+                document.body.appendChild(hoverMessage);
+
+                document.addEventListener('mousemove', updateHoverMessagePosition);
+
+                function updateHoverMessagePosition(event) {
+                    hoverMessage.style.top = event.clientY + 'px';
+                    hoverMessage.style.left = event.clientX + 'px';
+                }
+
+                setTimeout(() => {
+                    hoverMessage.remove();
+                    document.removeEventListener('mousemove', updateHoverMessagePosition);
+                }, 5000);
+            }
+
+            function hideHoverMessage() {
+                const hoverMessage = document.querySelector('.hover-message');
+                if (hoverMessage) {
+                    hoverMessage.remove();
+                }
+                document.removeEventListener('mousemove', updateHoverMessagePosition);
+            }
+
+            // Add click event for "Learn more about Lisbon"
+            link1.addEventListener('click', (event) => {
+                event.preventDefault();
+                cardContainer.style.display = 'block';
+                video.pause();
+            });
+
+            // Hide cardContainer and play video when video is clicked
+            video.addEventListener('play', () => {
+                cardContainer.style.display = 'none';
             });
         });
     </script>
+
 </body>
 </html>
