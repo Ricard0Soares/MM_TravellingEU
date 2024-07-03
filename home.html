@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravellingEU</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">TravellingEU</div>
+        <nav>
+            <ul>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="how_it_works.html">How it works</a></li>
+                <li><a href="aboutus.html">About us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button><img src="img/search-icon.png" alt="Search" style="height: 10px;"></button>
+            </div>
+            <div class="search-title">Europe on the Palm of Your Hand</div>
+        </div>
+        <div class="carousel">
+            <button class="carousel-button left" onclick="scrollCarousel(-1)">&lt;</button>
+            <div class="carousel-wrapper">
+                <div class="carousel-images">
+                    <div class="carousel-item">
+                        <img src="img/aveiro.jpg" alt="Aveiro">
+                        <span>Aveiro</span>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/lisboa.jpeg" alt="Lisbon">
+                        <span>Lisbon</span>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/paris.jpg" alt="Paris">
+                        <span>Paris</span>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/roma.jpeg" alt="Rome">
+                        <span>Rome</span>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/berlim.jpeg" alt="Berlin">
+                        <span>Berlin</span>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-button right" onclick="scrollCarousel(1)">&gt;</button>
+        </div>
+    </main>
+    <script>
+        let currentIndex = 0;
+
+        function scrollCarousel(direction) {
+            const carouselImages = document.querySelector('.carousel-images');
+            const items = document.querySelectorAll('.carousel-item');
+            const itemWidth = items[0].clientWidth + 20; // Including margin
+            const visibleItems = 3;
+            const totalItems = items.length;
+
+            currentIndex += direction;
+
+            // Ensure the currentIndex is within the bounds
+            if (currentIndex < 0) {
+                currentIndex = totalItems - visibleItems;
+            } else if (currentIndex > totalItems - visibleItems) {
+                currentIndex = 0;
+            }
+
+            const offset = -currentIndex * itemWidth;
+            carouselImages.style.transform = `translateX(${offset}px)`;
+        }
+    </script>
+</body>
+</html>
