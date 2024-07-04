@@ -53,14 +53,9 @@
             color: white;
             border-radius: 5px;
             text-align: center;
-            width: 100%;
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-            max-width: 80%
+            max-width: 80%; /* Added missing semicolon */
             z-index: 100;
+            display: none;
         }
 
         .image-list {
@@ -89,12 +84,14 @@
 
         .overlay-area {
             position: absolute;
-            top: 20%;
+            top: 5%;
             left: 30%;
             width: 40%;
             height: 40%;
             cursor: pointer;
             background-color: rgba(255, 0, 0, 0.2);
+            z-index: 2;
+            display: none;
         }
 
         .hover-message {
@@ -130,12 +127,15 @@
     </div>
 
     <div class="second-ellipse-container">
+        
+        <div id="overlayArea" class="overlay-area"></div>
+
         <div id="video-container" class="video-container">
             <video id="myVideo" controls muted>
                 <source src="clip.mp4" type="video/mp4">
             </video>
 
-            <div id="overlayArea" class="overlay-area"></div>
+            
 
             <canvas id="overlayCanvas"></canvas>
 
@@ -147,17 +147,25 @@
             <div id="thumbnails" class="thumbnails"></div>
 
             <div id="infoCard" class="info-card"></div>
-
+            
             <div id="cardContainer" class="card-container">
                 <h2 id="cardTitle">Mosteiro</h2>
-                <p id="cardDescription">This is a monument</p>
+                <p id="cardDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
+                    printer took a galley of type and scrambled it to make a type specimen book. It has survived 
+                    not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
+                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 <ul class="image-list">
                     <li><img src="images/image_3.png" alt="cidade1"></li>
                     <li><img src="images/image_4.png" alt="cidade2"></li>
                     <li><img src="images/image_5.png" alt="cidade3"></li>
                 </ul>
             </div>
+            
         </div>
+
+        
     </div>
 
     <script>
@@ -172,14 +180,6 @@
 
             video.currentTime = 0;
 
-            /*function checkVideoOverlays(currentTime) {
-                if (currentTime >= 15 && currentTime < 20) {
-                    cardContainer.style.display = 'block';
-                } else {
-                    cardContainer.style.display = 'none';
-                }
-            }*/
-
             // Set canvas dimensions to match video dimensions
             video.addEventListener('loadedmetadata', () => {
                 canvas.width = video.videoWidth;
@@ -188,24 +188,39 @@
 
             video.addEventListener('timeupdate', () => {
                 const currentTime = video.currentTime;
-                checkVideoOverlays(currentTime);
 
                 if (currentTime >= 5 && currentTime < 10) {
                     document.getElementById('link1').style.display = 'block';
                     document.getElementById('link2').style.display = 'none';
                     overlay.style.display = 'block';
+
+                    positionOverlayArea('5%','30%','40%','40%', 'block');
+
+
                 } else if (currentTime >= 10 && currentTime < 15) {
                     document.getElementById('link1').style.display = 'none';
                     document.getElementById('link2').style.display = 'block';
                     overlay.style.display = 'block';
+
+                    positionOverlayArea('10%','20%','40%','40%', 'block');
+
                 } else {
                     overlay.style.display = 'none';
+                    overlayArea.style.display = 'none';
                 }
             });
 
+            function positionOverlayArea(top ,left ,width ,height ,display){
+                overlayArea.style.top = top;
+                overlayArea.style.left = left;
+                overlayArea.style.width = width;
+                overlayArea.style.height = height;
+                overlayArea.style.display = display;
+            }
+
             // Add hover functionality for overlayArea
-            overlayArea.addEventListener('mouseenter', () => {
-                showHoverMessage("Está aqui!");
+            overlayArea.addEventListener('mouseenter', (event) => {
+                showHoverMessage(event, "Mosteiro dos Jerónimos!");
             });
 
             overlayArea.addEventListener('mouseleave', () => {
@@ -217,18 +232,20 @@
                 video.pause();
             });
 
-            function showHoverMessage(message) {
+            function showHoverMessage(event, message) {
                 const hoverMessage = document.createElement('div');
                 hoverMessage.textContent = message;
                 hoverMessage.classList.add('hover-message');
                 document.body.appendChild(hoverMessage);
 
-                document.addEventListener('mousemove', updateHoverMessagePosition);
+                updateHoverMessagePosition(event);
 
                 function updateHoverMessagePosition(event) {
                     hoverMessage.style.top = event.clientY + 'px';
                     hoverMessage.style.left = event.clientX + 'px';
                 }
+
+                document.addEventListener('mousemove', updateHoverMessagePosition);
 
                 setTimeout(() => {
                     hoverMessage.remove();
@@ -241,7 +258,6 @@
                 if (hoverMessage) {
                     hoverMessage.remove();
                 }
-                document.removeEventListener('mousemove', updateHoverMessagePosition);
             }
 
             // Add click event for "Learn more about Lisbon"
