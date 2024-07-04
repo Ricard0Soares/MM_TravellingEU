@@ -151,8 +151,8 @@
 
             <div id="infoCard" class="info-card"></div>
             
-            <div id="cardContainer" class="card-container">
-                <h2 id="cardTitle">Mosteiro</h2>
+            <!--<div id="cardContainer" class="card-container">
+                <h2 id="cardTitle">Mosteiro dos Jerónimos</h2>
                 <p id="cardDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
                     printer took a galley of type and scrambled it to make a type specimen book. It has survived 
@@ -164,7 +164,18 @@
                     <li><img src="images/image_4.png" alt="cidade2"></li>
                     <li><img src="images/image_5.png" alt="cidade3"></li>
                 </ul>
-            </div>
+            </div>-->
+
+            <div id="cardContainer" class="card-container">
+              <h2 id="cardTitle"></h2>
+              <p id="cardDescription"></p>
+              <ul class="image-list">
+                  <li><img src="images/image_3.png" alt="cidade1"></li>
+                  <li><img src="images/image_4.png" alt="cidade2"></li>
+                  <li><img src="images/image_5.png" alt="cidade3"></li>
+              </ul>
+          </div>
+
         </div>
 
         <div id="thumbnails" class="thumbnails"></div>
@@ -192,11 +203,17 @@
           const link1 = document.getElementById('link1');
           const overlayArea = document.getElementById('overlayArea');
 
+          const cardTitleElement = document.getElementById('cardTitle');
+          const cardDescriptionElement = document.getElementById('cardDescription');
+          
+
+
 
           video.currentTime = 0;
       
           detectChanges();
       
+          //thumbnails
           function createCard(targetDivId, frame) {
             const cardDiv = document.createElement('div');
             cardDiv.className = 'card';
@@ -291,7 +308,7 @@
           function hasSignificantChange(data1, data2) {
             let changedPixels = 0;
             const threshold = 100; // change threshold per pixel
-            const maxChangedPixels = 0.6 * data1.length / 4; // 2% of the pixels
+            const maxChangedPixels = 0.6 * data1.length / 4;
       
             for (let i = 0; i < data1.length; i += 4) {
               const diff = Math.abs(data1[i] - data2[i]) + Math.abs(data1[i + 1] - data2[i + 1]) + Math.abs(data1[i + 2] - data2[i + 2]);
@@ -308,20 +325,55 @@
         video.addEventListener('timeupdate', () => {
           const currentTime = video.currentTime;
 
-          if (currentTime >= 5 && currentTime < 10) {
+          if (currentTime >= 0 && currentTime < 4) {
             document.getElementById('link1').style.display = 'block';
             document.getElementById('link2').style.display = 'none';
             overlay.style.display = 'block';
 
-            positionOverlayArea('5%','30%','40%','40%', 'block');
+            cardTitleElement.textContent = "Mosteiro dos Jerónimos";
+            cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
+                  "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
+                  "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
+                  "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
+                  "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
 
-          } else if (currentTime >= 10 && currentTime < 15) {
+            positionOverlayArea('5%','33%','20%','40%', 'block');
+
+
+          } else if (currentTime >= 4 && currentTime < 8) {
               document.getElementById('link1').style.display = 'none';
               document.getElementById('link2').style.display = 'block';
               overlay.style.display = 'block';
 
+              cardTitleElement.textContent = "Parque das Nações";
+              cardDescriptionElement.textContent = "teste2";
+
               positionOverlayArea('10%','20%','40%','40%', 'block');
+
+          }else if(currentTime >= 8 && currentTime < 11){
+              cardTitleElement.textContent = "Não faço ideia";
+              cardDescriptionElement.textContent = "teste3";
+
+              positionOverlayArea('10%','20%','40%','40%', 'block');
+
+          }else if(currentTime >= 11 && currentTime < 15){
+              cardTitleElement.textContent = "Não faço ideia1";
+              cardDescriptionElement.textContent = "teste4";
+
+              positionOverlayArea('10%','10%','60%','30%', 'block');
+
+          }else if(currentTime >= 15 && currentTime < 19){
+              cardTitleElement.textContent = "Padrão dos Descobrimentos";
+              cardDescriptionElement.textContent = "teste2";
+
+              positionOverlayArea('10%','25%','20%','40%', 'block');
+
+          }else if(currentTime >= 19 && currentTime <= 22){
+              cardTitleElement.textContent = "Padrão dos Descobrimentos1";
+              cardDescriptionElement.textContent = "teste2";
+
+              positionOverlayArea('15%','35%','10%','40%', 'block');
 
           } else {
               overlay.style.display = 'none';
@@ -340,7 +392,25 @@
 
         // Add hover functionality for overlayArea
         overlayArea.addEventListener('mouseenter', (event) => {
-          showHoverMessage(event, "Mosteiro dos Jerónimos!");
+
+          let hoverMessageText = "";
+          const currentTime = video.currentTime;
+
+          if (currentTime >= 0 && currentTime < 4) {
+              hoverMessageText = "Mosteiro dos Jerónimos";
+          } else if (currentTime >= 4 && currentTime < 8) {
+              hoverMessageText = "Parque das Nações";
+          } else if (currentTime >= 8 && currentTime < 11) {
+              hoverMessageText = "Não faço ideia";
+          } else if (currentTime >= 11 && currentTime < 15) {
+              hoverMessageText = "Não faço ideia1";
+          } else if (currentTime >= 15 && currentTime < 19) {
+              hoverMessageText = "Padrão dos Descobrimentos";
+          } else if (currentTime >= 19 && currentTime <= 22) {
+              hoverMessageText = "Padrão dos Descobrimentos1";
+          }
+
+          showHoverMessage(event, hoverMessageText);
         });
 
         overlayArea.addEventListener('mouseleave', () => {
