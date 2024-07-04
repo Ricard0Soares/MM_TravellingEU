@@ -13,6 +13,97 @@
             border: 3px solid red;
         }
 
+        .card-body {
+            padding: 0.1rem; /* Adjust padding to reduce space */
+        }
+        .card-text {
+            margin-top: 0.1rem; /* Adjust margin to reduce space */
+        }
+
+        .info-card {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+
+        .overlay a {
+            position: absolute;
+            pointer-events: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+
+        .card-container {
+            margin-top: 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 80%;
+            z-index: 100;
+            display: none;
+            position: relative; /* Ensure it's relative */
+            top: -70px; /* Adjust this value to move it closer to the video */
+        }
+
+        .image-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .image-list li {
+            margin: 0 10px;
+        }
+
+        .image-list img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .overlay-area {
+            position: absolute;
+            top: 5%;
+            left: 30%;
+            width: 40%;
+            height: 40%;
+            cursor: pointer;
+            background-color: rgba(255, 0, 0, 0.2);
+            z-index: 2;
+            display: none;
+        }
+
+        .hover-message {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+
+        
+
     </style>
 
 </head>
@@ -39,52 +130,70 @@
     </div>
 
     <div class="second-ellipse-container">
-        <div class="video-container">
-            <video id="myVideo" controls muted>
-                <source src="clip.mp4" type="video/mp4">
-            </video>
-            <div id="overlay" class="overlay">
-                <a href="home.html" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
-                <a href="paris.html" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
-            </div>
-            <div id="thumbnails" class="thumbnails">
-                
-            </div>
-            
-        </div>
-    </div>
 
-    <div class="third-ellipse-container">
-        <div class="photos-container">
-            <img src="images/image_3.png" alt="cidade1">
+      <div id="overlayArea" class="overlay-area"></div>
+      
+
+        <div id="video-container" class="video-container">
+            <video id="myVideo" controls muted>
+                <source src="lisboa.mp4" type="video/mp4">
+            </video>
+            
+            <canvas id="overlayCanvas"></canvas>
+
+
+
+            <div id="overlay" class="overlay">
+                <a href="#" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
+                <a href="#" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
+            </div>
+
+
+            <div id="infoCard" class="info-card"></div>
+            
+            <div id="cardContainer" class="card-container">
+                <h2 id="cardTitle">Mosteiro</h2>
+                <p id="cardDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
+                    printer took a galley of type and scrambled it to make a type specimen book. It has survived 
+                    not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
+                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <ul class="image-list">
+                    <li><img src="images/image_3.png" alt="cidade1"></li>
+                    <li><img src="images/image_4.png" alt="cidade2"></li>
+                    <li><img src="images/image_5.png" alt="cidade3"></li>
+                </ul>
+            </div>
         </div>
-        <div class="photos-container">
-            <img src="images/image_4.png" alt="cidade2">
-        </div>
-        <div class="photos-container">
-            <img src="images/image_5.png" alt="cidade3">
-        </div>
-        <div class="photos-container">
-            <img src="images/image_3.png" alt="cidade5">
-        </div>
-        <div class="photos-container">
-            <img src="images/image_4.png" alt="cidade6">
-        </div>
+
+        <div id="thumbnails" class="thumbnails"></div>
+        
     </div>
     
     
     <script>
+
         document.addEventListener("DOMContentLoaded", () => {
-          const overlay = document.getElementById('overlay');
+
           const video = document.getElementById("myVideo");
-          const thumbnailsContainer = document.getElementById("thumbnails");
           const canvas = document.createElement("canvas");
+          const overlay = document.getElementById('overlay');
+          const thumbnailsContainer = document.getElementById("thumbnails");
           const ctx = canvas.getContext("2d");
           const thumbnailWidth = 300;
           const thumbnailHeight = 120;
-          const listOfMonuments = ['teste1', 'teste2', 'teste3', 'teste4', 'teste5'];
+          const listOfMonuments = ['Torre de Belém', 'Torre de Belém', 'Parque das Nações', 'Parque das Nações', 'teste5', 'Padrão dos Descobrimentos'];
           var counter = 0;
           var currentActiveCard = null;
+
+          const infoCard = document.getElementById('infoCard');
+          const cardContainer = document.getElementById('cardContainer');
+          const link1 = document.getElementById('link1');
+          const overlayArea = document.getElementById('overlayArea');
+
+
+          video.currentTime = 0;
       
           detectChanges();
       
@@ -92,17 +201,21 @@
             const cardDiv = document.createElement('div');
             cardDiv.className = 'card';
             cardDiv.style.width = '8rem';
-            cardDiv.style.height = '8rem';
+            cardDiv.style.height = '6rem';
             cardDiv.style.background = 'none';
       
             frame.className = 'card-img-top';
       
             const cardBodyDiv = document.createElement('div');
             cardBodyDiv.className = 'card-body';
+            cardBodyDiv.style.textAlign = 'center';
+            cardBodyDiv.style.padding = '0.1rem'; // Adjust padding to reduce space
       
             const cardText = document.createElement('p');
             cardText.className = 'card-text';
             cardText.style.color = 'yellow';
+            cardText.style.marginTop = '0.1rem'; // Adjust margin to reduce space
+            cardText.style.fontSize = '12px';
             cardText.textContent = listOfMonuments[counter];
       
             cardDiv.appendChild(frame);
@@ -169,6 +282,8 @@
                 }
               }
               video.currentTime = 0;
+
+              
             });
           }
       
@@ -176,7 +291,7 @@
           function hasSignificantChange(data1, data2) {
             let changedPixels = 0;
             const threshold = 100; // change threshold per pixel
-            const maxChangedPixels = 0.9 * data1.length / 4; // 2% of the pixels
+            const maxChangedPixels = 0.6 * data1.length / 4; // 2% of the pixels
       
             for (let i = 0; i < data1.length; i += 4) {
               const diff = Math.abs(data1[i] - data2[i]) + Math.abs(data1[i + 1] - data2[i + 1]) + Math.abs(data1[i + 2] - data2[i + 2]);
@@ -188,24 +303,98 @@
       
             return changedPixels > maxChangedPixels;
           }
-      
-          // Show overlays at specific time intervals
-          video.addEventListener('timeupdate', () => {
-            const currentTime = video.currentTime;
-      
-            if (currentTime >= 5 && currentTime < 10) {
-              document.getElementById('link1').style.display = 'block';
-              document.getElementById('link2').style.display = 'none';
-              overlay.style.display = 'block';
-            } else if (currentTime >= 10 && currentTime < 15) {
+
+
+        video.addEventListener('timeupdate', () => {
+          const currentTime = video.currentTime;
+
+          if (currentTime >= 5 && currentTime < 10) {
+            document.getElementById('link1').style.display = 'block';
+            document.getElementById('link2').style.display = 'none';
+            overlay.style.display = 'block';
+
+            positionOverlayArea('5%','30%','40%','40%', 'block');
+
+
+          } else if (currentTime >= 10 && currentTime < 15) {
               document.getElementById('link1').style.display = 'none';
               document.getElementById('link2').style.display = 'block';
               overlay.style.display = 'block';
-            } else {
+
+              positionOverlayArea('10%','20%','40%','40%', 'block');
+
+          } else {
               overlay.style.display = 'none';
-            }
-          });
+              overlayArea.style.display = 'none';
+          }
         });
+
+
+        function positionOverlayArea(top ,left ,width ,height ,display){
+          overlayArea.style.top = top;
+          overlayArea.style.left = left;
+          overlayArea.style.width = width;
+          overlayArea.style.height = height;
+          overlayArea.style.display = display;
+        }
+
+        // Add hover functionality for overlayArea
+        overlayArea.addEventListener('mouseenter', (event) => {
+          showHoverMessage(event, "Mosteiro dos Jerónimos!");
+        });
+
+        overlayArea.addEventListener('mouseleave', () => {
+          hideHoverMessage();
+        });
+
+        overlayArea.addEventListener('click', () => {
+          cardContainer.style.display = 'block';
+          video.pause();
+        });
+
+        function showHoverMessage(event, message) {
+          const hoverMessage = document.createElement('div');
+          hoverMessage.textContent = message;
+          hoverMessage.classList.add('hover-message');
+          document.body.appendChild(hoverMessage);
+
+          updateHoverMessagePosition(event);
+
+        function updateHoverMessagePosition(event) {
+          hoverMessage.style.top = event.clientY + 'px';
+          hoverMessage.style.left = event.clientX + 'px';
+        }
+
+        document.addEventListener('mousemove', updateHoverMessagePosition);
+
+          setTimeout(() => {
+            hoverMessage.remove();
+            document.removeEventListener('mousemove', updateHoverMessagePosition);
+          }, 5000);
+        }
+
+        function hideHoverMessage() {
+          const hoverMessage = document.querySelector('.hover-message');
+          if (hoverMessage) {
+            hoverMessage.remove();
+          }
+        }
+
+        // Add click event for "Learn more about Lisbon"
+        link1.addEventListener('click', (event) => {
+          event.preventDefault();
+          cardContainer.style.display = 'block';
+          video.pause();
+        });
+
+        // Hide cardContainer and play video when video is clicked
+        video.addEventListener('play', () => {
+          cardContainer.style.display = 'none';
+        });
+
+      });
+
+            
     </script>
     
       
