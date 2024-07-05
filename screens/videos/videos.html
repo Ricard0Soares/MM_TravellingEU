@@ -53,32 +53,53 @@
     
 
     <div class="ellipse-container">
-        <div class="image-container">
-            <img src="../../images/belgium.png" alt="cidade1">
-            <span>Video 1</span>
+        <div class="video-container">
+            <video id="myVideo" muted>
+                <source src="../../lisboa.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" onclick="window.location.href='../../lisboa.html'"></div>
+            <span>Lisboa</span>
         </div>
-        <div class="image-container">
-            <img src="../../images/croatia.png" alt="cidade2">
-            <span>Video 2</span>
+        <div class="video-container">
+            <video id="myVideo" muted>
+                <source src="../../lisboa.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" onclick="window.location.href='../../madrid.html'"></div>
+            <span>Madrid</span>
         </div>
-        <div class="image-container">
-            <img src="../../images/france.png" alt="cidade3">
-            <span>Video 3</span>
+        <div class="video-container">
+            <video id="myVideo" muted>
+                <source src="../../lisboa.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" onclick="window.location.href='../../paris.html'"></div>
+            <span>Paris</span>
         </div>
-        <div class="image-container">
-            <img src="../../images/germany.png" alt="cidade4">
-            <span>Video 4</span>
+        <div class="video-container">
+            <video id="myVideo" muted>
+                <source src="../../lisboa.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" onclick="window.location.href='../../roma.html'"></div>
+            <span>Roma</span>
         </div>
-        <div class="image-container">
-            <img src="../../images/portugal.png" alt="cidade5">
-            <span>Video 5</span>
-        </div>
-        <div class="image-container">
-            <img src="../../images/spain.png" alt="cidade6">
-            <span>Video 6</span>
+        <div class="video-container">
+            <video id="myVideo" muted>
+                <source src="../../lisboa.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" onclick="window.location.href='../../atenas.html'"></div>
+            <span>Atenas</span>
         </div>
     </div>
     
+    <script>
+        //video container height = video height
+        window.addEventListener('load', function() {
+          const videos = document.querySelectorAll('video');
+          for (const video of videos) {
+            const videoContainer = video.parentElement;
+            videoContainer.style.height = video.offsetHeight + 'px';
+          }
+        });
+      </script>
 
 </body>
 

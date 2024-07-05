@@ -57,8 +57,9 @@ body {
     z-index: 1; /* Make sure it's below the dropdowns */
 }
 
-.image-container {
-    width: 30%;
+.video-container {
+    position: relative;
+    width: 15%;
     margin: 10px;
     text-align: center;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -66,41 +67,64 @@ body {
     animation: fadeIn 1s forwards;
 }
 
-.image-container:nth-child(1) {
+.video-container video{
+    width: 100%;
+    height: auto;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('../../play-button.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    opacity: 0.1;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .video-container:hover .play-button {
+    opacity: 1;
+  }
+
+.video-container:nth-child(1) {
     animation-delay: 0.3s;
 }
 
-.image-container:nth-child(2) {
+.video-container:nth-child(2) {
     animation-delay: 0.6s;
 }
 
-.image-container:nth-child(3) {
+.video-container:nth-child(3) {
     animation-delay: 0.9s;
 }
 
-.image-container:nth-child(4) {
+.video-container:nth-child(4) {
     animation-delay: 1.2s;
 }
 
-.image-container:nth-child(5) {
+.video-container:nth-child(5) {
     animation-delay: 1.5s;
 }
 
-.image-container:nth-child(6) {
+.video-container:nth-child(6) {
     animation-delay: 1.8s;
 }
 
-.image-container:hover {
+.video-container:hover {
     transform: scale(1.05);
     opacity: 0.8;
 }
 
-.image-container img {
+.video-container img {
     width: 50%;
     height: 80%;
 }
 
-.image-container span {
+.video-container span {
     display: block;
     margin-top: 5px;
     color: white;
@@ -171,7 +195,7 @@ body {
     transform: translateY(0);
 }
 
-.videos h1, .image-container span {
+.videos h1, .video-container span {
     opacity: 0;
     animation: fadeIn 1s forwards;
 }
