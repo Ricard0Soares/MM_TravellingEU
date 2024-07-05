@@ -1,0 +1,67 @@
+body{
+    background-image: url('images/background.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    cursor: default;
+}
+
+.location {
+    padding: 10px;
+    color: white;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+}
+
+.country {
+    text-align: center;
+    color: white;
+    margin-top: 100px;
+    font-size: 24px;
+}
+
+
+.normal-text {
+    font-weight: normal;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.ellipse-container {
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin: 50px auto 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    height: 500px;
+}
+
+
+.image-container {
+    width: 30%;
+    margin: 10px;
+    text-align: center;
+}
+
+.image-container img {
+    width: 60%;
+    height: 80%;
+}
+
+.image-container span {
+    display: block;
+    margin-top: 5px;
+    color: white;
+}
