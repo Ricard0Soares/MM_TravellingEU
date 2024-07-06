@@ -37,12 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardBodyDiv = document.createElement('div');
     cardBodyDiv.className = 'card-body';
     cardBodyDiv.style.textAlign = 'center';
-    cardBodyDiv.style.padding = '0.1rem'; // Adjust padding to reduce space
+    cardBodyDiv.style.padding = '0.1rem';
 
     const cardText = document.createElement('p');
     cardText.className = 'card-text';
     cardText.style.color = 'yellow';
-    cardText.style.marginTop = '0.1rem'; // Adjust margin to reduce space
+    cardText.style.marginTop = '0.1rem';
     cardText.style.fontSize = '12px';
     cardText.textContent = listOfMonuments[counter];
 
@@ -195,7 +195,7 @@ function positionOverlayArea(top ,left ,width ,height ,display){
   
 }
 
-// Add hover functionality for overlayArea
+// hover overlayArea
 overlayArea.addEventListener('mouseenter', (event) => {
 
   let hoverMessageText = "";
@@ -222,6 +222,7 @@ overlayArea.addEventListener('mouseleave', () => {
   hideHoverMessage();
 });
 
+//overlayArea clicked -> container appears, video stops
 overlayArea.addEventListener('click', () => {
   cardContainer.style.display = 'block';
   video.pause();

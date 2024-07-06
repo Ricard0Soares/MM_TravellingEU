@@ -22,7 +22,6 @@ body {
     border-radius: 20px;
     border: 1px solid #ccc;
     width: 500px;
-    /* background-image: url('images/image_2.png'); */
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 20px;
@@ -70,7 +69,7 @@ body {
     justify-content: center;
     max-width: 1200px;
     max-height: 900px;
-    padding: 20px; /* Added padding for better spacing */
+    padding: 20px;
 }
 
 .image-container,
@@ -91,11 +90,11 @@ body {
 }
 
 .image-container {
-    flex: 1; /* Decreased flex value */
+    flex: 1;
 }
 
 .video-container {
-    flex: 2; /* Increased flex value */
+    flex: 2;
 }
 
 
@@ -214,7 +213,7 @@ body {
     z-index: 100;
     display: none;
     position: relative;
-    top: -70px; /* to move closer to the video */
+    top: -50px; /* to move closer to the video */
 }
 
 .image-list {
