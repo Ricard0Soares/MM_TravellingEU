@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="home_cities.css">
     <link rel="stylesheet" type="text/css" href="navBar.css">
 
 </head>
@@ -23,10 +24,9 @@
                 list="search-suggestions" autocomplete="on" class="search-bar">
         <datalist id="search-suggestions">
             <option value="Lisboa">
+            <option value="Porto">
+            <option value="Aveiro">
             <option value="Paris">
-            <option value="Madrid">
-            <option value="Roma">
-            <option value="Atenas">
         </datalist>
         <div class="intro-text">Europe on The Palm of Your Hand</div>
     </div>
@@ -48,9 +48,7 @@
         </div>
     </div>-->
 
-    <div id="googleMap" style="width:30%;height: 500px;"></div>
-
-    <!--<div class="settings-menu">
+   <!-- <div class="settings-menu">
         <h2>Configurations</h2>
         <label for="theme-select">Skin:</label>
         <select id="theme-select" onchange="applyTheme()">
@@ -59,8 +57,60 @@
             <option value="light">Light</option>
         </select>
     </div>-->
+
+    <div class="content-container">
+        <div id="googleMap" style="width:30%;height: 500px;"></div>
+
+        <div class="second-ellipse-container">
+            
+            <div class="image-container">
+                <p>Lisboa</p>
+                <img src="images/lisboa.png" alt="lisboa">
+                <span>Lisboa é a capital e maior cidade de Portugal, com uma população estimada 
+                    de 548.703 habitantes em 2022 dentro dos seus limites administrativos numa 
+                    área de cerca de 100 quilómetros quadrados.</span>
+            </div>
     
+            
+    
+            <div id="video-container" class="video-container">
+                <video id="myVideo" controls muted>
+                    <source src="lisboa.mp4" type="video/mp4">
+                </video>
+
+                <div id="overlayArea" class="overlay-area"></div>
+
+
+                <canvas id="overlayCanvas"></canvas>
+
+                <div id="overlay" class="overlay">
+                    <!--<a href="#" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>-->
+                    <a href="#" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
+                </div>
+
+                <div id="infoCard" class="info-card"></div>
+
+                <div id="cardContainer" class="card-container">
+                    <h2 id="cardTitle"></h2>
+                    <p id="cardDescription"></p>
+                    <ul class="image-list">
+                    <li><img src="images/image_3.png" alt="cidade1"></li>
+                    <li><img src="images/image_4.png" alt="cidade2"></li>
+                    <li><img src="images/image_5.png" alt="cidade3"></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="thumbnails" class="thumbnails"></div>
+            
+        </div>
+    </div>
+
+    <script src="./home_lisboa.js"></script>
+
     <script>
+
         function myMap() {
             var europeBounds = {
                 north: 71.0,
@@ -92,46 +142,14 @@
                 map: map,
                 title: 'Paris'
             });
-
-            var madrid = new google.maps.Marker({
-                position: new google.maps.LatLng(40.416775, -3.703790),
-                map: map,
-                title: 'Madrid'
-            });
-
-            var athens = new google.maps.Marker({
-                position: new google.maps.LatLng(37.983810, 23.727539),
-                map: map,
-                title: 'Athens'
-            });
-
-            var rome = new google.maps.Marker({
-                position: new google.maps.LatLng(41.902782, 12.496366),
-                map: map,
-                title: 'Rome'
-            });
-
+        
             google.maps.event.addListener(lisbon, 'click', function(){
-                window.location.href = 'home_lisboa.html';
-            });
-
-            google.maps.event.addListener(paris, 'click', function(){
-                window.location.href = 'home_paris.html';
-            });
-
-            google.maps.event.addListener(madrid, 'click', function(){
-                window.location.href = 'home_madrid.html';
-            });
-
-            google.maps.event.addListener(rome, 'click', function(){
-                window.location.href = 'home_roma.html';
+                window.location.href = 'lisboa.html';
             });
         
-            google.maps.event.addListener(athens, 'click', function(){
-                window.location.href = 'home_atenas.html';
-            });
         }
         </script>
+        
         
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap"></script>
 

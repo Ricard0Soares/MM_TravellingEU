@@ -1,0 +1,253 @@
+body {
+    background-image: url('images/background.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.search-container {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.search-bar {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 500px;
+    /* background-image: url('images/image_2.png'); */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+.intro-text {
+    margin-top: 20px;
+    font-size: 30px;
+    color: white;
+}
+
+.ellipse-container {
+    width: 1200px;
+    height: 350px;
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin: 10px auto 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+}
+
+.content-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+#googleMap{
+    flex: 1;
+    margin-right: 20px;
+}
+
+.second-ellipse-container {
+    flex: 2;
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin: 100px 0 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    max-height: 900px;
+    padding: 20px; /* Added padding for better spacing */
+}
+
+.image-container,
+.video-container {
+    position: relative;
+    text-align: center;
+    max-height: 100%;
+    margin: 20px;
+}
+
+.image-container img{
+    width: 40%;
+    height: auto;
+}
+
+.image-container {
+    flex: 1; /* Decreased flex value */
+}
+
+.video-container {
+    flex: 2; /* Increased flex value */
+}
+
+
+#myVideo {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.image-container span {
+    position: absolute;
+    display: block;
+    margin-top: 10px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+.settings-menu {
+    position: fixed;
+    bottom: 570px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.settings-menu h2 {
+    margin-top: 0;
+}
+
+.settings-menu select {
+    margin-top: 10px;
+}
+
+.video-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#thumbnails{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.thumbnail{
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.active-card{
+    border: 3px solid red;
+}
+
+.card-body {
+    padding: 0.1rem; /* reduce space */
+}
+.card-text {
+    margin-top: 0.1rem; /*reduce space */
+}
+
+.info-card {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: none;
+    z-index: 3;
+}
+
+.overlay.visible{
+    display: block;
+    pointer-events: auto;
+}
+
+.overlay a {
+    position: absolute;
+    pointer-events: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    text-decoration: none;
+    pointer-events: auto;
+}
+
+.card-container {
+    margin-top: 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 80%;
+    z-index: 100;
+    display: none;
+    position: relative;
+    top: -70px; /* to move closer to the video */
+}
+
+.image-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.image-list li {
+    margin: 0 10px;
+}
+
+.image-list img {
+    max-width: 100px;
+    height: auto;
+}
+
+.overlay-area {
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.2);
+    z-index: 2;
+    display: none;
+}
+
+.hover-message {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 100;
+}

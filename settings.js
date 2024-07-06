@@ -1,4 +1,4 @@
-function applyTheme() {
+/*function applyTheme() {
     var theme = document.getElementById("theme-select").value;
 
     if (theme === "dark") {
@@ -22,4 +22,4 @@ function applyTheme() {
 document.addEventListener("DOMContentLoaded", function() {
     applyTheme();
 });
-
+*/

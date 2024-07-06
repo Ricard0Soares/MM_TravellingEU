@@ -1,187 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="lisboa.css">
-    <link rel="stylesheet" type="text/css" href="navBar.css">
 
-    <style>
-
-        .active-card{
-            border: 3px solid red;
-        }
-
-        .card-body {
-            padding: 0.1rem; /* reduce space */
-        }
-        .card-text {
-            margin-top: 0.1rem; /*reduce space */
-        }
-
-        .info-card {
-            display: none;
-            position: absolute;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            display: none;
-        }
-
-        .overlay a {
-            position: absolute;
-            pointer-events: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 5px;
-            border-radius: 3px;
-            text-decoration: none;
-        }
-
-        .card-container {
-            margin-top: 0;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            border-radius: 5px;
-            text-align: center;
-            max-width: 80%;
-            z-index: 100;
-            display: none;
-            position: relative;
-            top: -70px; /* to move closer to the video */
-        }
-
-        .image-list {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .image-list li {
-            margin: 0 10px;
-        }
-
-        .image-list img {
-            max-width: 100px;
-            height: auto;
-        }
-
-        .overlay-area {
-            position: absolute;
-            top: 5%;
-            left: 30%;
-            width: 40%;
-            height: 40%;
-            cursor: pointer;
-            background-color: rgba(255, 0, 0, 0.0);
-            z-index: 2;
-            display: none;
-        }
-
-        .hover-message {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 5px;
-            border-radius: 5px;
-            z-index: 100;
-        }
-
-        
-
-    </style>
-
-</head>
-
-<body>
-    <nav class="navbar">
-        <div class="logo"><a href="home.html">TravellingEU</a></div>
-        <ul class="nav-links">
-            <li><a href="screens/navLinks/destinations.html">Destinations</a></li>
-            <li><a href="screens/videos/videos.html">Videos</a></li>
-            <li><a href="screens/navLinks/howitworks.html">How it works</a></li>
-            <li><a href="screens/navLinks/aboutus.html">About Us</a></li>
-        </ul>
-    </nav>
-
-    <div class="ellipse-container">
-        <p>Lisboa</p>
-        <div class="image-container">
-            <img src="images/lisboa.png" alt="lisboa">
-            <span>Lisboa é a capital e maior cidade de Portugal, com uma população estimada 
-                de 548.703 habitantes em 2022 dentro dos seus limites administrativos numa 
-                área de cerca de 100 quilómetros quadrados.</span>
-        </div>
-    </div>
-
-    <div class="second-ellipse-container">
-
-      <div id="overlayArea" class="overlay-area"></div>
-      
-
-      <div id="video-container" class="video-container">
-        <video id="myVideo" controls muted>
-          <source src="lisboa.mp4" type="video/mp4">
-        </video>
-            
-      <canvas id="overlayCanvas"></canvas>
-
-      <div id="overlay" class="overlay">
-        <a href="#" id="link1" style="top: 10%; left: 10%;">Learn more about Lisbon</a>
-        <a href="#" id="link2" style="top: 20%; left: 20%;">Learn more about Paris</a>
-      </div>
-
-
-      <div id="infoCard" class="info-card"></div>
-            
-            <!--<div id="cardContainer" class="card-container">
-                <h2 id="cardTitle">Mosteiro dos Jerónimos</h2>
-                <p id="cardDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
-                    printer took a galley of type and scrambled it to make a type specimen book. It has survived 
-                    not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
-                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <ul class="image-list">
-                    <li><img src="images/image_3.png" alt="cidade1"></li>
-                    <li><img src="images/image_4.png" alt="cidade2"></li>
-                    <li><img src="images/image_5.png" alt="cidade3"></li>
-                </ul>
-            </div>-->
-
-      <div id="cardContainer" class="card-container">
-        <h2 id="cardTitle"></h2>
-        <p id="cardDescription"></p>
-        <ul class="image-list">
-          <li><img src="images/image_3.png" alt="cidade1"></li>
-          <li><img src="images/image_4.png" alt="cidade2"></li>
-          <li><img src="images/image_5.png" alt="cidade3"></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div id="thumbnails" class="thumbnails"></div>
-        
-    </div>
-
-    
-    <script>
 
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -198,7 +15,7 @@
 
           const infoCard = document.getElementById('infoCard');
           const cardContainer = document.getElementById('cardContainer');
-          const link1 = document.getElementById('link1');
+          //const link1 = document.getElementById('link1');
           const overlayArea = document.getElementById('overlayArea');
 
           const cardTitleElement = document.getElementById('cardTitle');
@@ -322,11 +139,8 @@
           const currentTime = video.currentTime;
 
           if (currentTime >= 0 && currentTime < 4) {
-            document.getElementById('link1').style.display = 'block';
-            document.getElementById('link2').style.display = 'none';
-            overlay.style.display = 'block';
 
-            cardTitleElement.textContent = "Torre de Belem";
+            cardTitleElement.textContent = "Torre de Belém";
             cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
                   "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
                   "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
@@ -338,9 +152,6 @@
 
 
           } else if (currentTime >= 4 && currentTime < 8) {
-              document.getElementById('link1').style.display = 'none';
-              document.getElementById('link2').style.display = 'block';
-              overlay.style.display = 'block';
 
               cardTitleElement.textContent = "Parque das Nações";
               cardDescriptionElement.textContent = "teste2";
@@ -448,11 +259,11 @@
         }
 
         // Add click event for "Learn more about Lisbon"
-        link1.addEventListener('click', (event) => {
+        /*link1.addEventListener('click', (event) => {
           event.preventDefault();
           cardContainer.style.display = 'block';
           video.pause();
-        });
+        });*/
 
         // Hide cardContainer and play video when video is clicked
         video.addEventListener('play', () => {
@@ -460,11 +271,3 @@
         });
 
       });
-
-            
-    </script>
-    
-      
-
-</body>
-</html>
