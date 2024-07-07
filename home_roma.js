@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
     const thumbnailWidth = 300;
     const thumbnailHeight = 120;
-    const listOfMonuments = ['Torre de Belém', 'Torre de Belém', 'Parque das Nações', 'Parque das Nações', 'teste5', 'Padrão dos Descobrimentos'];
+    const listOfMonuments = ['Fontana di Nettuno', 'Castelo Santo Ângelo', 'Fontana di Trevi', 'Panteão', 'Panteão', 'Coliseu'];
     var counter = 0;
     var currentActiveCard = null;
 
@@ -138,9 +138,9 @@ document.addEventListener("DOMContentLoaded", () => {
   video.addEventListener('timeupdate', () => {
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 4) {
+    if (currentTime >= 0 && currentTime < 2) {
 
-      cardTitleElement.textContent = "Torre de Belém";
+      cardTitleElement.textContent = "Fontana di Nettuno";
       cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
             "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
@@ -148,39 +148,61 @@ document.addEventListener("DOMContentLoaded", () => {
             "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
 
-      positionOverlayArea('5%','33%','20%','40%', 'block');
+      positionOverlayArea('10%','33%','40%','15%', 'block');
+
+    }else if(currentTime >=2 && currentTime < 3){
+      cardTitleElement.textContent = "Fontana di Nettuno";
+      cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
+            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
+            "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
+            "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
+            "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
 
-    } else if (currentTime >= 4 && currentTime < 8) {
+      positionOverlayArea('6%','10%','80%','19%', 'block');
 
-        cardTitleElement.textContent = "Parque das Nações";
+    } else if (currentTime >= 3 && currentTime < 10) {
+
+        cardTitleElement.textContent = "Castelo de Santo Ângelo";
         cardDescriptionElement.textContent = "teste2";
 
-        positionOverlayArea('10%','20%','40%','40%', 'block');
+        positionOverlayArea('5%','35%','28%','20%', 'block');
 
-    }else if(currentTime >= 8 && currentTime < 11){
-        cardTitleElement.textContent = "Não faço ideia";
+    }else if(currentTime >= 10 && currentTime < 12){
+        cardTitleElement.textContent = "Fontana di Trevi";
         cardDescriptionElement.textContent = "teste3";
 
-        positionOverlayArea('10%','20%','40%','40%', 'block');
+        positionOverlayArea('15%','45%','25%','15%', 'block');
 
-    }else if(currentTime >= 11 && currentTime < 15){
-        cardTitleElement.textContent = "Não faço ideia1";
-        cardDescriptionElement.textContent = "teste4";
+    }else if(currentTime >= 12 && currentTime < 13){
+          cardTitleElement.textContent = "Fontana di Trevi";
+          cardDescriptionElement.textContent = "teste3";
+  
+          positionOverlayArea('5%','20%','55%','25%', 'block');
+    
+    }else if(currentTime >= 13 && currentTime < 16){
+      cardTitleElement.textContent = "Panteão";
+      cardDescriptionElement.textContent = "teste3";
 
-        positionOverlayArea('10%','10%','60%','30%', 'block');
+      positionOverlayArea('5%','25%','50%','25%', 'block');
+    
+    }else if(currentTime >= 16 && currentTime < 18){
+      cardTitleElement.textContent = "Panteão";
+      cardDescriptionElement.textContent = "teste3";
 
-    }else if(currentTime >= 15 && currentTime < 19){
-        cardTitleElement.textContent = "Padrão dos Descobrimentos";
-        cardDescriptionElement.textContent = "teste2";
+      positionOverlayArea('5%','20%','60%','25%', 'block');
 
-        positionOverlayArea('10%','25%','20%','40%', 'block');
+    }else if(currentTime >= 18 && currentTime < 20){
+      cardTitleElement.textContent = "Coliseu";
+      cardDescriptionElement.textContent = "teste3";
 
-    }else if(currentTime >= 19 && currentTime <= 22){
-        cardTitleElement.textContent = "Padrão dos Descobrimentos1";
-        cardDescriptionElement.textContent = "teste2";
+      positionOverlayArea('5%','20%','60%','25%', 'block');
 
-        positionOverlayArea('15%','35%','10%','40%', 'block');
+    }else if(currentTime >= 20 && currentTime <= 23){
+      cardTitleElement.textContent = "Coliseu";
+      cardDescriptionElement.textContent = "teste3";
+
+      positionOverlayArea('3%','15%','70%','25%', 'block');
 
     } else {
         overlay.style.display = 'none';
@@ -204,18 +226,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let hoverMessageText = "";
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 4) {
-        hoverMessageText = "Torre de Belém";
-    } else if (currentTime >= 4 && currentTime < 8) {
-        hoverMessageText = "Parque das Nações";
-    } else if (currentTime >= 8 && currentTime < 11) {
-        hoverMessageText = "Não faço ideia";
-    } else if (currentTime >= 11 && currentTime < 15) {
-        hoverMessageText = "Não faço ideia1";
-    } else if (currentTime >= 15 && currentTime < 19) {
-        hoverMessageText = "Padrão dos Descobrimentos";
-    } else if (currentTime >= 19 && currentTime <= 22) {
-        hoverMessageText = "Padrão dos Descobrimentos1";
+    if (currentTime >= 0 && currentTime < 3) {
+        hoverMessageText = "Fontana di Nettuno";
+    } else if (currentTime >= 3 && currentTime < 10) {
+        hoverMessageText = "Castelo de Santo Ângelo";
+    } else if (currentTime >= 10 && currentTime < 13) {
+        hoverMessageText = "Fontana di Trevi";
+    } else if (currentTime >= 13 && currentTime < 18) {
+        hoverMessageText = "Panteão";
+    } else if (currentTime >= 18 && currentTime <= 23) {
+        hoverMessageText = "Coliseu";
     }
 
     showHoverMessage(event, hoverMessageText);

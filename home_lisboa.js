@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas.getContext("2d");
   const thumbnailWidth = 300;
   const thumbnailHeight = 120;
-  const listOfMonuments = ['Torre de Belém', 'Torre de Belém', 'Parque das Nações', 'Parque das Nações', 'teste5', 'Padrão dos Descobrimentos'];
+  const listOfMonuments = ['Torre de Belém', 'Torre de Belém', 'Parque das Nações', 'Parque das Nações', 'Mosteiro Jerónimos', 'Padrão dos Descobrimentos'];
   var counter = 0;
   var currentActiveCard = null;
 
@@ -156,13 +156,13 @@ video.addEventListener('timeupdate', () => {
       positionOverlayArea('10%','20%','60%','40%', 'block');
 
   }else if(currentTime >= 8 && currentTime < 11){
-      cardTitleElement.textContent = "Não faço ideia";
+      cardTitleElement.textContent = "Mosteiro dos Jerónimos";
       cardDescriptionElement.textContent = "teste3";
 
       positionOverlayArea('10%','20%','70%','40%', 'block');
 
   }else if(currentTime >= 11 && currentTime < 15){
-      cardTitleElement.textContent = "Não faço ideia1";
+      cardTitleElement.textContent = "Mosteiro dos Jerónimos";
       cardDescriptionElement.textContent = "teste4";
 
       positionOverlayArea('10%','10%','70%','30%', 'block');
@@ -205,14 +205,10 @@ overlayArea.addEventListener('mouseenter', (event) => {
       hoverMessageText = "Torre de Belém";
   } else if (currentTime >= 4 && currentTime < 8) {
       hoverMessageText = "Parque das Nações";
-  } else if (currentTime >= 8 && currentTime < 11) {
-      hoverMessageText = "Não faço ideia";
-  } else if (currentTime >= 11 && currentTime < 15) {
-      hoverMessageText = "Não faço ideia1";
-  } else if (currentTime >= 15 && currentTime < 19) {
+  } else if (currentTime >= 8 && currentTime < 15) {
+      hoverMessageText = "Mosteiro dos Jerónimos";
+  } else if (currentTime >= 15 && currentTime <= 22) {
       hoverMessageText = "Padrão dos Descobrimentos";
-  } else if (currentTime >= 19 && currentTime <= 22) {
-      hoverMessageText = "Padrão dos Descobrimentos1";
   }
 
   showHoverMessage(event, hoverMessageText);
