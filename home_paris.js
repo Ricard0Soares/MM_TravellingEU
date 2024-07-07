@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
     const thumbnailWidth = 300;
     const thumbnailHeight = 120;
-    const listOfMonuments = ['Torre de Belém', 'Torre de Belém', 'Parque das Nações', 'Parque das Nações', 'teste5', 'Padrão dos Descobrimentos'];
+    const listOfMonuments = ['Opéra Garnier', 'Opéra Garnier', 'Jardim de Luxemburgo', 'Arco do Triunfo', 'Arco do Triunfo', 'Museu do Louvre'
+      , 'Interior Museu Louvre', 'Torre Eiffel', 'Torre Eiffel'];
     var counter = 0;
     var currentActiveCard = null;
 
@@ -121,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function hasSignificantChange(data1, data2) {
       let changedPixels = 0;
       const threshold = 100; // change threshold per pixel
-      const maxChangedPixels = 0.6 * data1.length / 4;
+      const maxChangedPixels = 0.65 * data1.length / 4;
 
       for (let i = 0; i < data1.length; i += 4) {
         const diff = Math.abs(data1[i] - data2[i]) + Math.abs(data1[i + 1] - data2[i + 1]) + Math.abs(data1[i + 2] - data2[i + 2]);
@@ -138,9 +139,9 @@ document.addEventListener("DOMContentLoaded", () => {
   video.addEventListener('timeupdate', () => {
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 4) {
+    if (currentTime >= 0 && currentTime < 3) {
 
-      cardTitleElement.textContent = "Torre de Belém";
+      cardTitleElement.textContent = "Opéra Garnier";
       cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
             "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
@@ -148,39 +149,63 @@ document.addEventListener("DOMContentLoaded", () => {
             "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
 
-      positionOverlayArea('5%','33%','20%','40%', 'block');
+      positionOverlayArea('1%','15%','70%','17%', 'block');
 
 
-    } else if (currentTime >= 4 && currentTime < 8) {
+    } else if (currentTime >= 3 && currentTime < 5) {
 
-        cardTitleElement.textContent = "Parque das Nações";
+        cardTitleElement.textContent = "Opéra Garnier";
         cardDescriptionElement.textContent = "teste2";
 
-        positionOverlayArea('10%','20%','40%','40%', 'block');
+        positionOverlayArea('1%','40%','40%','17%', 'block');
 
-    }else if(currentTime >= 8 && currentTime < 11){
-        cardTitleElement.textContent = "Não faço ideia";
+    }else if(currentTime >= 5 && currentTime < 10){
+        cardTitleElement.textContent = "Jardim de Luxemburgo";
         cardDescriptionElement.textContent = "teste3";
 
-        positionOverlayArea('10%','20%','40%','40%', 'block');
+        positionOverlayArea('1%','35%','30%','10%', 'block');
 
-    }else if(currentTime >= 11 && currentTime < 15){
-        cardTitleElement.textContent = "Não faço ideia1";
+    }else if(currentTime >= 10 && currentTime < 14){
+        cardTitleElement.textContent = "Jardim de Luxemburgo";
         cardDescriptionElement.textContent = "teste4";
 
-        positionOverlayArea('10%','10%','60%','30%', 'block');
+        positionOverlayArea('1%','35%','30%','12%', 'block');
 
-    }else if(currentTime >= 15 && currentTime < 19){
-        cardTitleElement.textContent = "Padrão dos Descobrimentos";
+    }else if(currentTime >= 14 && currentTime < 16){
+        cardTitleElement.textContent = "Arco do Triunfo";
         cardDescriptionElement.textContent = "teste2";
 
-        positionOverlayArea('10%','25%','20%','40%', 'block');
+        positionOverlayArea('1%','31%','38%','14%', 'block');
 
-    }else if(currentTime >= 19 && currentTime <= 22){
-        cardTitleElement.textContent = "Padrão dos Descobrimentos1";
+    }else if(currentTime >= 16 && currentTime < 21){
+        cardTitleElement.textContent = "Arco do Triunfo";
         cardDescriptionElement.textContent = "teste2";
 
-        positionOverlayArea('15%','35%','10%','40%', 'block');
+        positionOverlayArea('1%','15%','70%','14%', 'block');
+
+    }else if(currentTime >= 21 && currentTime < 24){
+      cardTitleElement.textContent = "Museu do Louvre";
+      cardDescriptionElement.textContent = "teste2";
+
+      positionOverlayArea('1%','12%','50%','18%', 'block');
+    
+    }else if(currentTime >= 24 && currentTime < 28){
+      cardTitleElement.textContent = "Interior Museu do Louvre";
+      cardDescriptionElement.textContent = "teste2";
+
+      positionOverlayArea('2%','15%','70%','14%', 'block');
+    
+    }else if(currentTime >= 28 && currentTime < 31){
+      cardTitleElement.textContent = "Torre Eiffel";
+      cardDescriptionElement.textContent = "teste2";
+
+      positionOverlayArea('1%','15%','70%','14%', 'block');
+
+    }else if(currentTime >= 31 && currentTime <= 34){
+      cardTitleElement.textContent = "Torre Eiffel";
+      cardDescriptionElement.textContent = "teste2";
+
+      positionOverlayArea('1%','35%','53%','17%', 'block');
 
     } else {
         overlay.style.display = 'none';
@@ -204,18 +229,18 @@ document.addEventListener("DOMContentLoaded", () => {
     let hoverMessageText = "";
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 4) {
-        hoverMessageText = "Torre de Belém";
-    } else if (currentTime >= 4 && currentTime < 8) {
-        hoverMessageText = "Parque das Nações";
-    } else if (currentTime >= 8 && currentTime < 11) {
-        hoverMessageText = "Não faço ideia";
-    } else if (currentTime >= 11 && currentTime < 15) {
-        hoverMessageText = "Não faço ideia1";
-    } else if (currentTime >= 15 && currentTime < 19) {
-        hoverMessageText = "Padrão dos Descobrimentos";
-    } else if (currentTime >= 19 && currentTime <= 22) {
-        hoverMessageText = "Padrão dos Descobrimentos1";
+    if (currentTime >= 0 && currentTime < 5) {
+        hoverMessageText = "Opéra Garnier";
+    } else if (currentTime >= 5 && currentTime < 14) {
+        hoverMessageText = "Jardim de Luxemburgo";
+    } else if (currentTime >= 14 && currentTime < 21) {
+        hoverMessageText = "Arco do Triunfo";
+    } else if (currentTime >= 21 && currentTime < 24) {
+        hoverMessageText = "Museu do Louvre";
+    } else if (currentTime >= 24 && currentTime < 28) {
+        hoverMessageText = "Interior do Museu do Louvre";
+    } else if (currentTime >= 28 && currentTime <= 34) {
+        hoverMessageText = "Torre Eiffel";
     }
 
     showHoverMessage(event, hoverMessageText);
