@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
     const thumbnailWidth = 300;
     const thumbnailHeight = 120;
-    const listOfMonuments = ['Fontana di Nettuno', 'Castelo Santo Ângelo', 'Fontana di Trevi', 'Panteão', 'Panteão', 'Coliseu'];
+    const listOfMonuments = ['Opéra Garnier', 'Opéra Garnier', 'Jardim de Luxemburgo', 'Arco do Triunfo', 'Arco do Triunfo', 'Museu do Louvre'
+      , 'Interior Museu Louvre', 'Torre Eiffel', 'Torre Eiffel'];
     var counter = 0;
     var currentActiveCard = null;
 
@@ -23,6 +24,62 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     video.currentTime = 0;
+
+    const imageList = document.querySelectorAll('.image-list img');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalDescription = document.getElementById('modalDescription');
+    const closeButton = document.querySelector('.close');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    
+    let currentIndex = 0;
+
+    function openModal(index) {
+        currentIndex = index;
+        modalImage.src = imageList[index].src;
+        modalDescription.textContent = imageList[index].getAttribute('data-description');
+        modal.style.display = 'block';
+    }
+
+    function showNextImage() {
+        currentIndex = (currentIndex + 1) % imageList.length;
+        openModal(currentIndex);
+    }
+
+    function showPrevImage() {
+        currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+        openModal(currentIndex);
+    }
+
+    imageList.forEach((image, index) => {
+        image.addEventListener('click', () => {
+            openModal(index);
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    nextButton.addEventListener('click', showNextImage);
+    prevButton.addEventListener('click', showPrevImage);
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+            showNextImage();
+        } else if (event.key === 'ArrowLeft') {
+            showPrevImage();
+        } else if (event.key === 'Escape') {
+            modal.style.display = 'none';
+        }
+    });
 
     detectChanges();
 
@@ -121,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function hasSignificantChange(data1, data2) {
       let changedPixels = 0;
       const threshold = 100; // change threshold per pixel
-      const maxChangedPixels = 0.6 * data1.length / 4;
+      const maxChangedPixels = 0.65 * data1.length / 4;
 
       for (let i = 0; i < data1.length; i += 4) {
         const diff = Math.abs(data1[i] - data2[i]) + Math.abs(data1[i + 1] - data2[i + 1]) + Math.abs(data1[i + 2] - data2[i + 2]);
@@ -138,9 +195,9 @@ document.addEventListener("DOMContentLoaded", () => {
   video.addEventListener('timeupdate', () => {
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 2) {
+    if (currentTime >= 0 && currentTime < 3) {
 
-      cardTitleElement.textContent = "Fontana di Nettuno";
+      cardTitleElement.textContent = "Opéra Garnier";
       cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
             "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
@@ -148,61 +205,63 @@ document.addEventListener("DOMContentLoaded", () => {
             "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
 
-      positionOverlayArea('10%','33%','40%','15%', 'block');
-
-    }else if(currentTime >=2 && currentTime < 3){
-      cardTitleElement.textContent = "Fontana di Nettuno";
-      cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
-            "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
-            "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
-            "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
-            "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+      positionOverlayArea('1%','15%','70%','17%', 'block');
 
 
-      positionOverlayArea('6%','10%','80%','19%', 'block');
+    } else if (currentTime >= 3 && currentTime < 5) {
 
-    } else if (currentTime >= 3 && currentTime < 10) {
-
-        cardTitleElement.textContent = "Castelo de Santo Ângelo";
+        cardTitleElement.textContent = "Opéra Garnier";
         cardDescriptionElement.textContent = "teste2";
 
-        positionOverlayArea('5%','35%','28%','20%', 'block');
+        positionOverlayArea('1%','40%','40%','17%', 'block');
 
-    }else if(currentTime >= 10 && currentTime < 12){
-        cardTitleElement.textContent = "Fontana di Trevi";
+    }else if(currentTime >= 5 && currentTime < 10){
+        cardTitleElement.textContent = "Jardim de Luxemburgo";
         cardDescriptionElement.textContent = "teste3";
 
-        positionOverlayArea('15%','45%','25%','15%', 'block');
+        positionOverlayArea('1%','35%','30%','10%', 'block');
 
-    }else if(currentTime >= 12 && currentTime < 13){
-          cardTitleElement.textContent = "Fontana di Trevi";
-          cardDescriptionElement.textContent = "teste3";
-  
-          positionOverlayArea('5%','20%','55%','25%', 'block');
+    }else if(currentTime >= 10 && currentTime < 14){
+        cardTitleElement.textContent = "Jardim de Luxemburgo";
+        cardDescriptionElement.textContent = "teste4";
+
+        positionOverlayArea('1%','35%','30%','12%', 'block');
+
+    }else if(currentTime >= 14 && currentTime < 16){
+        cardTitleElement.textContent = "Arco do Triunfo";
+        cardDescriptionElement.textContent = "teste2";
+
+        positionOverlayArea('1%','31%','38%','14%', 'block');
+
+    }else if(currentTime >= 16 && currentTime < 21){
+        cardTitleElement.textContent = "Arco do Triunfo";
+        cardDescriptionElement.textContent = "teste2";
+
+        positionOverlayArea('1%','15%','70%','14%', 'block');
+
+    }else if(currentTime >= 21 && currentTime < 24){
+      cardTitleElement.textContent = "Museu do Louvre";
+      cardDescriptionElement.textContent = "teste2";
+
+      positionOverlayArea('1%','12%','50%','18%', 'block');
     
-    }else if(currentTime >= 13 && currentTime < 16){
-      cardTitleElement.textContent = "Panteão";
-      cardDescriptionElement.textContent = "teste3";
+    }else if(currentTime >= 24 && currentTime < 28){
+      cardTitleElement.textContent = "Interior Museu do Louvre";
+      cardDescriptionElement.textContent = "teste2";
 
-      positionOverlayArea('5%','25%','50%','25%', 'block');
+      positionOverlayArea('2%','15%','70%','14%', 'block');
     
-    }else if(currentTime >= 16 && currentTime < 18){
-      cardTitleElement.textContent = "Panteão";
-      cardDescriptionElement.textContent = "teste3";
+    }else if(currentTime >= 28 && currentTime < 31){
+      cardTitleElement.textContent = "Torre Eiffel";
+      cardDescriptionElement.textContent = "teste2";
 
-      positionOverlayArea('5%','20%','60%','25%', 'block');
+      positionOverlayArea('1%','15%','70%','14%', 'block');
 
-    }else if(currentTime >= 18 && currentTime < 20){
-      cardTitleElement.textContent = "Coliseu";
-      cardDescriptionElement.textContent = "teste3";
+    }else if(currentTime >= 31 && currentTime <= 34){
+      cardTitleElement.textContent = "Torre Eiffel";
+      cardDescriptionElement.textContent = "teste2";
 
-      positionOverlayArea('5%','20%','60%','25%', 'block');
-
-    }else if(currentTime >= 20 && currentTime <= 23){
-      cardTitleElement.textContent = "Coliseu";
-      cardDescriptionElement.textContent = "teste3";
-
-      positionOverlayArea('3%','15%','70%','25%', 'block');
+      positionOverlayArea('1%','35%','53%','17%', 'block');
 
     } else {
         overlay.style.display = 'none';
@@ -226,16 +285,18 @@ document.addEventListener("DOMContentLoaded", () => {
     let hoverMessageText = "";
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 3) {
-        hoverMessageText = "Fontana di Nettuno";
-    } else if (currentTime >= 3 && currentTime < 10) {
-        hoverMessageText = "Castelo de Santo Ângelo";
-    } else if (currentTime >= 10 && currentTime < 13) {
-        hoverMessageText = "Fontana di Trevi";
-    } else if (currentTime >= 13 && currentTime < 18) {
-        hoverMessageText = "Panteão";
-    } else if (currentTime >= 18 && currentTime <= 23) {
-        hoverMessageText = "Coliseu";
+    if (currentTime >= 0 && currentTime < 5) {
+        hoverMessageText = "Opéra Garnier";
+    } else if (currentTime >= 5 && currentTime < 14) {
+        hoverMessageText = "Jardim de Luxemburgo";
+    } else if (currentTime >= 14 && currentTime < 21) {
+        hoverMessageText = "Arco do Triunfo";
+    } else if (currentTime >= 21 && currentTime < 24) {
+        hoverMessageText = "Museu do Louvre";
+    } else if (currentTime >= 24 && currentTime < 28) {
+        hoverMessageText = "Interior do Museu do Louvre";
+    } else if (currentTime >= 28 && currentTime <= 34) {
+        hoverMessageText = "Torre Eiffel";
     }
 
     showHoverMessage(event, hoverMessageText);

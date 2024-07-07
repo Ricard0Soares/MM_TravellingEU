@@ -21,6 +21,64 @@ document.addEventListener("DOMContentLoaded", () => {
           
 
   video.currentTime = 0;
+  
+  const imageList = document.querySelectorAll('.image-list img');
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalDescription = document.getElementById('modalDescription');
+  const closeButton = document.querySelector('.close');
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+  
+  let currentIndex = 0;
+
+  function openModal(index) {
+      currentIndex = index;
+      modalImage.src = imageList[index].src;
+      modalDescription.textContent = imageList[index].getAttribute('data-description');
+      modal.style.display = 'block';
+  }
+
+  function showNextImage() {
+      currentIndex = (currentIndex + 1) % imageList.length;
+      openModal(currentIndex);
+  }
+
+  function showPrevImage() {
+      currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+      openModal(currentIndex);
+  }
+
+  imageList.forEach((image, index) => {
+      image.addEventListener('click', () => {
+          openModal(index);
+      });
+  });
+
+  closeButton.addEventListener('click', () => {
+      modal.style.display = 'none';
+  });
+
+  nextButton.addEventListener('click', showNextImage);
+  prevButton.addEventListener('click', showPrevImage);
+
+  window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+          modal.style.display = 'none';
+      }
+  });
+
+  window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') {
+          showNextImage();
+      } else if (event.key === 'ArrowLeft') {
+          showPrevImage();
+      } else if (event.key === 'Escape') {
+          modal.style.display = 'none';
+      }
+  });
+
+
 
   detectChanges();
 
