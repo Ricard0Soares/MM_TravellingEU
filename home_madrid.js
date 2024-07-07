@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
     const thumbnailWidth = 300;
     const thumbnailHeight = 120;
-    const listOfMonuments = ['Torre de Belém', 'Torre de Belém', 'Parque das Nações', 'Parque das Nações', 'teste5', 'Padrão dos Descobrimentos'];
+    const listOfMonuments = ['Palácio Real', 'Palácio Real', 'Museu do Prado', 'Plaza Mayor', 'Templo de Debod', 'Templo de Debod'];
     var counter = 0;
     var currentActiveCard = null;
 
@@ -138,9 +138,9 @@ document.addEventListener("DOMContentLoaded", () => {
   video.addEventListener('timeupdate', () => {
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 4) {
+    if (currentTime >= 0 && currentTime < 1) {
 
-      cardTitleElement.textContent = "Torre de Belém";
+      cardTitleElement.textContent = "Palácio Real";
       cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
             "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
@@ -148,39 +148,39 @@ document.addEventListener("DOMContentLoaded", () => {
             "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
 
-      positionOverlayArea('5%','33%','20%','40%', 'block');
+      positionOverlayArea('5%','25%','37%','23%', 'block');
 
 
-    } else if (currentTime >= 4 && currentTime < 8) {
+    } else if (currentTime >= 1 && currentTime < 6) {
 
-        cardTitleElement.textContent = "Parque das Nações";
+        cardTitleElement.textContent = "Palácio Real";
         cardDescriptionElement.textContent = "teste2";
 
-        positionOverlayArea('10%','20%','40%','40%', 'block');
+        positionOverlayArea('5%','25%','50%','18%', 'block');
 
-    }else if(currentTime >= 8 && currentTime < 11){
-        cardTitleElement.textContent = "Não faço ideia";
+    }else if(currentTime >= 6 && currentTime < 9){
+        cardTitleElement.textContent = "Museu do Prado";
         cardDescriptionElement.textContent = "teste3";
 
-        positionOverlayArea('10%','20%','40%','40%', 'block');
+        positionOverlayArea('1%','12%','75%','25%', 'block');
 
-    }else if(currentTime >= 11 && currentTime < 15){
-        cardTitleElement.textContent = "Não faço ideia1";
+    }else if(currentTime >= 9 && currentTime < 12){
+        cardTitleElement.textContent = "Plaza Mayor";
         cardDescriptionElement.textContent = "teste4";
 
-        positionOverlayArea('10%','10%','60%','30%', 'block');
+        positionOverlayArea('2%','13%','72%','24%', 'block');
 
-    }else if(currentTime >= 15 && currentTime < 19){
-        cardTitleElement.textContent = "Padrão dos Descobrimentos";
+    }else if(currentTime >= 12 && currentTime < 15){
+        cardTitleElement.textContent = "Templo de Debod";
         cardDescriptionElement.textContent = "teste2";
 
-        positionOverlayArea('10%','25%','20%','40%', 'block');
+        positionOverlayArea('3%','40%','30%','25%', 'block');
 
-    }else if(currentTime >= 19 && currentTime <= 22){
-        cardTitleElement.textContent = "Padrão dos Descobrimentos1";
+    }else if(currentTime >= 15 && currentTime <= 17){
+        cardTitleElement.textContent = "Templo de Debod";
         cardDescriptionElement.textContent = "teste2";
 
-        positionOverlayArea('15%','35%','10%','40%', 'block');
+        positionOverlayArea('10%','24%','12%','15%', 'block');
 
     } else {
         overlay.style.display = 'none';
@@ -204,18 +204,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let hoverMessageText = "";
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 4) {
-        hoverMessageText = "Torre de Belém";
-    } else if (currentTime >= 4 && currentTime < 8) {
-        hoverMessageText = "Parque das Nações";
-    } else if (currentTime >= 8 && currentTime < 11) {
-        hoverMessageText = "Não faço ideia";
-    } else if (currentTime >= 11 && currentTime < 15) {
-        hoverMessageText = "Não faço ideia1";
-    } else if (currentTime >= 15 && currentTime < 19) {
-        hoverMessageText = "Padrão dos Descobrimentos";
-    } else if (currentTime >= 19 && currentTime <= 22) {
-        hoverMessageText = "Padrão dos Descobrimentos1";
+    if (currentTime >= 0 && currentTime < 6) {
+        hoverMessageText = "Palácio Real";
+    } else if (currentTime >= 6 && currentTime < 9) {
+        hoverMessageText = "Museu do Prado";
+    } else if (currentTime >= 9 && currentTime < 12) {
+        hoverMessageText = "Plaza Mayor";
+    } else if (currentTime >= 12 && currentTime <= 17) {
+        hoverMessageText = "Templo de Debod";
     }
 
     showHoverMessage(event, hoverMessageText);
