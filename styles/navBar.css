@@ -48,55 +48,9 @@ body{
     font-size: 17px;
 }
 
-.nav-links li a:hover {
-    background-color: #555;
-}
-
-
-/*escuro*/
-body.dark-mode{
-    background-image: url('../images/background.png');
-    background-size: cover;
-    background-position: center;
-    margin: 0;
-    padding: 0;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-}
-
-.logo a {
-    text-decoration: none;
+.dropdown button{
     color: white;
-    cursor: default;
-    font-size: 23px;
-    font-weight: 600;
-}
-
-.navbar {
-    position: absolute;
-    width: 100%;
-    top:10px
-}
-
-.navbar .logo {
-    color: white;
-    float: left;
-    margin-left: 20px;
-    line-height: 50px;
-}
-
-.nav-links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    float: right;
-}
-
-.nav-links li {
-    display: inline;
-}
-
-.nav-links li a {
-    color: white;
+    background-color: transparent;
     text-decoration: none;
     padding: 15px 20px;
     display: inline-block;
@@ -107,39 +61,52 @@ body.dark-mode{
     background-color: #555;
 }
 
-.dropdown .dropbtn {
-    font-size: 17px;    
-    border: none;
-    outline: none;
-    color: white;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-}
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    text-align: center; /* Centraliza o conteúdo do dropdown */
-}
+/*escuro*/
 
-.dropdown-content a {
+.dark-theme .logo a {
     color: black;
-    padding: 12px 16px;
+}
+
+.dark-theme body{
+        background-image: url('../images/aviao.jpeg');
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    
+}
+
+.dark-theme .dropdown button{
+    color: black;
+    background-color: transparent;
     text-decoration: none;
-    display: block; /* Exibe os links em bloco */
+    padding: 15px 20px;
+    display: inline-block;
+    font-size: 17px;
 }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
+.dark-theme .navbar .logo {
+    color: black;
+    float: left;
+    margin-left: 20px;
+    line-height: 50px;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-
+.dark-theme .navbar{
+    background-color: white;
 }
 
+.dark-theme .nav-links li a {
+    color: black;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: inline-block;
+    font-size: 17px;
+    background-color: white;
+}
+
+.dark-theme .nav-links li a:hover {
+    background-color: white;
+}

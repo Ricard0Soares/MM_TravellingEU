@@ -119,3 +119,53 @@ path:hover {
     border-radius: 5px;
     pointer-events: none;
 }
+
+
+/*escuro*/
+
+.dark-theme body{
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+
+}
+
+.dark-theme .logo a {
+    text-decoration: none;
+    color: black;
+    cursor: default;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.dark-theme .search-bar {
+    padding: 15px;
+    border-radius: 20px;
+    border: 1px solid #0f0f0f;
+    width: 500px;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+.dark-theme .intro-text {
+    margin-top: 20px;
+    font-size: 27px;
+    color: black;
+    text-align: center;
+}
+
+
+
+.dark-theme #tooltip {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    pointer-events: none;
+}
