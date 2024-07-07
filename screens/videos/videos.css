@@ -42,6 +42,12 @@ body {
     font-size: 24px;
 }
 
+.videos a{
+    margin-top: 60px;
+    font-size: 30px;
+    color: white;
+}
+
 .ellipse-container {
     border-radius: 145px;
     background-color: rgba(128, 116, 116, 0.5);
@@ -133,7 +139,7 @@ body {
 .dropdown-container {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 35px;
     position: relative;
     z-index: 10; /* Ensure it is above the ellipse container */
 }
@@ -141,11 +147,12 @@ body {
 .dropdown-wrapper {
     background-color: #DDDADA;
     border-radius: 50px;
-    width: 200px;
+    width: 250px;
     height: 50px;
     position: relative;
     z-index: 10; /* Ensure it is above the ellipse container */
     animation: fadeIn 1s forwards;
+    
 }
 
 .dropdown {
@@ -159,11 +166,18 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    padding-right: 20px;
-    background-image: url('../../images/seta.png');
-    background-repeat: no-repeat;
-    background-position: right 1px center;
+    padding: 16px; /* Adjust padding for spacing */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Spread items horizontally */
     background-size: 15px;
+}
+
+.arrow {
+    position: absolute;
+    right: -30px; /* Ajuste a posição horizontal conforme necessário */
+    top: 50%; /* Alinha verticalmente no centro */
+    transform: translateY(-50%); /* Corrige o alinhamento vertical */
 }
 
 .dropdown-content {
@@ -171,22 +185,25 @@ body {
     position: absolute;
     background-color: rgba(128, 116, 116, 0.5);
     border-radius: 10px;
-    min-width: 160px;
     z-index: 100; /* Ensure it is above all other elements */
     opacity: 0;
-    transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    color: white;
+    padding: 4px;
+    width: 220px;
     display: block;
+    font-size: 20px;
     text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-decoration: none;
 }
 
 .dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(224, 222, 222, 0.1);
 }
 
 .dropdown:hover .dropdown-content {

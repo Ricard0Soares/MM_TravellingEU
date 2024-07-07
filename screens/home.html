@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravellingEU</title>
+    <link rel="stylesheet" type="text/css" href="../styles/home.css">
+    <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="home.html">TravellingEU</a></div>
+        <ul class="nav-links">
+            <li><a href="../screens/navLinks/destinations.html">Destinations</a></li>
+            <li><a href="../screens/videos/videos.html">Videos</a></li>
+            <li><a href="../screens/navLinks/howitworks.html">How it works</a></li>
+            <li><a href="../screens/navLinks/aboutus.html">About Us</a></li>
+            <li class="dropdown">
+                <button class="dropbtn">Theme</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setTheme('light')">Light Mode</a>
+                    <a href="#" onclick="setTheme('dark')">Dark Mode</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="search-container">
+        <!-- Comentado o código da barra de pesquisa -->
+    </div>
+    <div class="intro-text">Europe on The Palm of Your Hand</div>
+
+    <div id="map-container">
+        <svg id="europe-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800">
+            <g>
+                <title>Mapa da Europa</title>
+                <!-- Paths simplificados dos países -->
+                <path id="pt" d="M100,700 L150,650 L200,700 Z" fill="gray" stroke="#000" stroke-width="2" title="Portugal"></path>
+                <path id="es" d="M150,650 L250,600 L300,700 Z" fill="gray" stroke="#000" stroke-width="2" title="Spain"></path>
+                <path id="fr" d="M250,600 L350,550 L400,650 Z" fill="gray" stroke="#000" stroke-width="2" title="France"></path>
+                <path id="it" d="M400,650 L450,600 L500,700 Z" fill="gray" stroke="#000" stroke-width="2" title="Italy"></path>
+                <path id="de" d="M350,550 L450,500 L500,600 Z" fill="gray" stroke="#000" stroke-width="2" title="Germany"></path>
+                <!-- Adicione mais paths conforme necessário -->
+            </g>
+        </svg>
+    </div>
+    <div id="tooltip"></div>
+
+    <div id="googleMap" style="width:30%;height: 500px;"></div>
+
+    <script src="../scripts/mapdata.js"></script>
+    <script src="../scripts/tooltip.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap" defer></script>
+    <script src="../scripts/theme.js"></script>
+</body>
+</html>

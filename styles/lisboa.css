@@ -1,0 +1,293 @@
+body{
+    background-image: url('images/background.png');
+    background-size: contain;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    cursor: default;
+}
+
+.ellipse-container,
+.second-ellipse-container {
+    flex: 1;
+    margin: 10px;
+}
+
+.ellipse-container {
+    border-radius: 145px;
+    background-color: rgba(63, 54, 54, 0.5);
+    margin: 100px 0 20px 50px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 400px;
+    height: 600px;
+}
+
+.ellipse-container p{
+    color: white;
+    font-size: 26px;
+    margin-top: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.ellipse-container img {
+    max-width: 100%;
+    height: 50%;
+    margin: 0 auto;
+    display: block;
+    margin-top: -30px;
+    
+}
+
+.image-container{
+    position: relative;
+    text-align: center;
+    max-height: 100%;
+    width: 100%;
+}
+
+.image-container span {
+    position: absolute;
+    display: block;
+    margin-top: 40px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 300px;
+    margin-left:45px;
+}
+
+
+
+.second-ellipse-container {
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin: 100px 0 20px 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    height: 600px;
+    backdrop-filter: blur(0); /* Inicialmente sem desfoque */
+    transition: backdrop-filter 0.3s ease; /* Transição suave para o desfoque */
+}
+
+.second-ellipse-container.blur {
+    backdrop-filter: blur(10px); /* Desfoque aplicado quando necessário */
+}
+
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center contents horizontally */
+    justify-content: flex-start; /* Align contents at the top */ 
+    margin-left: 10%;
+
+}
+
+
+#myVideo {
+    width: 100%;
+    display: block;
+    margin: 0; /* Ensure no extra margin */
+    padding: 0; /* Ensure no extra padding */
+    border-radius: 60px;
+}
+
+#myVideo.blur {
+    filter: blur(10px); /* Desfoque aplicado quando necessário */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.overlay.visible{
+    display: block;
+    pointer-events: auto;
+}
+
+.overlay a {
+    position: absolute;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    pointer-events: auto;
+}
+
+.third-ellipse-container {
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.photos-container{
+    width: 30%;
+    margin: 10px;
+    text-align: center;
+}
+
+.photos-container img{
+    width: 50%;
+    height: 80%;
+}
+
+
+#thumbnails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.thumbnail {
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+
+.active-card{
+    border: 3px solid red;
+}
+
+.card-body {
+    padding: 0.1rem; /* reduce space */
+}
+.card-text {
+    margin-top: 0.1rem; /*reduce space */
+}
+
+.info-card {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: none;
+}
+
+.overlay a {
+    position: absolute;
+    pointer-events: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.card-container {
+    margin-top: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 80%;
+    z-index: 100;
+    display: none;
+    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 101; /* Colocado acima do z-index do cardContainer */
+}
+
+.close-button:hover {
+    color: red;
+}
+
+
+.image-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.image-list li {
+    margin: 0 10px;
+}
+
+.image-list img {
+    max-width: 100px;
+    height: auto;
+}
+
+.overlay-area {
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.0);
+    z-index: 2;
+    display: none;
+}
+
+.hover-message {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+
+

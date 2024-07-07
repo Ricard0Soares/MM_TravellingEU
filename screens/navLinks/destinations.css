@@ -18,10 +18,10 @@ body{
 }
 
 .search-bar {
-    padding: 10px;
+    padding: 17px;
     border-radius: 20px;
     border: 1px solid #ccc;
-    width: 1200px;
+    width: 500px;
     background-image: url('../../images/image_2.png');
     background-repeat: no-repeat;
     background-position: right 10px center;
@@ -30,20 +30,20 @@ body{
 }
 
 .destinations {
-    margin-top: -50px;
-    font-size: 50px;
+    margin-top: 30px;
+    font-size: 30px;
     color: white;
 }
 
 .ellipse-container {
     border-radius: 145px;
     background-color: rgba(128, 116, 116, 0.5);
-    margin: 10px auto 20px;
+    margin: 10px auto 10px;
     backdrop-filter: blur(10px);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: -50px;
     max-width: 1400px;
     height: 500px;
 }
@@ -52,18 +52,22 @@ body{
     width: 30%;
     margin: 10px;
     text-align: center;
+    
 }
 
 .image-container img {
     width: 50%;
     height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 60px;
 }
 
 .image-container span {
     display: block;
     margin-top: 5px;
     color: white;
-}
+    text-decoration: none !important;
 
+}
 
 

@@ -1,0 +1,121 @@
+body{
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    cursor: default;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.search-container {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.search-bar {
+    padding: 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 500px;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+.intro-text {
+    margin-top: 20px;
+    font-size: 27px;
+    color: white;
+    text-align: center;
+}
+
+.ellipse-container {
+    width: 1200px;
+    height: 350px;
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin: 10px auto 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.image-container img{
+    width: 50%;
+    height: auto;
+    margin: 0 10px;
+}
+
+.image-container span {
+    display: block;
+    margin-top: 5px;
+    color: white;
+}
+
+.settings-menu {
+    position: fixed;
+    bottom: 570px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.settings-menu h2 {
+    margin-top: 0;
+}
+
+.settings-menu select {
+    margin-top: 10px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+#map-container {
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#europe-map {
+    width: 100%;
+    height: auto;
+}
+
+path {
+    cursor: pointer;
+    transition: fill 0.3s;
+}
+
+path:hover {
+    fill: #ffcc00;
+}
+
+#tooltip {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    pointer-events: none;
+}
