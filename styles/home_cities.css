@@ -68,7 +68,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     max-width: 1200px;
-    max-height: 900px;
+    max-height: 1100px;
     padding: 20px;
 }
 
@@ -76,7 +76,7 @@ body {
 .video-container {
     position: relative;
     text-align: center;
-    max-height: 900px;
+    max-height: px;
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -209,22 +209,30 @@ body {
     color: white;
     border-radius: 5px;
     text-align: center;
-    max-width: 80%;
+    max-width: 100%;
     z-index: 100;
     display: none;
     position: relative;
     top: -50px; /* to move closer to the video */
 }
 
-.image-list {
+.image-list-container {
+    width: 100%; /* Adjust based on the desired width */
+    overflow-x: auto;
     display: flex;
     justify-content: center;
+}
+
+.image-list {
+    display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
+    width:400px;
 }
 
 .image-list li {
+    flex: 1 0 auto; /* Allow images to flex and prevent shrinking */
     margin: 0 10px;
 }
 
@@ -252,4 +260,108 @@ body {
     padding: 5px;
     border-radius: 5px;
     z-index: 100;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    padding-top: 60px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption { 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.modal-description {
+    color: #fff;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 700px;
+    font-size: 18px;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Navigation arrows */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
