@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const video = document.getElementById("myVideo");
   const canvas = document.createElement("canvas");
-  const overlay = document.getElementById('overlay');
   const thumbnailsContainer = document.getElementById("thumbnails");
   const ctx = canvas.getContext("2d");
   const thumbnailWidth = 300;
@@ -127,19 +126,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Generate a thumbnail at a specific time
   function generateThumbnail(time) {
     return new Promise((resolve) => {
-      video.currentTime = time;
-      video.addEventListener('seeked', function captureFrame() {
-        ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
-        const dataURL = canvas.toDataURL();
-        const imageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight).data;
-        video.removeEventListener('seeked', captureFrame);
-        resolve({ dataURL, time, imageData });
-      }, { once: true });
+        video.currentTime = time;
+        video.addEventListener('seeked', function captureFrame() {
+            setTimeout(() => {
+                ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
+                const dataURL = canvas.toDataURL();
+                const imageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight).data;
+                video.removeEventListener('seeked', captureFrame);
+                resolve({ dataURL, time, imageData });
+            }, 100); // Adjust the timeout duration as needed
+        }, { once: true });
     });
-  }
+}
+
 
   // Detect significant changes in frames
   async function detectChanges() {

@@ -33,19 +33,6 @@ body {
     color: white;
 }
 
-.ellipse-container {
-    width: 1200px;
-    height: 350px;
-    border-radius: 145px;
-    background-color: rgba(128, 116, 116, 0.5);
-    margin: 10px auto 20px;
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 100px;
-}
-
 .content-container{
     display: flex;
     justify-content: space-around;
@@ -104,7 +91,21 @@ body {
     display: block;
     margin: 0;
     padding: 0;
+    border-radius: 60px;
 }
+
+#myVideo.blur {
+    filter: blur(10px); /* Desfoque aplicado quando necessário */
+}
+
+#image-container.blur{
+    filter:blur(10px);
+}
+
+#thumbnails.blur{
+    filter: blur(10px);
+}
+
 
 .image-container span {
     font-size: 16px;
@@ -112,24 +113,6 @@ body {
     margin-top: 10px;
     word-wrap: break-word;
     color: white;
-}
-
-.settings-menu {
-    position: fixed;
-    bottom: 570px;
-    right: 20px;
-    background-color: rgba(255, 255, 255, 0.3);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.settings-menu h2 {
-    margin-top: 0;
-}
-
-.settings-menu select {
-    margin-top: 10px;
 }
 
 .video-container {
@@ -175,45 +158,35 @@ body {
     z-index: 10;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    display: none;
-    z-index: 3;
-}
-
-.overlay.visible{
-    display: block;
-    pointer-events: auto;
-}
-
-.overlay a {
-    position: absolute;
-    pointer-events: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 5px;
-    border-radius: 3px;
-    text-decoration: none;
-    pointer-events: auto;
-}
-
 .card-container {
     margin-top: 0;
-    padding: 10px;
+    padding: 20px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
-    border-radius: 5px;
+    border-radius: 15px;
     text-align: center;
-    max-width: 100%;
+    max-width: 80%;
     z-index: 100;
     display: none;
     position: relative;
-    top: -50px; /* to move closer to the video */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 101; /* Colocado acima do z-index do cardContainer */
+}
+
+.close-button:hover {
+    color: red;
 }
 
 .image-list-container {
