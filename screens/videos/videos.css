@@ -49,23 +49,22 @@ body {
 }
 
 .ellipse-container {
-    border-radius: 145px;
-    background-color: rgba(128, 116, 116, 0.5);
-    margin: 10px auto 20px;
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
     max-width: 1400px;
-    height: 500px;
+    margin: 10px auto 20px;
+    padding: 20px;
+    background-color: rgba(128, 116, 116, 0.5);
+    border-radius: 145px;
+    backdrop-filter: blur(10px);
     position: relative;
-    z-index: 1; /* Make sure it's below the dropdowns */
+    z-index: 1;
 }
 
 .video-container {
     position: relative;
-    width: 15%;
+    width: 100%;
     margin: 10px;
     text-align: center;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -74,8 +73,9 @@ body {
 }
 
 .video-container video{
-    width: 100%;
+    width: 80%;
     height: auto;
+    border-radius: 100px;
 }
 
 .play-button {
