@@ -65,7 +65,7 @@ body{
 /*escuro*/
 
 .dark-theme .logo a {
-    color: black;
+    color: white;
 }
 
 .dark-theme body{
@@ -94,19 +94,61 @@ body{
     line-height: 50px;
 }
 
-.dark-theme .navbar{
-    background-color: white;
-}
 
 .dark-theme .nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: inline-block;
+    font-size: 17px;
+}
+
+.dark-theme .nav-links li a:hover {
+    background-color: #333333;
+}
+
+
+/*amarelo*/
+
+.yellow-theme .logo a {
+    color: black;
+}
+
+.yellow-theme body{
+    background-image: url('../images/aviao.jpeg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    
+}
+
+.yellow-theme .dropdown button{
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: inline-block;
+    font-size: 17px;
+}
+
+.yellow-theme .navbar .logo {
+    color: black;
+    float: left;
+    margin-left: 20px;
+    line-height: 50px;
+}
+
+
+.yellow-theme .nav-links li a {
     color: black;
     text-decoration: none;
     padding: 15px 20px;
     display: inline-block;
     font-size: 17px;
-    background-color: white;
 }
 
-.dark-theme .nav-links li a:hover {
+.yellow-theme .nav-links li a:hover {
     background-color: white;
 }
