@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeButton = document.querySelector('.close');
   const prevButton = document.querySelector('.prev');
   const nextButton = document.querySelector('.next');
+
+  const listSeconds = [];
   
   let currentIndex = 0;
 
@@ -82,8 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const savedThumbnails = localStorage.getItem(`thumbnails_${cityId}`);
   if(savedThumbnails){
+    console.log("hey");
     loadThumbnailsFromStorage(JSON.parse(savedThumbnails));
   }else{
+    console.log("hey1");
     detectChanges();
   }
 
@@ -136,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function generateThumbnail(time) {
     return new Promise((resolve) => {
       video.currentTime = time;
+      console.log(listSeconds);
       video.addEventListener('seeked', function captureFrame() {
         ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
         const dataURL = canvas.toDataURL();
@@ -164,11 +169,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!lastImageData) {
           createCard('thumbnails', img);
+          listSeconds.push(time);
           lastImageData = imageData;
           thumbnails.push({ dataURL, time });
         } else {
           if (hasSignificantChange(lastImageData, imageData)) {
             createCard('thumbnails', img);
+            listSeconds.push(time);
             lastImageData = imageData;
             thumbnails.push({ dataURL, time });
           }
@@ -257,11 +264,77 @@ video.addEventListener('timeupdate', () => {
       positionOverlayArea('15%','35%','10%','40%', 'block');
 
   } else {
-      overlay.style.display = 'none';
       overlayArea.style.display = 'none';
   }
+
+  //changeActiveCard(currentTime);
+
+  console.log("cheguei aqui");
+  changeActiveCard(currentTime);
+
 });
 
+//esta é de acordo com os tempos detetados pela diferença de frames automatica. A de baixo é feita à mao. DEPOIS TEMOS DE ESCOLHER!!!
+function changeActiveCard(time){
+  let activeCard = null;
+
+  console.log("entrei");
+  console.log(thumbnailsContainer.children.length)
+
+  for (let i = 0; i < listSeconds.length; i++) {
+    if (time >= listSeconds[i] && (i === listSeconds.length - 1 || time < listSeconds[i + 1])) {
+      activeCard = thumbnailsContainer.children[i];
+      break;
+    }
+  }
+
+  if (activeCard) {
+    if (currentActiveCard) {
+      currentActiveCard.classList.remove('active-card');
+    }
+    activeCard.classList.add('active-card');
+    currentActiveCard = activeCard;
+  }
+}
+
+/*function changeActiveCard(time){
+  let activeCard = null;
+
+  if(time >= 0 && time < 3){
+    activeCard = thumbnailsContainer.children[0];
+  }else if(time >= 3 && time < 6){
+    activeCard = thumbnailsContainer.children[1];
+  }else if(time >= 6 && time < 10){
+    activeCard = thumbnailsContainer.children[2];
+  }else if(time >= 10 && time < 13){
+    activeCard = thumbnailsContainer.children[3];
+  }else if(time >= 13 && time < 17){
+    activeCard = thumbnailsContainer.children[4];
+  }else if(time >= 17 && time < 19){
+    activeCard = thumbnailsContainer.children[5];
+  }else if(time >= 19 && time < 23){
+    activeCard = thumbnailsContainer.children[6];
+  }else if(time >= 23 && time < 26){
+    activeCard = thumbnailsContainer.children[7];
+  }else if(time >= 26 && time < 27){
+    activeCard = thumbnailsContainer.children[8];
+  }else if(time >= 27 && time < 29){
+    activeCard = thumbnailsContainer.children[9];
+  }else if(time >= 29){
+    activeCard = thumbnailsContainer.children[10];
+  }
+
+  if(activeCard){
+    if(currentActiveCard){
+      currentActiveCard.classList.remove('active-card');
+    }
+    activeCard.classList.add('active-card');
+    currentActiveCard = activeCard;
+  }
+
+
+}
+*/
 
 function positionOverlayArea(top ,left ,width ,height ,display){
   overlayArea.style.top = top;
