@@ -16,7 +16,6 @@
             <li><a href="../screens/navLinks/howitworks.html">How it works</a></li>
             <li><a href="../screens/navLinks/aboutus.html">About Us</a></li>
             <li class="dropdown">
-                <button onclick="toggleTheme()">Toggle Theme</button>
                 <select id="theme-selector" onchange="switchTheme(this.value)">
                     <option value="default">Default</option>
                     <option value="dark">Dark</option>
@@ -37,41 +36,6 @@
     <script src="../scripts/tooltip.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap" defer></script>
 
-    <script>
-        function switchTheme(theme) {
-            // Remove all existing theme classes
-            document.body.classList.remove('dark-theme', 'yellow-theme', 'blue-theme', 'default-theme');
-
-            // Add the selected theme class
-            if (theme === 'dark') {
-                document.body.classList.add('dark-theme');
-            } else if (theme === 'yellow') {
-                document.body.classList.add('yellow-theme');
-            } else if (theme === 'blue') {
-                document.body.classList.add('blue-theme');
-            } else {
-                document.body.classList.add('default-theme');
-            }
-
-            // Store the selected theme in localStorage
-            localStorage.setItem('theme', theme);
-            }
-
-        // On page load, apply the saved theme if any
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const savedTheme = localStorage.getItem('theme') || 'default';
-            switchTheme(savedTheme);
-            document.getElementById('theme-selector').value = savedTheme;
-        });
-
-
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-            const theme = document.body.classList.contains('dark-theme') ? 'dark-theme' : 'default';
-            localStorage.setItem('theme', theme);
-        }
-
-    </script>
+    <script src="../scripts/theme.js"></script>
 </body>
 </html>

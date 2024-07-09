@@ -14,6 +14,13 @@
             <li><a href="../videos/videos.html">Videos</a></li>
             <li><a href="howitworks.html">How it works</a></li>
             <li><a href="aboutus.html">About Us</a></li>
+            <li class="dropdown">
+                <select id="theme-selector" onchange="switchTheme(this.value)">
+                    <option value="default">Default</option>
+                    <option value="dark">Dark</option>
+                    <option value="yellow">Yellow</option>
+                </select>
+            </li>
         </ul>
     </nav>
 
@@ -35,6 +42,8 @@
             <p>Get some help to choose your next real life vacations!</p>
         </div>
     </div>
+
+    <script src="../../scripts/theme.js"></script>
     
     
 
