@@ -282,7 +282,6 @@ video.addEventListener('timeupdate', () => {
     positionOverlayArea('1%','35%','53%','17%', 'block');
 
   } else {
-      overlay.style.display = 'none';
       overlayArea.style.display = 'none';
   }
 });
