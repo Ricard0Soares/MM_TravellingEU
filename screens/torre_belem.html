@@ -27,7 +27,6 @@
 
     <div class="centered-title">
         <h1>Torre de Belém</h1>
-
         <button id="toggleContainer">Toggle Teste Container</button>
     </div>
 
@@ -53,6 +52,11 @@
             <p>É um mosteiro português, mandado construir no final do século XV pelo rei D. Manuel I e estava entregue à Ordem de São Jerónimo. 
                 Situa-se na freguesia de Belém, na cidade e concelho de <a href="home_lisboa.html">Lisboa</a>. Tem, desde 2016, o estatuto de Panteão Nacional.</p>
         </div>
+
+        <div class="image-container" style="display: none;">
+            <h2>Photo Gallery</h2>
+            <div class="row" id="photoGalleryRow1"></div>
+        </div>
     </div>        
 
     <script src="../scripts/searchbarHome.js"></script>
@@ -63,19 +67,84 @@
             const links = document.querySelectorAll('.index-container ul li a');
             const times = Array.from(links).map(link => parseFloat(link.getAttribute('data-time')));
             const toggleButton = document.getElementById('toggleContainer');
-            const indexContainer = document.querySelector('.index-container');
-            const testeContainer = document.querySelector('.teste-container');
-            
-            // Check localStorage for the container state and apply it
-            const isTesteContainerVisible = localStorage.getItem('testeContainerVisible') === 'true';
+            const containers = document.querySelectorAll('.index-container, .teste-container, .image-container');
 
-            if (isTesteContainerVisible) {
-                indexContainer.style.display = 'none';
-                testeContainer.style.display = 'block';
-            } else {
-                indexContainer.style.display = 'block';
-                testeContainer.style.display = 'none';
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            const thumbnailWidth = 300;
+            const thumbnailHeight = 120;
+            const frames = [5, 10, 15, 20]; // List of specific times to capture frames
+            const imageContainer = document.querySelector('.image-container');
+
+            function generateThumbnail(time) {
+                return new Promise((resolve) => {
+                    video.currentTime = time;
+                    video.addEventListener('seeked', function captureFrame() {
+                        setTimeout(() => {
+                            context.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
+                            const dataURL = canvas.toDataURL();
+                            video.removeEventListener('seeked', captureFrame);
+                            resolve({ dataURL, time });
+                        }, 100);
+                    }, { once: true });
+                });
             }
+
+            async function createThumbnails() {
+                let storedThumbnails = JSON.parse(localStorage.getItem('images_torre'));
+
+                if (!storedThumbnails) {
+                    storedThumbnails = await generateAndStoreThumbnails();
+                }
+
+                storedThumbnails.forEach(thumbnail => {
+                    createThumbnail(thumbnail.dataURL, thumbnail.time);
+                });
+            }
+
+            async function generateAndStoreThumbnails() {
+                const storedThumbnails = [];
+                for (let i = 0; i < frames.length; i++) {
+                    const { dataURL, time } = await generateThumbnail(frames[i]);
+                    storedThumbnails.push({ dataURL, time });
+                }
+                localStorage.setItem('images_torre', JSON.stringify(storedThumbnails));
+                return storedThumbnails;
+            }
+
+            function createThumbnail(dataURL, time) {
+                const img = document.createElement('img');
+                img.src = dataURL;
+                img.alt = 'Thumbnail';
+                img.setAttribute('data-time', time);
+                img.classList.add('img-fluid');
+
+                const colDiv = document.createElement('div');
+                colDiv.classList.add('col-md-4');
+                colDiv.appendChild(img);
+
+                imageContainer.querySelector('.row').appendChild(colDiv);
+
+                //clicar na foto e navegar para o momento do video
+                img.addEventListener('click', function(){
+                    const clickTime = parseFloat(this.getAttribute('data-time'));
+                    video.currentTime = clickTime;
+                    video.play();
+                })
+            }
+
+            //verificar em que container estamos
+            let containerState = parseInt(localStorage.getItem('containerState')) || 0;
+
+           
+            function updateContainerVisibility() {
+                containers.forEach((container, index) => {
+                    container.style.display = (index === containerState) ? 'block' : 'none';
+                });
+            }
+
+            updateContainerVisibility();
 
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -100,18 +169,13 @@
                 });
             });
 
-            // Toggle between index-container and teste-container and store the state in localStorage
             toggleButton.addEventListener('click', function() {
-                if (indexContainer.style.display === 'none') {
-                    indexContainer.style.display = 'block';
-                    testeContainer.style.display = 'none';
-                    localStorage.setItem('testeContainerVisible', 'false');
-                } else {
-                    indexContainer.style.display = 'none';
-                    testeContainer.style.display = 'block';
-                    localStorage.setItem('testeContainerVisible', 'true');
-                }
+                containerState = (containerState + 1) % 3;
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
             });
+
+            createThumbnails();
         });
     </script>
 </body>

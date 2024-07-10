@@ -1,5 +1,6 @@
+/* Reset and base styles */
 body {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;   
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #000000;
     margin: 0;
     padding: 0;
@@ -26,15 +27,14 @@ body.yellow-theme {
     background-image: none;
 }
 
-
-.yellow-theme .centered-title{
+/* Elements in yellow theme */
+.yellow-theme .centered-title {
     color: black;
 }
 
-.yellow-theme .teste-container h2{
+.yellow-theme .teste-container h2 {
     color: black;
 }
-
 
 /* Layout for the content */
 .content {
@@ -52,14 +52,15 @@ body.yellow-theme {
     height: auto;
 }
 
-.index-container {
+.index-container, .teste-container, .image-container {
     flex: 1;
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
+    margin-top: 20px;
 }
 
-.index-container h2 {
+.index-container h2, .teste-container h2, .image-container h2 {
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -83,26 +84,6 @@ body.yellow-theme {
     text-decoration: underline;
 }
 
-.teste-container{
-    flex: 1;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 8px;
-}
-
-.teste-container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-
-.index-container, .teste-container {
-    margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 8px;
-}
-
 .index-container ul li a.highlight {
     background-color: yellow;
     font-weight: bold;
@@ -117,7 +98,15 @@ body.yellow-theme {
     color: white;
 }
 
-/* Estilo específico para o botão */
+/* Specific style for the toggle button */
 #toggleContainer {
-    margin-left: auto; /* Move o botão para o lado direito */
+    margin-left: auto; /* Moves the button to the right */
+}
+
+/* Styles for images within image-container */
+.image-container img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    display: block; /* Ensures the image is displayed as a block element */
 }
