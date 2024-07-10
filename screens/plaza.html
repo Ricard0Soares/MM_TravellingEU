@@ -26,46 +26,35 @@
     </nav>
 
     <div class="centered-title">
-        <h1>Torre de Belém</h1>
+        <h1>Plaza Mayor</h1>
         <button id="toggleContainer">Toggle Teste Container</button>
     </div>
 
     <div class="content">
         <div class="video-container">
             <video id="myVideo" controls>
-                <source src="../videos/torre.mp4" type="video/mp4">
+                <source src="../videos/mosteiro.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
         <div class="index-container">
-            <h2>Índice de Conteúdo</h2>
+            <h2>Content Index</h2>
             <ul>
-                <li><a href="#" id="section1" data-time="0">1. Introdução</a></li>
-                <li><a href="#" id="section2" data-time="12">2. Contexto Histórico</a></li>
-                <li><a href="#" id="section3" data-time="25">3. Construção</a></li>
-                <li>
-                    <a href="#" id="section4" data-time="31">4. Interior</a>
-                    <ul class="sub-list">
-                        <li><a href="#" id="section4.1" data-time="32">4.1. Torre como Defesa</a></li>
-                        <li><a href="#" id="section4.2" data-time="38">4.2. Torre como Prisão Política</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" id="section5" data-time="44">5. Virgem</a></li>
-                <li><a href="#" id="section6" data-time="52">6. Símbolos do Orgulho Português</a></li>
-                <li><a href="#" id="section7" data-time="64">7. Paisagem</a></li>
-                <li><a href="#" id="section8" data-time="74">8. Sala dos Reis</a></li>
-                <li><a href="#" id="section9" data-time="82">9. Capela</a></li>
+                <li><a href="#" id="section1" data-time="10">1. Section 1</a></li>
+                <li><a href="#" id="section2" data-time="15">2. Section 2</a></li>
+                <li><a href="#" id="section3" data-time="18">3. Section 3</a></li>
+                <li><a href="#" id="section4" data-time="22">4. Section 4</a></li>
             </ul>
         </div>
 
         <div class="teste-container" style="display: none;">
-            <h2>Torre de Belém</h2>
+            <h2>Plaza Mayor</h2>
             <p>É um mosteiro português, mandado construir no final do século XV pelo rei D. Manuel I e estava entregue à Ordem de São Jerónimo. 
                 Situa-se na freguesia de Belém, na cidade e concelho de <a href="home_lisboa.html">Lisboa</a>. Tem, desde 2016, o estatuto de Panteão Nacional.</p>
         </div>
 
         <div class="image-container" style="display: none;">
-            <h2>Galeria</h2>
+            <h2>Photo Gallery</h2>
             <div class="row" id="photoGalleryRow1"></div>
         </div>
     </div>        
@@ -103,7 +92,7 @@
             }
 
             async function createThumbnails() {
-                let storedThumbnails = JSON.parse(localStorage.getItem('images_torre'));
+                let storedThumbnails = JSON.parse(localStorage.getItem('images_plaza'));
 
                 if (!storedThumbnails) {
                     storedThumbnails = await generateAndStoreThumbnails();
@@ -120,7 +109,7 @@
                     const { dataURL, time } = await generateThumbnail(frames[i]);
                     storedThumbnails.push({ dataURL, time });
                 }
-                localStorage.setItem('images_torre', JSON.stringify(storedThumbnails));
+                localStorage.setItem('images_plaza', JSON.stringify(storedThumbnails));
                 return storedThumbnails;
             }
 

@@ -90,6 +90,17 @@ body.yellow-theme {
     text-decoration: underline;
 }
 
+.index-container ul .sub-list {
+    margin-top: 0;
+    padding-left: 20px; /* Recuo para os subitens */
+}
+
+.index-container ul .sub-list li {
+    margin-bottom: 5px; /* Espaçamento entre os subitens */
+}
+
+
+
 .centered-title {
     text-align: center;
     margin-top: 100px; /* Espaçamento acima do título */
