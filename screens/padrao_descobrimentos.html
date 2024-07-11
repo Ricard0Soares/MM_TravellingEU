@@ -54,10 +54,48 @@
             </ul>
         </div>
 
-        <div class="teste-container" style="display: none;">
-            <h2>Padrão dos Descobrimentos</h2>
-            <p>É um mosteiro português, mandado construir no final do século XV pelo rei D. Manuel I e estava entregue à Ordem de São Jerónimo. 
-                Situa-se na freguesia de Belém, na cidade e concelho de <a href="home_lisboa.html">Lisboa</a>. Tem, desde 2016, o estatuto de Panteão Nacional.</p>
+        <div class="teste-container">
+            <div class="page" id="page1">
+                <h2>Padrão dos Descobrimentos</h2>
+                <h3>Introdução</h3>
+                <p>O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de Lisboa, em Portugal. 
+                    A conceção arquitetónica é de Cottinelli Telmo e as esculturas são de Leopoldo de Almeida.
+                </p>
+                <p>Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 
+                    por ocasião da Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos 
+                    portugueses. A réplica atual, em betão e pedra, é posterior, tendo sido inaugurada em 1960.</p>
+            </div>
+            <div class="page" id="page2" style="display: none;">
+                <h2>Padrão dos Descobrimentos</h2>
+                <h3>Construção e Materiais</h3>
+                <p>O monumento foi pensado inicialmente por Cottinelli Telmo como uma homenagem ao Infante D. Henrique, na 
+                    sequência de vários projetos e concursos para Sagres, realizados ao longo dos anos sem que nenhum chegasse 
+                    a ser construido.</p>
+                <p>Por ocasião da Exposição do Mundo Português, em 1940, transformou-se em Padrão dos Descobrimentos, celebrando 
+                    não apenas o Infante mas também os seus colaboradores e seguidores.</p>
+                <p>Feito de materiais perecíveis, foi desmontado em 1958 e reconstruido nos anos imediatos, em betão e pedra de lioz, 
+                    por decisão de Salazar que, por ocasião do 5º centenário do Infante, contrariou o resultado de mais um concurso 
+                    henriquino para Sagres.</p>
+                <p>Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em Belém, com orçamento inferior ao desse concurso.</p>
+                <p>Foi reconstruído em cimento e pedra rosal de Leiria, e as esculturas em calcário de Sintra.</p>
+            </div>
+            <div class="page" id="page3" style="display: none;">
+                <h2>Padrão dos Descobrimentos</h2>
+                <h3>Contexto Histórico e Significado</h3>
+                <p>o Padrao evoca a expansão ultramarina portuguesa, representando o passado glorioso, simbolizando a grandeza da 
+                    obra do Infante D. Henrique, grande impulsionador das Descobertas.</p>
+                <p>O monumento simboliza uma caravela ao mar. 
+                Na proa, encontra-se a estátua do Infante D.Henrique, com uma caravela na mão direita e um mapa na esquerda.</p>
+                <p>Ao longo do monumento do lado este e oeste, o Infante está seguido por 32 personalidades da historia ultramarina e 
+                    da cultura da época, como por exemplo o Rei D.Afonso V (impulsionador das primeiras descobertas), Vasco da Gama (descobriu o 
+                    caminho marítimo para a India) ou Pedro Álvares Cabral (que descobriu o brasil), entre outras personalidades como
+                    Fernão de Magalhães ou Bartolomeu Dias.</p>
+            </div>
+        
+            <div class="pagination-controls">
+                <button id="prevPage" onclick="prevPage()">Previous</button>
+                <button id="nextPage" onclick="nextPage()">Next</button>
+            </div>
         </div>
 
         <div class="image-container" style="display: none;">
@@ -83,6 +121,37 @@
             const thumbnailHeight = 120;
             const frames = [5, 10, 15, 20]; // List of specific times to capture frames
             const imageContainer = document.querySelector('.image-container');
+
+            const pages = document.querySelectorAll('.teste-container .page');
+            let currentPageIndex = 0;
+
+            function showPage(index) {
+                pages.forEach((page, i) => {
+                    page.style.display = (i === index) ? 'block' : 'none';
+                });
+                updatePaginationControls();
+            }
+
+            function updatePaginationControls() {
+                document.getElementById('prevPage').disabled = (currentPageIndex === 0);
+                document.getElementById('nextPage').disabled = (currentPageIndex === pages.length - 1);
+            }
+
+            window.nextPage = function() {
+                if (currentPageIndex < pages.length - 1) {
+                    currentPageIndex++;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            window.prevPage = function() {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            showPage(currentPageIndex);
 
             function generateThumbnail(time) {
                 return new Promise((resolve) => {
