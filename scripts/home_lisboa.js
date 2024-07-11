@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
 video.addEventListener('timeupdate', () => {
   const currentTime = video.currentTime;
 
-  if (currentTime >= 0 && currentTime < 4) {
+  if (currentTime >= 0 && currentTime < 2) {
 
     cardTitleElement.textContent = "Torre de Belém";
     cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
@@ -223,10 +223,19 @@ video.addEventListener('timeupdate', () => {
           "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
           "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
-    positionOverlayArea('5%','43%','23%','35%', 'block');
+  positionOverlayArea('10%', '48%', '23%', '45%', 'block');
+    
+  } else if (currentTime >= 2 && currentTime < 4) {
+    cardTitleElement.textContent = "Torre de Belém";
+    cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
+          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
+          "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
+          "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
+          "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
+    positionOverlayArea('10%', '45%', '28%', '50%', 'block');
 
-  } else if (currentTime >= 4 && currentTime < 8) {
+  }else if (currentTime >= 4 && currentTime < 8) {
 
       cardTitleElement.textContent = "Parque das Nações";
       cardDescriptionElement.textContent = "teste2";
@@ -237,13 +246,13 @@ video.addEventListener('timeupdate', () => {
       cardTitleElement.textContent = "Mosteiro dos Jerónimos";
       cardDescriptionElement.textContent = "teste3";
 
-      positionOverlayArea('10%','20%','70%','40%', 'block');
+      positionOverlayArea('10%','10%','80%','45%', 'block');
 
   }else if(currentTime >= 11 && currentTime < 15){
       cardTitleElement.textContent = "Mosteiro dos Jerónimos";
       cardDescriptionElement.textContent = "teste4";
 
-      positionOverlayArea('10%','10%','70%','30%', 'block');
+      positionOverlayArea('10%','10%','80%','30%', 'block');
 
   }else if(currentTime >= 15 && currentTime < 19){
       cardTitleElement.textContent = "Padrão dos Descobrimentos";
