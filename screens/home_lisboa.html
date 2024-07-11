@@ -7,8 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../styles/home_cities.css">
     <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
 
-</head>
-<body>
+</head>"
+<body onload="myMap(38.71667, -9.139, 6)">
     <nav class="navbar">
         <div class="logo"><a href="home.html">TravellingEU</a></div>
         <ul class="nav-links">
@@ -167,140 +167,12 @@
         // Evento para fechar o cardContainer quando o botão de fechar é clicado
         closeCardButton.addEventListener('click', closeCardContainer);
 
-        function myMap() {
-            var europeBounds = {
-                north: 71.0,
-                south: 34.5,
-                west: -25.0,
-                east: 45.0
-            };
         
-            var mapProp= {
-                center:new google.maps.LatLng(38.71667, -9.139),
-                zoom:5,
-                restriction: {
-                    latLngBounds: europeBounds,
-                    strictBounds: true
-                }
-        
-            };
-        
-            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        
-            var lisbon = new google.maps.Marker({
-                position: new google.maps.LatLng(38.71667, -9.139),
-                map: map,
-                title: 'Lisbon'
-            });
-
-            var paris = new google.maps.Marker({
-                position: new google.maps.LatLng(48.8566, 2.3522),
-                map: map,
-                title: 'Paris'
-            });
-
-            var madrid = new google.maps.Marker({
-                position: new google.maps.LatLng(40.416775, -3.703790),
-                map: map,
-                title: 'Madrid'
-            });
-
-            var athens = new google.maps.Marker({
-                position: new google.maps.LatLng(37.983810, 23.727539),
-                map: map,
-                title: 'Athens'
-            });
-
-            var rome = new google.maps.Marker({
-                position: new google.maps.LatLng(41.902782, 12.496366),
-                map: map,
-                title: 'Rome'
-            });
-
-            var mosteiro = new google.maps.Marker({
-                position: new google.maps.LatLng(38.697056, -9.206528),
-                map: map,
-                title: 'Mosteiro Jerónimos'
-            });
-
-            var torre_belem = new google.maps.Marker({
-                position: new google.maps.LatLng(38.691583, -9.215883),
-                map: map,
-                title: 'Torre Belém'
-            });
-
-            var parque_nacoes = new google.maps.Marker({
-                position: new google.maps.LatLng(38.768891, -9.094406),
-                map: map,
-                title: 'Parque das Nações'
-            });
-
-            var padrao_descobrimentos = new google.maps.Marker({
-                position: new google.maps.LatLng(38.693615, -9.205115),
-                map: map,
-                title: 'Padrão Descobrimentos'
-            });
-
-            google.maps.event.addListener(lisbon, 'click', function(){
-                window.location.href = 'home_lisboa.html';
-            });
-
-            google.maps.event.addListener(paris, 'click', function(){
-                window.location.href = 'home_paris.html';
-            });
-
-            google.maps.event.addListener(madrid, 'click', function(){
-                window.location.href = 'home_madrid.html';
-            });
-
-            google.maps.event.addListener(rome, 'click', function(){
-                window.location.href = 'home_roma.html';
-            });
-        
-            google.maps.event.addListener(athens, 'click', function(){
-                window.location.href = 'home_atenas.html';
-            });
-
-            google.maps.event.addListener(mosteiro, 'click', function(){
-                window.location.href = 'mosteiro.html';
-            });
-
-            google.maps.event.addListener(torre_belem, 'click', function(){
-                window.location.href = 'torre_belem.html';
-            });
-
-            google.maps.event.addListener(parque_nacoes, 'click', function(){
-                window.location.href = 'parque_nacoes.html';
-            });
-
-            google.maps.event.addListener(padrao_descobrimentos, 'click', function(){
-                window.location.href = 'padrao_descobrimentos.html';
-            });
-
-            // Define um ícone menor para os marcadores menores
-            /*var smallIcon = {
-                url: 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png', // URL para um ícone padrão menor
-                scaledSize: new google.maps.Size(15, 15) // Tamanho do ícone
-            };
-
-            // Adiciona um marcador menor para Alverca
-            var alverca = new google.maps.Marker({
-                position: new google.maps.LatLng(38.89103, -9.04523),
-                map: map,
-                title: 'Alverca',
-                icon: smallIcon
-            });*/
-
-
-
-           
-        
-        }
-        </script>
+    </script>
         
         
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap"></script>
+    <script src="../scripts/map.js"></script>
     <script src="../scripts/searchbarHome.js"></script>
     <script src="../scripts/theme.js"></script>
     <!--<script src="./settings.js"></script>-->

@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/monumentos.css">
     <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
 </head>
-<body>
+<body onload="myMap(38.768891, -9.094406, 12)">
     <nav class="navbar">
         <div class="logo"><a href="home.html">TravellingEU</a></div>
         <ul class="nav-links">
@@ -66,10 +66,10 @@
             <h2>Galeria</h2>
             <div class="row" id="photoGalleryRow1"></div>
         </div>
-    </div>        
+    </div>
+    
+    <div id="googleMap" style="width: 70%; height: 400px; margin-top: 30px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto;"></div>
 
-    <script src="../scripts/searchbarHome.js"></script>
-    <script src="../scripts/theme.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.getElementById('myVideo');
@@ -187,5 +187,12 @@
             createThumbnails();
         });
     </script>
+
+    <script src="../scripts/searchbarHome.js"></script>
+    <script src="../scripts/theme.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap"></script>
+    <script src="../scripts/map.js"></script>
+    <script src="../scripts/searchbarHome.js"></script>
+    <script src="../scripts/theme.js"></script>
 </body>
 </html>

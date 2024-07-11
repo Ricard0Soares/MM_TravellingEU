@@ -52,7 +52,7 @@ body.yellow-theme {
     height: auto;
 }
 
-.index-container, .teste-container, .image-container {
+.index-container, .teste-container, .image-container, .map-container {
     flex: 1;
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
@@ -60,7 +60,7 @@ body.yellow-theme {
     margin-top: 20px;
 }
 
-.index-container h2, .teste-container h2, .image-container h2 {
+.index-container h2, .teste-container h2, .image-container h2, .map-container h2 {
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -99,8 +99,6 @@ body.yellow-theme {
     margin-bottom: 5px; /* Espaçamento entre os subitens */
 }
 
-
-
 .centered-title {
     text-align: center;
     margin-top: 100px; /* Espaçamento acima do título */
@@ -121,3 +119,4 @@ body.yellow-theme {
     margin-bottom: 20px;
     display: block; /* Ensures the image is displayed as a block element */
 }
+

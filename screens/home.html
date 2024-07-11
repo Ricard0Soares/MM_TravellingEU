@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/home.css">
     <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
 </head>
-<body>
+<body onload="myMap(38.71667, -9.139, 6)">
     <nav class="navbar">
         <div class="logo"><a href="home.html">TravellingEU</a></div>
         <ul class="nav-links">
@@ -32,7 +32,7 @@
 
     <div id="googleMap" style="width: 70%; height: 350px; margin-top: 30px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto;"></div>
 
-    <script src="../scripts/mapdata.js"></script>
+    <script src="../scripts/map.js"></script>
     <script src="../scripts/tooltip.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap" defer></script>
 
