@@ -56,10 +56,41 @@
             </ul>
         </div>
 
-        <div class="teste-container" style="display: none;">
-            <h2>Parque das Nações</h2>
-            <p>É um mosteiro português, mandado construir no final do século XV pelo rei D. Manuel I e estava entregue à Ordem de São Jerónimo. 
-                Situa-se na freguesia de Belém, na cidade e concelho de <a href="home_lisboa.html">Lisboa</a>. Tem, desde 2016, o estatuto de Panteão Nacional.</p>
+        <div class="teste-container">
+            <div class="page" id="page1">
+                <h2>Parque das Nações</h2>
+                <h3>Introdução</h3>
+                <p>Parque das Nações é uma freguesia portuguesa do município de Lisboa, pertencente à Zona Leste da 
+                    capital, com 5,44 km² de área e 22 382 habitantes (2021).</p>
+                <p>Surgiu há cerca de 25 anos, sendo considerado uma das melhores zonas para se morar em Lisboa. 
+                    Foi construído para receber a Expo 98.</p>
+                <p>A arquitetura contemporânea do Parque das Nações, os espaços de convívio e todo o projeto de urbanização e 
+                    requalificação urbana trouxeram nova dinâmica à zona oriental da cidade de Lisboa que, em 1990, ainda 
+                    era uma zona industrial.</p>
+                <p>Este projeto de urbanização transformou uma zona degradada numa das areas mais modernas de Lisboa.</p>
+            </div>
+            <div class="page" id="page2" style="display: none;">
+                <h2>Parque das Nações</h2>
+                <h3>O que fazer?</h3>
+                <p>Um dos símbolos do bairro é a torre vasco da gama, edifício mais alto do pais, com 140 metros de altura, 
+                    projetado com uma silhueta semelhjante a uma vela, fazendo uma clara alusão as caravelas que partiram do 
+                    Rio Tejo para percorrer o mundo. No interior, encontra-se, por exemplo, um dos melhore restaurantes e 
+                    bares de Lisboa.</p>
+                <p>O bairro é considerado por muitos um  museu a ceu aberto, visto existirem imensas peças de artes espalhadas pela 
+                    cidade, como o Lince Ibérico ou o Homem Sol.</p>
+                <p>Outra atração do bairro é o teleférico, que vai desde o Oceanário até à Torre Vasco da Gama, sobre o rio tejo,
+                    permitindo uma vista priveligiada sobre o Parque das Nações. 
+                </p>
+                <p>Existe também o centro comercial Vasco da Gama, com centenas de lojas e imensas e ótimas opções de restauração, 
+                    para além de um cinema e ligação direta à estação de metro do Oriente.</p>
+                <p>Por fim, existem também imensos parques e opções de restauração (fora do centro comercial) espalhados pelo 
+                    Parque das Nações.</p>
+            </div>
+        
+            <div class="pagination-controls">
+                <button id="prevPage" onclick="prevPage()">Previous</button>
+                <button id="nextPage" onclick="nextPage()">Next</button>
+            </div>
         </div>
 
         <div class="image-container" style="display: none;">
@@ -85,6 +116,37 @@
             const thumbnailHeight = 120;
             const frames = [5, 10, 15, 20]; // List of specific times to capture frames
             const imageContainer = document.querySelector('.image-container');
+
+            const pages = document.querySelectorAll('.teste-container .page');
+            let currentPageIndex = 0;
+
+            function showPage(index) {
+                pages.forEach((page, i) => {
+                    page.style.display = (i === index) ? 'block' : 'none';
+                });
+                updatePaginationControls();
+            }
+
+            function updatePaginationControls() {
+                document.getElementById('prevPage').disabled = (currentPageIndex === 0);
+                document.getElementById('nextPage').disabled = (currentPageIndex === pages.length - 1);
+            }
+
+            window.nextPage = function() {
+                if (currentPageIndex < pages.length - 1) {
+                    currentPageIndex++;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            window.prevPage = function() {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            showPage(currentPageIndex);
 
             function generateThumbnail(time) {
                 return new Promise((resolve) => {
