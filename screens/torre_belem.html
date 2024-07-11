@@ -58,11 +58,88 @@
             </ul>
         </div>
 
-        <div class="teste-container" style="display: none;">
-            <h2>Torre de Belém</h2>
-            <p>É um mosteiro português, mandado construir no final do século XV pelo rei D. Manuel I e estava entregue à Ordem de São Jerónimo. 
-                Situa-se na freguesia de Belém, na cidade e concelho de <a href="home_lisboa.html">Lisboa</a>. Tem, desde 2016, o estatuto de Panteão Nacional.</p>
+        <div class="teste-container">
+            <div class="page" id="page1">
+                <h2>Torre de Belém</h2>
+                <h3>Introdução</h3>
+                <p>A Torre de Belém é uma fortificação localizada na freguesia de Belém, Município e Distrito de Lisboa, em Portugal. 
+                    Na margem direita do rio Tejo, onde existiu outrora a praia de Belém, era primitivamente cercada pelas águas 
+                    em todo o seu perímetro. Ao longo dos séculos foi envolvida pela praia, até se incorporar hoje a terra firme. 
+                </p>
+                <p>Um dos ex libris da cidade, o monumento é um ícone da arquitetura do reinado de D. Manuel I, numa síntese 
+                    entre a torre de menagem de tradição medieval e o baluarte moderno, onde se dispunham peças de artilharia.</p>
+                <p>Foi classificada em 1983 como Património Mundial da UNESCO e eleita como uma das Sete Maravilhas de Portugal 
+                    em 2007, atraindo centenas de milhares de turistas anualmente.</p>
+                <p>Nos quatro pisos da torre, mantêm-se a Sala do Governador, a Sala dos Reis, a Sala de Audiências e, finalmente, 
+                    a Capela com as suas características abóbadas quinhentistas.</p>
+            </div>
+            <div class="page" id="page2" style="display: none;">
+                <h2>Torre de Belém</h2>
+                <h3>Contexto Histórico</h3>
+                <p>Em 1495, o rei D. Manuel I torna-se uma figura importante do comércio internacional, visto que Vasco da Gama 
+                    e posteriormente Álvares Cabral estabelecem rotas marítimas com a Índia, Goa e Malaca, África e Brasil, 
+                    trazendo e oferecendo produtos exóticos.</p>
+                <p>Essas experiências e conhecimentos levam à definição das características do estilo Manuelino, representado nos seus monumentos.</p>
+                <p>A Torre de Belém remonta, então, à época que Portugal era uma superpotência e quem conquistou foi D.Manuel I, 
+                    rei na época das conquistas das rotas marítimas da India, Africa e Brasil. 
+                </p>
+            </div>
+            <div class="page" id="page3" style="display: none;">
+                <h2>Torre de Belém</h2>
+                <h3>Construção</h3>
+                <p>A estrutura só viria a ser iniciada em 1514, sob o reinado de Manuel I de Portugal (1495-1521), tendo como 
+                    arquitecto Francisco de Arruda. 
+                </p>
+                <p>Localizava-se sobre um afloramento rochoso nas águas do rio, fronteiro à antiga praia de Belém, e destinava-se 
+                    a substituir a antiga nau artilhada, ancorada naquele trecho, de onde partiam as frotas para as Índias. 
+                </p>
+                <p>As suas obras ficaram a cargo de Diogo Boitaca, que, à época, também dirigia as já adiantadas obras 
+                    do vizinho Mosteiro dos Jerónimos, tendo sido concluída em 1520.</p>
+            </div>
+
+            <div class="page" id="page4" style="display: none;">
+                <h2>Torre de Belém</h2>
+                <h3>Torre como Defesa e Prisão</h3>
+                <p>A Torre foi inicialmente concebida como torre de defesa da entrada do Rio Tejo, protegendo a cidade de Lisboa, 
+                    visível ainda hoje pelos canhões presentes no interior.  
+                </p>
+                <p>A estrutura foi, gradualmente, perdendo a sua função defensiva original. Ao longo dos séculos foi utilizada 
+                    como registo aduaneiro, posto de sinalização telegráfico e farol.</p>
+                <p>Os seus paióis foram utilizados como masmorras para presos políticos durante o reinado de Filipe II de 
+                    Espanha (1580-1598), e, mais tarde, por João IV de Portugal (1640-1656). O Arcebispo de Braga e Primaz das 
+                    Espanhas, D. Sebastião de Matos de Noronha (1586-1641), por coligação à Espanha e fazendo frente a D. João IV, 
+                    foi preso e mandado recluso para a Torre de Belém.</p>
+            </div>
+
+            <div class="page" id="page5" style="display: none;">
+                <h2>Torre de Belém</h2>
+                <h3>Símbolos da Torre</h3>
+                <p>O monumento reflete influências islâmicas e orientais, que caracterizam o estilo manuelino e marca o fim da
+                     tradição medieval das torres de menagem, ensaiando um dos primeiros baluartes para artilharia no país.
+                </p>
+                <p>Parte da sua beleza reside na decoração exterior, com por exemplo, a Virgem, que olha os navegantes que partem 
+                    do Tejo para conquistar o Mundo.
+                </p>
+                <p>Temos também, por exemplo, a esfera armilar, a cruz da ordem de Cristo e as cordas típicas do estilo que 
+                    nasceu para relembrar as conquistas dos tempos de D.Manuel I, relembram o orgulho português.</p>
+            </div>
+
+            <div class="page" id="page6" style="display: none;">
+                <h2>Torre de Belém</h2>
+                <h3>Interior - Divisões</h3>
+                <p>Na sala dos reis, a varanda traz uma vista priveligada da torre e do rio.
+                </p>
+                <p>Na sala das audiências, a varanda traz a vista do Ribatejo.
+                </p>
+                <p>Mais acima temos a Capela, repleta de símbolos da monarquia, incluindo o seu brazão.</p>
+            </div>
+        
+            <div class="pagination-controls">
+                <button id="prevPage" onclick="prevPage()">Previous</button>
+                <button id="nextPage" onclick="nextPage()">Next</button>
+            </div>
         </div>
+        
 
         <div class="image-container" style="display: none;">
             <h2>Galeria</h2>
@@ -87,6 +164,38 @@
             const thumbnailHeight = 120;
             const frames = [5, 10, 15, 20]; // List of specific times to capture frames
             const imageContainer = document.querySelector('.image-container');
+
+
+            const pages = document.querySelectorAll('.teste-container .page');
+            let currentPageIndex = 0;
+
+            function showPage(index) {
+                pages.forEach((page, i) => {
+                    page.style.display = (i === index) ? 'block' : 'none';
+                });
+                updatePaginationControls();
+            }
+
+            function updatePaginationControls() {
+                document.getElementById('prevPage').disabled = (currentPageIndex === 0);
+                document.getElementById('nextPage').disabled = (currentPageIndex === pages.length - 1);
+            }
+
+            window.nextPage = function() {
+                if (currentPageIndex < pages.length - 1) {
+                    currentPageIndex++;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            window.prevPage = function() {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            showPage(currentPageIndex);
 
             function generateThumbnail(time) {
                 return new Promise((resolve) => {

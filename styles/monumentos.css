@@ -52,7 +52,7 @@ body.yellow-theme {
     height: auto;
 }
 
-.index-container, .teste-container, .image-container, .map-container {
+.index-container, .image-container, .map-container {
     flex: 1;
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
@@ -60,9 +60,27 @@ body.yellow-theme {
     margin-top: 20px;
 }
 
+.teste-container{
+    flex: 1;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    height: 500px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
 .index-container h2, .teste-container h2, .image-container h2, .map-container h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.teste-container h3{
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .index-container ul {
@@ -118,5 +136,27 @@ body.yellow-theme {
     height: auto;
     margin-bottom: 20px;
     display: block; /* Ensures the image is displayed as a block element */
+}
+
+
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pagination-controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination-controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
