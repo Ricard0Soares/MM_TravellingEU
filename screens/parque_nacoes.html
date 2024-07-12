@@ -59,32 +59,52 @@
         <div class="teste-container">
             <div class="page" id="page1">
                 <h2>Parque das Nações</h2>
-                <h3>Introdução</h3>
-                <p>Parque das Nações é uma freguesia portuguesa do município de Lisboa, pertencente à Zona Leste da 
-                    capital, com 5,44 km² de área e 22 382 habitantes (2021).</p>
-                <p>Surgiu há cerca de 25 anos, sendo considerado uma das melhores zonas para se morar em Lisboa. 
+                <h3>
+                    Introdução
+                    <img id="clip1" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </h3>
+                <p>Parque das Nações é uma freguesia portuguesa do município de <a href="home_lisboa.html">Lisboa</a>, pertencente à 
+                    Zona Leste da capital, com 5,44 km² de área e 22 382 habitantes (2021).</p>
+                <p>Surgiu há cerca de 25 anos, sendo considerado uma das melhores zonas para se morar em <a href="home_lisboa.html">Lisboa</a>. 
                     Foi construído para receber a Expo 98.</p>
                 <p>A arquitetura contemporânea do Parque das Nações, os espaços de convívio e todo o projeto de urbanização e 
-                    requalificação urbana trouxeram nova dinâmica à zona oriental da cidade de Lisboa que, em 1990, ainda 
-                    era uma zona industrial.</p>
-                <p>Este projeto de urbanização transformou uma zona degradada numa das areas mais modernas de Lisboa.</p>
+                    requalificação urbana trouxeram nova dinâmica à zona oriental da cidade de <a href="home_lisboa.html">Lisboa</a> 
+                    que, em 1990, ainda era uma zona industrial.</p>
+                <p>
+                    Este projeto de urbanização transformou uma zona degradada numa das areas mais modernas de <a href="home_lisboa.html">Lisboa</a>.
+                    <img id="clip2" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
             </div>
             <div class="page" id="page2" style="display: none;">
                 <h2>Parque das Nações</h2>
                 <h3>O que fazer?</h3>
-                <p>Um dos símbolos do bairro é a torre vasco da gama, edifício mais alto do pais, com 140 metros de altura, 
+                <p>
+                    Um dos símbolos do bairro é a torre vasco da gama, edifício mais alto do pais, com 140 metros de altura, 
                     projetado com uma silhueta semelhjante a uma vela, fazendo uma clara alusão as caravelas que partiram do 
                     Rio Tejo para percorrer o mundo. No interior, encontra-se, por exemplo, um dos melhore restaurantes e 
-                    bares de Lisboa.</p>
-                <p>O bairro é considerado por muitos um  museu a ceu aberto, visto existirem imensas peças de artes espalhadas pela 
-                    cidade, como o Lince Ibérico ou o Homem Sol.</p>
-                <p>Outra atração do bairro é o teleférico, que vai desde o Oceanário até à Torre Vasco da Gama, sobre o rio tejo,
-                    permitindo uma vista priveligiada sobre o Parque das Nações. 
+                    bares de <a href="home_lisboa.html">Lisboa</a>.
+                    <img id="clip3" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
                 </p>
-                <p>Existe também o centro comercial Vasco da Gama, com centenas de lojas e imensas e ótimas opções de restauração, 
-                    para além de um cinema e ligação direta à estação de metro do Oriente.</p>
-                <p>Por fim, existem também imensos parques e opções de restauração (fora do centro comercial) espalhados pelo 
-                    Parque das Nações.</p>
+                <p>
+                    O bairro é considerado por muitos um  museu a ceu aberto, visto existirem imensas peças de artes espalhadas pela 
+                    cidade, como o Lince Ibérico ou o Homem Sol.
+                    <img id="clip4" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+                <p>
+                    Outra atração do bairro é o teleférico, que vai desde o Oceanário até à Torre Vasco da Gama, sobre o rio tejo,
+                    permitindo uma vista priveligiada sobre o Parque das Nações.
+                    <img id="clip5" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+                <p>
+                    Existe também o centro comercial Vasco da Gama, com centenas de lojas e imensas e ótimas opções de restauração, 
+                    para além de um cinema e ligação direta à estação de metro do Oriente.
+                    <img id="clip6" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+                <p>
+                    Por fim, existem também imensos parques e opções de restauração (fora do centro comercial) espalhados pelo 
+                    Parque das Nações.
+                    <img id="clip7" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
             </div>
         
             <div class="pagination-controls">
@@ -247,6 +267,41 @@
             });
 
             createThumbnails();
+
+            document.getElementById('clip1').addEventListener('click', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+
+            document.getElementById('clip2').addEventListener('click', function() {
+                video.currentTime = 10;
+                video.play();
+            });
+
+            document.getElementById('clip3').addEventListener('click', function() {
+                video.currentTime = 19;
+                video.play();
+            });
+
+            document.getElementById('clip4').addEventListener('click', function() {
+                video.currentTime = 34;
+                video.play();
+            });
+
+            document.getElementById('clip5').addEventListener('click', function() {
+                video.currentTime = 44;
+                video.play();
+            });
+
+            document.getElementById('clip6').addEventListener('click', function() {
+                video.currentTime = 59;
+                video.play();
+            });
+
+            document.getElementById('clip7').addEventListener('click', function() {
+                video.currentTime = 65;
+                video.play();
+            });
         });
     </script>
 
