@@ -57,13 +57,18 @@
         <div class="teste-container">
             <div class="page" id="page1">
                 <h2>Padrão dos Descobrimentos</h2>
-                <h3>Introdução</h3>
+                <h3>
+                    Introdução
+                    <img id="clip1" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </h3>
                 <p>O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de Lisboa, em Portugal. 
                     A conceção arquitetónica é de Cottinelli Telmo e as esculturas são de Leopoldo de Almeida.
                 </p>
                 <p>Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 
                     por ocasião da Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos 
-                    portugueses. A réplica atual, em betão e pedra, é posterior, tendo sido inaugurada em 1960.</p>
+                    portugueses. A réplica atual, em betão e pedra, é posterior, tendo sido inaugurada em 1960.
+                    <img id="clip2" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px; cursor: pointer;">
+                </p>
             </div>
             <div class="page" id="page2" style="display: none;">
                 <h2>Padrão dos Descobrimentos</h2>
@@ -77,19 +82,25 @@
                     por decisão de Salazar que, por ocasião do 5º centenário do Infante, contrariou o resultado de mais um concurso 
                     henriquino para Sagres.</p>
                 <p>Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em Belém, com orçamento inferior ao desse concurso.</p>
-                <p>Foi reconstruído em cimento e pedra rosal de Leiria, e as esculturas em calcário de Sintra.</p>
+                <p>Foi reconstruído em cimento e pedra rosal de Leiria, e as esculturas em calcário de Sintra.
+                    <img id="clip2" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px; cursor: pointer;">
+                </p>
             </div>
             <div class="page" id="page3" style="display: none;">
                 <h2>Padrão dos Descobrimentos</h2>
                 <h3>Contexto Histórico e Significado</h3>
-                <p>o Padrao evoca a expansão ultramarina portuguesa, representando o passado glorioso, simbolizando a grandeza da 
-                    obra do Infante D. Henrique, grande impulsionador das Descobertas.</p>
+                <p>O Padrao evoca a expansão ultramarina portuguesa, representando o passado glorioso, simbolizando a grandeza da 
+                    obra do Infante D. Henrique, grande impulsionador das Descobertas.
+                    <img id="clip3" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px; cursor: pointer;">
+                </p>
                 <p>O monumento simboliza uma caravela ao mar. 
                 Na proa, encontra-se a estátua do Infante D.Henrique, com uma caravela na mão direita e um mapa na esquerda.</p>
                 <p>Ao longo do monumento do lado este e oeste, o Infante está seguido por 32 personalidades da historia ultramarina e 
                     da cultura da época, como por exemplo o Rei D.Afonso V (impulsionador das primeiras descobertas), Vasco da Gama (descobriu o 
                     caminho marítimo para a India) ou Pedro Álvares Cabral (que descobriu o brasil), entre outras personalidades como
-                    Fernão de Magalhães ou Bartolomeu Dias.</p>
+                    Fernão de Magalhães ou Bartolomeu Dias.
+                    <img id="clip4" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px; cursor: pointer;">
+                </p>
             </div>
         
             <div class="pagination-controls">
@@ -252,7 +263,31 @@
             });
 
             createThumbnails();
+
+            document.getElementById('clip1').addEventListener('click', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+
+            document.getElementById('clip2').addEventListener('click', function() {
+                video.currentTime = 10;
+                video.play();
+            });
+
+            document.getElementById('clip3').addEventListener('click', function() {
+                video.currentTime = 23;
+                video.play();
+            });
+
+            document.getElementById('clip4').addEventListener('click', function() {
+                video.currentTime = 38;
+                video.play();
+            });
+
+
         });
+
+        
     </script>
 
     <script src="../scripts/searchbarHome.js"></script>
