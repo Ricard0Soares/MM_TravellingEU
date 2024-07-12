@@ -45,6 +45,8 @@ body.yellow-theme {
 .video-container {
     flex: 2;
     margin-right: 20px;
+    position: relative;
+    width: fit-content;
 }
 
 .video-container video {
@@ -160,3 +162,42 @@ body.yellow-theme {
     cursor: not-allowed;
 }
 
+/* Estilos para o overlay 
+.video-overlay {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    display: none;
+}*/
+
+.video-overlay {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    display: none;
+}
+
+.video-overlay .hoverText {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    /* Posicionamento do texto do tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 0; /* Ajuste a posição conforme necessário */
+    left: 110%; /* Ajuste a posição conforme necessário */
+}
+
+.video-overlay:hover .hoverText {
+    visibility: visible;
+}
+
+/* Estilos para o GIF */
+.video-overlay img {
+    width: 100px; /* Ajuste o tamanho conforme necessário */
+    cursor: pointer;
+}

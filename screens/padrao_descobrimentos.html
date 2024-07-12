@@ -36,6 +36,11 @@
                 <source src="../videos/padrao.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+            <div id="overlay" class="video-overlay" onclick="updateOverlayContent()">
+                <img id="myGif" src="../images/question.gif" alt="Help">
+                <span class="hoverText">Saber mais sobre a Introdução!</span>
+            </div>
         </div>
         <div class="index-container">
             <h2>Índice de Conteúdo</h2>
@@ -135,6 +140,10 @@
 
             const pages = document.querySelectorAll('.teste-container .page');
             let currentPageIndex = 0;
+
+
+            const overlay = document.getElementById('overlay');
+            var hoverText = document.querySelector('#overlay .hoverText');
 
             function showPage(index) {
                 pages.forEach((page, i) => {
@@ -283,6 +292,71 @@
                 video.currentTime = 38;
                 video.play();
             });
+
+
+            function updateOverlayContent() {
+                if (video.currentTime >= 2 && video.currentTime <= 7) {
+                    overlay.onclick = navigateToPage1;
+                    hoverText.textContent="Saber mais sobre o Padrão!";
+                } else if (video.currentTime >= 11 && video.currentTime <= 15) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Saber mais sobre a Construção!";
+                    
+                } else if (video.currentTime >= 24 && video.currentTime <= 29) {
+                    overlay.onclick = navigateToPage3;
+                    hoverText.textContent = "Saber mais sobre o Contexto Histórico do Padrão!";
+                    
+                } else if (video.currentTime >= 40 && video.currentTime <= 45) {
+                    overlay.onclick = navigateToPage3;
+                    hoverText.textContent = "Significado do Padrão e dos elementos constituintes!";
+                } 
+                else {
+                    overlay.style.display = 'none';
+                }
+            }
+
+            video.addEventListener('timeupdate', function() {
+                if ((video.currentTime >= 2 && video.currentTime <= 7) || 
+                (video.currentTime >= 11 && video.currentTime <= 15) || 
+                (video.currentTime >= 24 && video.currentTime <= 29) ||
+                (video.currentTime >= 40 && video.currentTime <= 45)){
+                    overlay.style.display = 'block';
+                    updateOverlayContent();
+                } else {
+                    overlay.style.display = 'none';
+                }
+            });
+
+
+            window.navigateToPage1 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 0; // Define para a página 1
+                showPage(currentPageIndex);
+            };
+
+            window.navigateToPage2 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 1; // Define para a página 2
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage3 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 2; // Define para a página 3
+                showPage(currentPageIndex);
+
+            };
+
 
 
         });

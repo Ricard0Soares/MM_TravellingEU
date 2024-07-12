@@ -36,6 +36,12 @@
                 <source src="../videos/mosteiro.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+            <div id="overlay" class="video-overlay" onclick="updateOverlayContent()">
+                <img id="myGif" src="../images/question.gif" alt="Help">
+                <span class="hoverText">Saber mais sobre a Introdução!</span>
+            </div>
+
         </div>
         <div class="index-container">
             <h2>Content Index</h2>
@@ -205,6 +211,9 @@
 
             const pages = document.querySelectorAll('.teste-container .page');
             let currentPageIndex = 0;
+
+            const overlay = document.getElementById('overlay');
+            var hoverText = document.querySelector('#overlay .hoverText');
 
             function showPage(index) {
                 pages.forEach((page, i) => {
@@ -384,6 +393,131 @@
                 video.currentTime = 78;
                 video.play();
             });
+
+            function updateOverlayContent() {
+                if (video.currentTime >= 2 && video.currentTime <= 7) {
+                    overlay.onclick = navigateToPage1;
+                    hoverText.textContent="Saber mais sobre o Mosteiro!";
+                } else if (video.currentTime >= 16 && video.currentTime <= 19) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Saber mais sobre a Ermida de Santa Maria de Belém!";
+                    
+                } else if (video.currentTime >= 22 && video.currentTime <= 26) {
+                    overlay.onclick = navigateToPage3;
+                    hoverText.textContent = "Saber mais sobre a construção do Mosteiro!";
+                    
+                } else if (video.currentTime >= 30 && video.currentTime <= 37) {
+                    overlay.onclick = navigateToPage4;
+                    hoverText.textContent = "Mais informação sobre o Portal Sul!";
+                } 
+                else if (video.currentTime >= 41 && video.currentTime <= 46) {
+                    overlay.onclick = navigateToPage5;
+                    hoverText.textContent = "Mais informação sobre a Igreja!";
+                } 
+                else if (video.currentTime >= 55 && video.currentTime <= 60) {
+                    overlay.onclick = navigateToPage6;
+                    hoverText.textContent = "Mais sobre os túmulos de Vasco da Gama e Camões!";
+                }
+                else if (video.currentTime >= 65 && video.currentTime <= 73) {
+                    overlay.onclick = navigateToPage7;
+                    hoverText.textContent = "Saber mais sobre o Claustro do Mosteiro!";
+                }
+                else if (video.currentTime >= 78 && video.currentTime <= 83) {
+                    overlay.onclick = navigateToPage6;
+                    hoverText.textContent = "Mais sobre o túmulo de Fernando Pessoa!";
+                }
+                else {
+                    overlay.style.display = 'none';
+                }
+            }
+
+            video.addEventListener('timeupdate', function() {
+                if ((video.currentTime >= 2 && video.currentTime <= 7) || 
+                (video.currentTime >= 16 && video.currentTime <= 19) || 
+                (video.currentTime >= 22 && video.currentTime <= 26) ||
+                (video.currentTime >= 30 && video.currentTime <= 37) ||
+                (video.currentTime >= 41 && video.currentTime <= 46) ||
+                (video.currentTime >= 55 && video.currentTime <= 60) ||
+                (video.currentTime >= 65 && video.currentTime <= 73) ||
+                (video.currentTime >= 78 && video.currentTime <= 83)){
+                    overlay.style.display = 'block';
+                    updateOverlayContent();
+                } else {
+                    overlay.style.display = 'none';
+                }
+            });
+
+
+            window.navigateToPage1 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 0; // Define para a página 1
+                showPage(currentPageIndex);
+            };
+
+            window.navigateToPage2 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 1; // Define para a página 2
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage3 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 2; // Define para a página 3
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage4 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 3; // Define para a página 4
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage5 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 4; // Define para a página 5
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage6 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 5; // Define para a página 6
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage7 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 6; // Define para a página 7
+                showPage(currentPageIndex);
+
+            };
+
+
         });
 
         

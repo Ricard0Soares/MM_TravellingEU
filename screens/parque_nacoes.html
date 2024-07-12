@@ -36,6 +36,11 @@
                 <source src="../videos/parque_nacoes.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+            <div id="overlay" class="video-overlay" onclick="updateOverlayContent()">
+                <img id="myGif" src="../images/question.gif" alt="Help">
+                <span class="hoverText">Saber mais sobre a Introdução!</span>
+            </div>
         </div>
         <div class="index-container">
             <h2>Índice de Conteúdo</h2>
@@ -139,6 +144,9 @@
 
             const pages = document.querySelectorAll('.teste-container .page');
             let currentPageIndex = 0;
+
+            const overlay = document.getElementById('overlay');
+            var hoverText = document.querySelector('#overlay .hoverText');
 
             function showPage(index) {
                 pages.forEach((page, i) => {
@@ -302,6 +310,70 @@
                 video.currentTime = 65;
                 video.play();
             });
+
+
+            
+            function updateOverlayContent() {
+                if (video.currentTime >= 2 && video.currentTime <= 15) {
+                    overlay.onclick = navigateToPage1;
+                    hoverText.textContent="Mais sobre o Parque das Nações e o contexto do seu aparecimento!";
+                } else if (video.currentTime >= 20 && video.currentTime <= 27) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Saber mais sobre a Torre Vasco da Gama!";
+                    
+                } else if (video.currentTime >= 36 && video.currentTime <= 41) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Museu a Céu Aberto!";
+                    
+                } else if (video.currentTime >= 44 && video.currentTime <= 50) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Saber mais sobre o Teleférico!";
+                } else if (video.currentTime >= 60 && video.currentTime <= 64) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Saber mais sobre o centro comercial!";
+                } else if (video.currentTime >= 67 && video.currentTime <= 72) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Saber mais sobre os parques!";
+                }
+                else {
+                    overlay.style.display = 'none';
+                }
+            }
+
+            video.addEventListener('timeupdate', function() {
+                if ((video.currentTime >= 2 && video.currentTime <= 15) || 
+                (video.currentTime >= 20 && video.currentTime <= 27) || 
+                (video.currentTime >= 36 && video.currentTime <= 41) ||
+                (video.currentTime >= 44 && video.currentTime <= 50) ||
+                (video.currentTime >= 60 && video.currentTime <= 64) ||
+                (video.currentTime >= 67 && video.currentTime <= 72)){
+                    overlay.style.display = 'block';
+                    updateOverlayContent();
+                } else {
+                    overlay.style.display = 'none';
+                }
+            });
+
+
+            window.navigateToPage1 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 0; // Define para a página 1
+                showPage(currentPageIndex);
+            };
+
+            window.navigateToPage2 = function() {
+                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState', containerState);
+                updateContainerVisibility();
+
+                currentPageIndex = 1; // Define para a página 2
+                showPage(currentPageIndex);
+
+            };
+
         });
     </script>
 
