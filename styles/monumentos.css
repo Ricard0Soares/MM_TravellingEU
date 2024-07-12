@@ -105,7 +105,7 @@ body.yellow-theme {
 }
 
 .index-container ul li a.highlight {
-    background-color: yellow;
+    background-color: rgb(113, 206, 129);
     font-weight: bold;
     text-decoration: underline;
 }

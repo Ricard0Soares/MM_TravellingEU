@@ -92,6 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cardDiv.style.width = '8rem';
     cardDiv.style.height = '6rem';
     cardDiv.style.background = 'none';
+    cardDiv.style.border='none';
+    cardDiv.style.margin = '0.5rem'; // Adds margin around each card
+
 
     frame.className = 'card-img-top';
 
@@ -102,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cardText = document.createElement('p');
     cardText.className = 'card-text';
-    cardText.style.color = 'yellow';
+    cardText.style.color = 'white';
     cardText.style.marginTop = '0.1rem';
     cardText.style.fontSize = '12px';
     cardText.textContent = listOfMonuments[counter];
