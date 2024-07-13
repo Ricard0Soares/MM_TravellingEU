@@ -11,23 +11,6 @@ body{
     cursor: default;
 }
 
-.search-container {
-    text-align: center;
-    padding: 100px 0;
-}
-
-.search-bar {
-    padding: 17px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    width: 500px;
-    background-image: url('../../images/image_2.png');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 20px;
-    margin-top: 30px;
-}
-
 .destinations {
     margin-top: 30px;
     font-size: 30px;
@@ -44,6 +27,7 @@ body{
     background-color: rgba(128, 116, 116, 0.5);
     backdrop-filter: blur(10px);
     border-radius: 50px;
+    margin-top: 100px;
 }
 
 .image-container {
@@ -62,7 +46,12 @@ body{
     margin-top: 5px;
 }
 
-
+.monumentos{
+    text-align: center;
+    margin-top: 100px;
+    color: white;
+    font-size: 30px;
+}
 
 /* Default theme */
 body.default-theme {
@@ -86,9 +75,10 @@ body.green-theme {
     color: #ffffff;
 }
 
-body.green-theme .destinations{
+body.green-theme .monumentos{
     color:black;
 }
+
 
 
 

@@ -18,45 +18,23 @@
                 <select id="theme-selector" onchange="switchTheme(this.value)">
                     <option value="default">Default</option>
                     <option value="dark">Dark</option>
-                    <option value="yellow">Green</option>
+                    <option value="green">Green</option>
                 </select>
             </li>
         </ul>
     </nav>
 
     <div class="videos">
-        <a>Videos</a>
+        <a id="videos-title">Videos</a>
         <div class="dropdown-container">
             <div class="dropdown-wrapper">
                 <div class="dropdown">
-                    <button class="dropbtn">Country <span class="arrow">&#9660;</span></button>
+                    <button class="dropbtn">Cidade <span class="arrow">&#9660;</span></button>
                     <div class="dropdown-content">
-                        <a href="#" class="filter" data-filter="country" data-value="Portugal">Portugal</a>
-                        <a href="#" class="filter" data-filter="country" data-value="Spain">Spain</a>
-                        <a href="#" class="filter" data-filter="country" data-value="Grécia">Grécia</a>
-                        <a href="#" class="filter" data-filter="country" data-value="França">França</a>
-                        <a href="#" class="filter" data-filter="country" data-value="Itália">Itália</a>
-                    </div>
-                </div>
-            </div>
-            <div class="dropdown-wrapper">
-                <div class="dropdown">
-                    <button class="dropbtn">City <span class="arrow">&#9660;</span></button>
-                    <div class="dropdown-content">
-                        <a href="#" class="filter" data-filter="city" data-value="Lisbon">Lisbon</a>
+                        <a href="#" class="filter" data-filter="city" data-value="all">Todos os vídeos</a>
+                        <a href="#" class="filter" data-filter="city" data-value="Lisboa">Lisboa</a>
                         <a href="#" class="filter" data-filter="city" data-value="Madrid">Madrid</a>
-                        <a href="#" class="filter" data-filter="city" data-value="Atenas">Atenas</a>
                         <a href="#" class="filter" data-filter="city" data-value="Paris">Paris</a>
-                        <a href="#" class="filter" data-filter="city" data-value="Roma">Roma</a>
-                    </div>
-                </div>
-            </div>
-            <div class="dropdown-wrapper">
-                <div class="dropdown">
-                    <button class="dropbtn">Touristic Spot <span class="arrow">&#9660;</span></button>
-                    <div class="dropdown-content">
-                        <a href="#" class="filter" data-filter="spot" data-value="Belem Tower">Belem Tower</a>
-                        <a href="#" class="filter" data-filter="spot" data-value="Sagrada Familia">Sagrada Familia</a>
                     </div>
                 </div>
             </div>
@@ -64,93 +42,105 @@
     </div>
 
     <div class="ellipse-container">
-        <div class="video-container" data-country="Portugal" data-city="Lisbon" data-spot="Belem Tower">
+        <div class="video-container" data-city="Lisboa">
             <video muted>
                 <source src="../../videos/lisboa.mp4" type="video/mp4">
             </video>
             <div class="play-button" onclick="window.location.href='../home_lisboa.html'"></div>
             <span>Lisboa</span>
         </div>
-        <div class="video-container" data-country="Spain" data-city="Madrid" data-spot="Sagrada Familia">
+
+        <div class="video-container" data-city="Madrid">
             <video muted>
                 <source src="../../videos/madrid.mp4" type="video/mp4">
             </video>
             <div class="play-button" onclick="window.location.href='../home_madrid.html'"></div>
             <span>Madrid</span>
         </div>
-        <div class="video-container" data-country="Grécia" data-city="Atenas" data-spot="Sagrada Familia">
-            <video muted>
-                <source src="../../videos/atenas.mp4" type="video/mp4">
-            </video>
-            <div class="play-button" onclick="window.location.href='../home_atenas.html'"></div>
-            <span>Atenas</span>
-        </div>
-        <div class="video-container" data-country="França" data-city="Paris" data-spot="Sagrada Familia">
+
+        <div class="video-container" data-city="Paris">
             <video muted>
                 <source src="../../videos/paris.mp4" type="video/mp4">
             </video>
             <div class="play-button" onclick="window.location.href='../home_paris.html'"></div>
             <span>Paris</span>
         </div>
-        <div class="video-container" data-country="Itália" data-city="Roma" data-spot="Sagrada Familia">
+
+        <div class="video-container" data-city="Lisboa">
             <video muted>
-                <source src="../../videos/roma.mp4" type="video/mp4">
+                <source src="../../videos/mosteiro.mp4" type="video/mp4">
             </video>
-            <div class="play-button" onclick="window.location.href='../home_roma.html'"></div>
-            <span>Roma</span>
+            <div class="play-button" onclick="window.location.href='../mosteiro.html'"></div>
+            <span>Mosteiro dos Jerónimos</span>
+        </div>
+
+        <div class="video-container" data-city="Lisboa">
+            <video muted>
+                <source src="../../videos/padrao.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" onclick="window.location.href='../padrao_descobrimentos.html'"></div>
+            <span>Padrão dos Descobrimentos</span>
+        </div>
+
+        <div class="video-container" data-city="Lisboa">
+            <video muted>
+                <source src="../../videos/parque_nacoes.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" onclick="window.location.href='../parque_nacoes.html'"></div>
+            <span>Parque das Nações</span>
+        </div>
+
+        <div class="video-container" data-city="Lisboa">
+            <video muted>
+                <source src="../../videos/torre.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" onclick="window.location.href='../torre_belem.html'"></div>
+            <span>Torre de Belém</span>
         </div>
         <!-- Outros vídeos omitidos para brevidade -->
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const filterLinks = document.querySelectorAll('.filter');
+        const filterLinks = document.querySelectorAll('.filter');
+        const videosTitle = document.getElementById('videos-title');
 
-            filterLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const filterType = this.getAttribute('data-filter');
-                    const filterValue = this.getAttribute('data-value');
+        filterLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const filterValue = this.getAttribute('data-value');
 
-                    // Mostra apenas os vídeos correspondentes ao filtro selecionado
-                    const videoContainers = document.querySelectorAll('.video-container');
-                    videoContainers.forEach(container => {
-                        const country = container.getAttribute('data-country');
-                        const city = container.getAttribute('data-city');
-                        const spot = container.getAttribute('data-spot');
+                if (filterValue === 'all') {
+                    videosTitle.textContent = 'Videos';
+                } else {
+                    videosTitle.textContent = `Videos - ${filterValue}`;
+                }
 
-                        let showVideo = false;
+                // Mostra apenas os vídeos correspondentes ao filtro selecionado
+                const videoContainers = document.querySelectorAll('.video-container');
+                videoContainers.forEach(container => {
+                    const city = container.getAttribute('data-city');
 
-                        switch (filterType) {
-                            case 'country':
-                                if (country === filterValue) {
-                                    showVideo = true;
-                                }
-                                break;
-                            case 'city':
-                                if (city === filterValue) {
-                                    showVideo = true;
-                                }
-                                break;
-                            case 'spot':
-                                if (spot === filterValue) {
-                                    showVideo = true;
-                                }
-                                break;
-                            default:
-                                showVideo = true; // Mostra todos se nenhum filtro específico foi selecionado
-                                break;
-                        }
+                    
+                    container.classList.remove('fade-in');
+                    void container.offsetWidth; // reflow para reiniciar animacao
 
-                        if (showVideo) {
-                            container.style.display = 'block';
-                        } else {
-                            container.style.display = 'none';
-                        }
-                    });
+                    if (filterValue === 'all' || filterValue === city) {
+                        container.style.display = 'block';
+                        setTimeout(() => container.classList.add('fade-in'), 0);
+                    } else {
+                        container.style.display = 'none';
+                    }
                 });
             });
         });
+
+        const videoContainers = document.querySelectorAll('.video-container');
+        videoContainers.forEach((container, index) => {
+            container.style.animationDelay = `${index * 0.3}s`;
+            container.classList.add('fade-in');
+        });
+    });
 
         //video container height = video height
         window.addEventListener('load', function() {

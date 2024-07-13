@@ -5,29 +5,6 @@ body{
     color: #000000;
 }
 
-
-/* Default theme */
-body.default-theme {
-    background-image: url('../../images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #ffffff;
-}
-
-/* Dark theme */
-body.dark-theme {
-    background-color: #121212;
-    background-image: none;
-    color: #ffffff;
-}
-
-/* Yellow theme */
-body.yellow-theme {
-    background-color: #d5ffd5; /* Yellow background */
-    background-image: none;
-    color: #ffffff;
-}
-
 .logo a {
     text-decoration: none;
     color: white;
@@ -91,7 +68,8 @@ body.yellow-theme {
     text-align: center;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0;
-    animation: fadeIn 1s forwards;
+
+    
 }
 
 .video-container video{
@@ -118,29 +96,7 @@ body.yellow-theme {
     opacity: 1;
   }
 
-.video-container:nth-child(1) {
-    animation-delay: 0.3s;
-}
 
-.video-container:nth-child(2) {
-    animation-delay: 0.6s;
-}
-
-.video-container:nth-child(3) {
-    animation-delay: 0.9s;
-}
-
-.video-container:nth-child(4) {
-    animation-delay: 1.2s;
-}
-
-.video-container:nth-child(5) {
-    animation-delay: 1.5s;
-}
-
-.video-container:nth-child(6) {
-    animation-delay: 1.8s;
-}
 
 .video-container:hover {
     transform: scale(1.05);
@@ -239,6 +195,10 @@ body.yellow-theme {
     animation: fadeIn 1s forwards;
 }
 
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -274,3 +234,32 @@ body.yellow-theme {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
+
+/* Default theme */
+body.default-theme {
+    background-image: url('../../images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+}
+
+/* Dark theme */
+body.dark-theme {
+    background-color: #121212;
+    background-image: none;
+    color: #ffffff;
+}
+
+/* green theme */
+body.green-theme {
+    background-color: #d5ffd5; /* green background */
+    background-image: none;
+    color: #ffffff;
+}
+
+body.green-theme .videos a{
+    color: black;
+}
+
+
