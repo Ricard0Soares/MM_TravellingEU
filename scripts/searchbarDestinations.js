@@ -1,15 +1,15 @@
 function navigateToCountry(){
     var input = document.querySelector(".search-bar");
     var selectedOption = input.value;
-    if(selectedOption == "Portugal"){
+    if(selectedOption == "Lisboa"){
 
         var currentPath = window.location.pathname;
         var refPath;
 
         if(currentPath.includes("navLinks")){
-            refPath = "../../cities_portugal.html";
+            refPath = "../../home_lisboa.html";
         }else{
-            refPath = "cities_portugal.html";
+            refPath = "home_lisboa.html";
         }
         
         window.location.href = refPath;
