@@ -108,13 +108,13 @@ body{
 }
 
 
-/*amarelo*/
+/*verde*/
 
-.yellow-theme .logo a {
+.green-theme .logo a {
     color: black;
 }
 
-.yellow-theme body{
+.green-theme body{
     background-image: url('../images/aviao.jpeg');
     background-size: cover;
     background-position: center;
@@ -124,7 +124,7 @@ body{
     
 }
 
-.yellow-theme .dropdown button{
+.green-theme .dropdown button{
     color: black;
     background-color: transparent;
     text-decoration: none;
@@ -133,7 +133,7 @@ body{
     font-size: 17px;
 }
 
-.yellow-theme .navbar .logo {
+.green-theme .navbar .logo {
     color: black;
     float: left;
     margin-left: 20px;
@@ -141,7 +141,7 @@ body{
 }
 
 
-.yellow-theme .nav-links li a {
+.green-theme .nav-links li a {
     color: black;
     text-decoration: none;
     padding: 15px 20px;
@@ -149,6 +149,6 @@ body{
     font-size: 17px;
 }
 
-.yellow-theme .nav-links li a:hover {
+.green-theme .nav-links li a:hover {
     background-color: white;
 }

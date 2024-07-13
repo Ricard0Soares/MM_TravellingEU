@@ -5,15 +5,13 @@
 
 function switchTheme(theme) {
     // Remove all existing theme classes
-    document.body.classList.remove('dark-theme', 'yellow-theme', 'blue-theme', 'default-theme');
+    document.body.classList.remove('dark-theme', 'green-theme', 'default-theme');
 
     // Add the selected theme class
     if (theme === 'dark') {
         document.body.classList.add('dark-theme');
-    } else if (theme === 'yellow') {
-        document.body.classList.add('yellow-theme');
-    } else if (theme === 'blue') {
-        document.body.classList.add('blue-theme');
+    } else if (theme === 'green') {
+        document.body.classList.add('green-theme');
     } else {
         document.body.classList.add('default-theme');
     }

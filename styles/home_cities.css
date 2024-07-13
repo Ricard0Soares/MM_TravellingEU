@@ -20,9 +20,9 @@ body.dark-theme {
     color: #ffffff;
 }
 
-/* Yellow theme */
-body.yellow-theme {
-    background-color: #d5ffd5; /* Yellow background */
+/* green theme */
+body.green-theme {
+    background-color: #d5ffd5; /* green background */
     background-image: none;
     color: #ffffff;
 }
@@ -61,7 +61,7 @@ body.yellow-theme {
     text-align: center;
 }
 
-.yellow-theme .intro-text {
+.green-theme .intro-text {
     margin-top: 20px;
     font-size: 27px;
     color: black;

@@ -21,8 +21,8 @@ body.dark-theme {
     color: #ffffff;
 }
 
-/* Yellow theme */
-body.yellow-theme {
+/* green theme */
+body.green-theme {
     background-color: #d5ffd5; 
     background-image: none;
     color: #ffffff;
@@ -157,7 +157,7 @@ path:hover {
     font-weight: 600;
 }
 
-.yellow-theme .logo a, .blue-theme .logo a{
+.green-theme .logo a, .blue-theme .logo a{
     text-decoration: none;
     color: black;
     cursor: default;
@@ -193,7 +193,7 @@ path:hover {
 }
 
 
-/*amarelo*/
+/*verde*/
 
 .dark-theme body{
     background-color: #ccc;
@@ -205,7 +205,7 @@ path:hover {
 
 }
 
-.yellow-theme .search-bar {
+.green-theme .search-bar {
     padding: 15px;
     border-radius: 20px;
     border: 1px solid #0f0f0f;
@@ -215,14 +215,14 @@ path:hover {
     background-size: 20px;
 }
 
-.yellow-theme .intro-text {
+.green-theme .intro-text {
     margin-top: 20px;
     font-size: 27px;
     color: black;
     text-align: center;
 }
 
-.yellow-theme #tooltip {
+.green-theme #tooltip {
     display: none;
     position: absolute;
     background-color: rgba(255, 255, 255, 0.7);

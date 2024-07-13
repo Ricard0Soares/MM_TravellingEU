@@ -21,18 +21,18 @@ body.dark-theme {
     color: #ffffff;
 }
 
-/* Yellow theme */
-body.yellow-theme {
-    background-color: #d5ffd5; /* Yellow background */
+/* green theme */
+body.green-theme {
+    background-color: #d5ffd5; /* green background */
     background-image: none;
 }
 
-/* Elements in yellow theme */
-.yellow-theme .centered-title {
+/* Elements in green theme */
+.green-theme .centered-title {
     color: black;
 }
 
-.yellow-theme .teste-container h2 {
+.green-theme .teste-container h2 {
     color: black;
 }
 
