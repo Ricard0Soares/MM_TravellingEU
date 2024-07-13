@@ -185,8 +185,8 @@ body.green-theme {
     cursor: pointer;
 }
 
-.active-card{
-    border: 3px solid red;
+.active-card {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.9); /* Example box shadow */
 }
 
 .card-body {
@@ -387,4 +387,6 @@ body.green-theme {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+
+  
 
