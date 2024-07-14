@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardTitleElement = document.getElementById('cardTitle');
   const cardDescriptionElement = document.getElementById('cardDescription');
   const cardImagesElement = document.getElementById('cardImages');
+  const playIconElement = document.getElementById('playIcon');
   const overlayArea = document.getElementById('overlayArea');
 
   const modal = document.getElementById('imageModal');
@@ -289,6 +290,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const images = imagesMap["Torre de Belem"];
 
+      // Adicionando evento de clique ao ícone de play
+      playIconElement.addEventListener('click', () => {
+        window.location.href = 'torre_belem.html';
+      });
+
       var index = 0;
 
       // click nas imagens
@@ -322,6 +328,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const images = imagesMap["Torre de Belem"];
 
+      // Adicionando evento de clique ao ícone de play
+      playIconElement.addEventListener('click', () => {
+        window.location.href = 'torre_belem.html';
+      });
+
       var index = 0;
 
       // click nas imagens
@@ -353,6 +364,11 @@ document.addEventListener("DOMContentLoaded", () => {
        cardImagesElement.innerHTML = "";
        
        const images = imagesMap["Parque das Nacoes"];
+
+       // Adicionando evento de clique ao ícone de play
+      playIconElement.addEventListener('click', () => {
+        window.location.href = 'parque_nacoes.html';
+      });
  
        var index = 0;
 
@@ -388,6 +404,11 @@ document.addEventListener("DOMContentLoaded", () => {
        
       const images = imagesMap["Mosteiro dos Jeronimos"];
 
+      // Adicionando evento de clique ao ícone de play
+      playIconElement.addEventListener('click', () => {
+        window.location.href = 'mosteiro.html';
+      });
+
       var index = 0;
 
       // click nas imagens
@@ -422,6 +443,11 @@ document.addEventListener("DOMContentLoaded", () => {
        
       const images = imagesMap["Mosteiro dos Jeronimos"];
 
+      // Adicionando evento de clique ao ícone de play
+      playIconElement.addEventListener('click', () => {
+        window.location.href = 'mosteiro.html';
+      });
+
       var index = 0;
 
       // click nas imagens
@@ -439,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      positionOverlayArea('10%', '10%', '80%', '30%', 'block');
+      positionOverlayArea('10%', '10%', '80%', '35%', 'block');
 
     } else if (currentTime >= 15 && currentTime < 19) {
       cardTitleElement.textContent = "Padrão dos Descobrimentos";
@@ -457,6 +483,11 @@ document.addEventListener("DOMContentLoaded", () => {
       cardImagesElement.innerHTML = "";
        
       const images = imagesMap["Padrao dos Descobrimentos"];
+
+      // Adicionando evento de clique ao ícone de play
+      playIconElement.addEventListener('click', () => {
+        window.location.href = 'padrao_descobrimentos.html';
+      });
 
       var index = 0;
 
@@ -493,6 +524,11 @@ document.addEventListener("DOMContentLoaded", () => {
       cardImagesElement.innerHTML = "";
        
       const images = imagesMap["Padrao dos Descobrimentos"];
+
+      // Adicionando evento de clique ao ícone de play
+      playIconElement.addEventListener('click', () => {
+        window.location.href = 'padrao_descobrimentos.html';
+      });
 
       var index = 0;
 
