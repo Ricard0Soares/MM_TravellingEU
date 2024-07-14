@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas.getContext("2d");
   const thumbnailWidth = 300;
   const thumbnailHeight = 120;
-  const listOfMonuments = ['Palácio Real', 'Palácio Real', 'Museu do Prado', 'Plaza Mayor', 'Templo de Debod', 'Templo de Debod'];
+  const listOfMonuments = ['Opéra Garnier', 'Opéra Garnier', 'Jardim de Luxemburgo', 'Arco do Triunfo', 'Arco do Triunfo', 'Museu do Louvre'
+    , 'Interior Museu Louvre', 'Torre Eiffel', 'Torre Eiffel'];
   let counter = 0;
 
   const cardContainer = document.getElementById('cardContainer');
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextButton = document.querySelector('.next');
   let currentIndex = 0;
 
-  const cityId = 'Madrid';
+  const cityId = 'Paris';
 
   function openModal(index) {
     currentIndex = index;
@@ -229,9 +230,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentTime = video.currentTime;
     highlightCard(currentTime);
 
-    if (currentTime >= 0 && currentTime < 1) {
+    if (currentTime >= 0 && currentTime < 3) {
 
-      cardTitleElement.textContent = "Palácio Real";
+      cardTitleElement.textContent = "Opéra Garnier";
       cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
             "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
@@ -239,39 +240,63 @@ document.addEventListener("DOMContentLoaded", () => {
             "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
   
   
-      positionOverlayArea('5%','25%','37%','23%', 'block');
+      positionOverlayArea('1%','15%','70%','17%', 'block');
   
   
-    } else if (currentTime >= 1 && currentTime < 6) {
+    } else if (currentTime >= 3 && currentTime < 5) {
   
-        cardTitleElement.textContent = "Palácio Real";
+        cardTitleElement.textContent = "Opéra Garnier";
         cardDescriptionElement.textContent = "teste2";
   
-        positionOverlayArea('5%','25%','50%','18%', 'block');
+        positionOverlayArea('1%','40%','40%','17%', 'block');
   
-    }else if(currentTime >= 6 && currentTime < 9){
-        cardTitleElement.textContent = "Museu do Prado";
+    }else if(currentTime >= 5 && currentTime < 10){
+        cardTitleElement.textContent = "Jardim de Luxemburgo";
         cardDescriptionElement.textContent = "teste3";
   
-        positionOverlayArea('1%','12%','75%','25%', 'block');
+        positionOverlayArea('1%','35%','30%','10%', 'block');
   
-    }else if(currentTime >= 9 && currentTime < 12){
-        cardTitleElement.textContent = "Plaza Mayor";
+    }else if(currentTime >= 10 && currentTime < 14){
+        cardTitleElement.textContent = "Jardim de Luxemburgo";
         cardDescriptionElement.textContent = "teste4";
   
-        positionOverlayArea('2%','13%','72%','24%', 'block');
+        positionOverlayArea('1%','35%','30%','12%', 'block');
   
-    }else if(currentTime >= 12 && currentTime < 15){
-        cardTitleElement.textContent = "Templo de Debod";
+    }else if(currentTime >= 14 && currentTime < 16){
+        cardTitleElement.textContent = "Arco do Triunfo";
         cardDescriptionElement.textContent = "teste2";
   
-        positionOverlayArea('3%','40%','30%','25%', 'block');
+        positionOverlayArea('1%','31%','38%','14%', 'block');
   
-    }else if(currentTime >= 15 && currentTime <= 17){
-        cardTitleElement.textContent = "Templo de Debod";
+    }else if(currentTime >= 16 && currentTime < 21){
+        cardTitleElement.textContent = "Arco do Triunfo";
         cardDescriptionElement.textContent = "teste2";
   
-        positionOverlayArea('10%','24%','12%','15%', 'block');
+        positionOverlayArea('1%','15%','70%','14%', 'block');
+  
+    }else if(currentTime >= 21 && currentTime < 24){
+      cardTitleElement.textContent = "Museu do Louvre";
+      cardDescriptionElement.textContent = "teste2";
+  
+      positionOverlayArea('1%','12%','50%','18%', 'block');
+    
+    }else if(currentTime >= 24 && currentTime < 28){
+      cardTitleElement.textContent = "Interior Museu do Louvre";
+      cardDescriptionElement.textContent = "teste2";
+  
+      positionOverlayArea('2%','15%','70%','14%', 'block');
+    
+    }else if(currentTime >= 28 && currentTime < 31){
+      cardTitleElement.textContent = "Torre Eiffel";
+      cardDescriptionElement.textContent = "teste2";
+  
+      positionOverlayArea('1%','15%','70%','14%', 'block');
+  
+    }else if(currentTime >= 31 && currentTime <= 34){
+      cardTitleElement.textContent = "Torre Eiffel";
+      cardDescriptionElement.textContent = "teste2";
+  
+      positionOverlayArea('1%','35%','53%','17%', 'block');
   
     } else {
         overlayArea.style.display = 'none';
@@ -290,14 +315,18 @@ document.addEventListener("DOMContentLoaded", () => {
     let hoverMessageText = "";
     const currentTime = video.currentTime;
 
-    if (currentTime >= 0 && currentTime < 6) {
-      hoverMessageText = "Palácio Real";
-    } else if (currentTime >= 6 && currentTime < 9) {
-        hoverMessageText = "Museu do Prado";
-    } else if (currentTime >= 9 && currentTime < 12) {
-        hoverMessageText = "Plaza Mayor";
-    } else if (currentTime >= 12 && currentTime <= 17) {
-        hoverMessageText = "Templo de Debod";
+    if (currentTime >= 0 && currentTime < 5) {
+      hoverMessageText = "Opéra Garnier";
+    } else if (currentTime >= 5 && currentTime < 14) {
+        hoverMessageText = "Jardim de Luxemburgo";
+    } else if (currentTime >= 14 && currentTime < 21) {
+        hoverMessageText = "Arco do Triunfo";
+    } else if (currentTime >= 21 && currentTime < 24) {
+        hoverMessageText = "Museu do Louvre";
+    } else if (currentTime >= 24 && currentTime < 28) {
+        hoverMessageText = "Interior do Museu do Louvre";
+    } else if (currentTime >= 28 && currentTime <= 34) {
+        hoverMessageText = "Torre Eiffel";
     }
 
     showHoverMessage(event, hoverMessageText);
