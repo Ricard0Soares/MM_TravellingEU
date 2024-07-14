@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            positionOverlayArea('1%', '15%', '70%', '17%', 'block');
+            positionOverlayArea('8%', '10%', '80%', '50%', 'block');
 
         } else if (currentTime >= 3 && currentTime < 5) {
             cardTitleElement.textContent = "Opéra Garnier";
@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            positionOverlayArea('1%', '40%', '40%', '17%', 'block');
+            positionOverlayArea('10%', '40%', '40%', '50%', 'block');
 
         } else if (currentTime >= 5 && currentTime < 10) {
             cardTitleElement.textContent = "Jardim de Luxemburgo";
@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            positionOverlayArea('1%', '35%', '30%', '10%', 'block');
+            positionOverlayArea('15%', '35%', '30%', '23%', 'block');
 
         } else if (currentTime >= 10 && currentTime < 14) {
             cardTitleElement.textContent = "Jardim de Luxemburgo";
@@ -358,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            positionOverlayArea('1%', '35%', '30%', '12%', 'block');
+            positionOverlayArea('15%', '25%', '50%', '23%', 'block');
 
         } else if (currentTime >= 14 && currentTime < 16) {
             cardTitleElement.textContent = "Arco do Triunfo";
@@ -386,7 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
 
-            positionOverlayArea('1%', '31%', '38%', '14%', 'block');
+            positionOverlayArea('10%', '25%', '50%', '35%', 'block');
 
         } else if (currentTime >= 16 && currentTime < 21) {
             cardTitleElement.textContent = "Arco do Triunfo";
@@ -413,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            positionOverlayArea('1%', '15%', '70%', '14%', 'block');
+            positionOverlayArea('5%', '10%', '85%', '50%', 'block');
 
         } else if (currentTime >= 21 && currentTime < 24) {
             cardTitleElement.textContent = "Museu do Louvre";
@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            positionOverlayArea('1%', '12%', '50%', '18%', 'block');
+            positionOverlayArea('10%', '3%', '60%', '50%', 'block');
 
         } else if (currentTime >= 24 && currentTime < 28) {
             cardTitleElement.textContent = "Interior Museu do Louvre";
@@ -468,7 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
 
-            positionOverlayArea('2%', '15%', '70%', '14%', 'block');
+            positionOverlayArea('10%', '3%', '90%', '50%', 'block');
 
         } else if (currentTime >= 28 && currentTime < 31) {
             cardTitleElement.textContent = "Torre Eiffel";
@@ -496,7 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
 
-            positionOverlayArea('1%', '15%', '70%', '14%', 'block');
+            positionOverlayArea('5%', '15%', '70%', '30%', 'block');
 
         } else if (currentTime >= 31 && currentTime <= 34) {
             cardTitleElement.textContent = "Torre Eiffel";
@@ -523,7 +523,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
-            positionOverlayArea('1%', '35%', '53%', '17%', 'block');
+            positionOverlayArea('7%', '25%', '45%', '52%', 'block');
 
         } else {
             overlayArea.style.display = 'none';

@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         });
     
-        positionOverlayArea('5%','25%','37%','23%', 'block');
+        positionOverlayArea('10%','15%','50%','48%', 'block');
     
     
       } else if (currentTime >= 1 && currentTime < 6) {
@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           });
     
-          positionOverlayArea('5%','25%','50%','18%', 'block');
+          positionOverlayArea('18%','25%','50%','22%', 'block');
     
       }else if(currentTime >= 6 && currentTime < 9){
           cardTitleElement.textContent = "Museu do Prado";
@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           });
     
-          positionOverlayArea('1%','12%','75%','25%', 'block');
+          positionOverlayArea('1%','8%','90%','55%', 'block');
     
       }else if(currentTime >= 9 && currentTime < 12){
           cardTitleElement.textContent = "Plaza Mayor";
@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           });
     
-          positionOverlayArea('2%','13%','72%','24%', 'block');
+          positionOverlayArea('2%','5%','90%','53%', 'block');
     
       }else if(currentTime >= 12 && currentTime < 15){
           cardTitleElement.textContent = "Templo de Debod";
@@ -382,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           });
     
-          positionOverlayArea('3%','40%','30%','25%', 'block');
+          positionOverlayArea('3%','40%','30%','50%', 'block');
     
       }else if(currentTime >= 15 && currentTime <= 17){
           cardTitleElement.textContent = "Templo de Debod";
@@ -409,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           });
     
-          positionOverlayArea('10%','24%','12%','15%', 'block');
+          positionOverlayArea('25%','20%','12%','25%', 'block');
     
       } else {
           overlayArea.style.display = 'none';
