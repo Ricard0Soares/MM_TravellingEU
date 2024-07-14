@@ -230,7 +230,32 @@
                     const clickTime = parseFloat(this.getAttribute('data-time'));
                     video.currentTime = clickTime;
                     video.play();
+
+                    highlightImage(clickTime);
                 })
+            }
+
+            function highlightImage(currentTime) {
+                const images = imageContainer.querySelectorAll('img[data-time]');
+                let highlightedImage = null;
+
+                for (let i = 0; i < frames.length; i++) {
+                    const startTime = frames[i];
+                    const endTime = frames[i + 1] || Infinity; // Use Infinity if there's no next frame time
+
+                    if (currentTime >= startTime && currentTime < endTime) {
+                        highlightedImage = images[i];
+                        break;
+                    }
+                }
+
+                images.forEach(image => {
+                    if (image === highlightedImage) {
+                        image.classList.add('active-card');
+                    } else {
+                        image.classList.remove('active-card');
+                    }
+                });
             }
 
             //verificar em que container estamos
@@ -256,6 +281,7 @@
 
             video.addEventListener('timeupdate', function() {
                 let currentTime = video.currentTime;
+                highlightImage(currentTime);
                 let activeIndex = times.findIndex(time => currentTime < time) - 1;
                 if (activeIndex === -2) activeIndex = times.length - 1;
 

@@ -107,6 +107,12 @@ body {
     display: block;
 }
 
+.active-card {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
+
+
+
 .pagination-controls {
     display: flex;
     justify-content: space-between;
