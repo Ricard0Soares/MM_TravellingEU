@@ -33,36 +33,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const imagesMap = {
     "Palácio Real": [
-        { src: "../images/torre.jpeg", description: "Vista exterior da Torre de Belém" },
-        { src: "../images/torre_vista.jpg", description: "Paisagem a partir da Torre" },
-        { src: "../images/canhoes.jpg", description: "Canhões usados para proteger Lisboa, quando essa era a funcionalidade da Torre" },
-        { src: "../images/virgem.jpg", description: "Virgem na parte exterior da Torre, que olhava os navios que partiam à descoberta do Mundo" },
-        { src: "../images/sala_reis.jpg", description: "Sala dos Reis no interior da Torre" },
-        { src: "../images/capela.jpg", description: "Capela da Torre de Belém" }
+        { src: "../images/palacio_lago.jpg", description: "Vista exterior do Palácio Real" },
+        { src: "../images/palacio_aerea.jpg", description: "Vista aérea do Palácio Real" },
+        { src: "../images/palacio_salatrono.jpg", description: "Sala do Trono, onde os visitantes são recebidos de maneira oficial e cerimoniosa e onde, quando morriam, as capelas funerárias dos reis eram colocadas até serem levadas para o cemitério real." },
+        { src: "../images/salao_espelhos.jpg", description: "Salão dos Espelhos, o local onde reis e rainhas se vestiam." },
+        { src: "../images/salao_alabardeiros.jpg", description: "Salão dos Alabardeiros, primeiro ponto da visita e local que Carlos III decidiu que seria o local onde a guarda real (os alabardeiros) seria colocada" },
+        { src: "../images/salao_gasparini.jpg", description: "Salão Gasparini, onde depois de receber oficialmente os visitantes no Salão das Colunas, o Rei e seus convidados entravam nessa sala para tomar um aperitivo ou um café." }
     ],
     "Museu do Prado": [
-        { src: "../images/panoramica.jpg", description: "Vista Panorâmica do Parque das Nações" },
-        { src: "../images/avenida.jpg", description: "Avenida Principal do Parque das Nações" },
-        { src: "../images/torre_vasco.JPG", description: "Torre Vasco da Gama, edifício mais alto de Portugal" },
-        { src: "../images/teleferico.jpeg", description: "Teleférico com vista panorâmica do Parque das Nações" },
-        { src: "../images/centro.jpg", description: "Centro Comercial Vasco da Gama" },
-        { src: "../images/parque.jpg", description: "Jardim das Ondas, um dos muitos no Parque das Nações" }
+        { src: "../images/museu.png", description: "Imagem exterior do Museu do Prado" },
+        { src: "../images/museu1.jpg", description: "Imagem exterior do Museu do Prado" },
+        { src: "../images/maja.jpg", description: "A Maja Nua, de Goya está presente no museu, retratando uma jovem mulher deitada nua como se fosse uma Vênus, mas com sinais inequívocos de que o modelo era humano. Foi por esta razão e por certos detalhes de sua nudez que a pintura foi considerada um dos primeiros nus completos na pintura de uma mulher fora da mitologia." },
+        { src: "../images/goya.jpg", description: "Saturno devorando seu filho, por Goya também está presente no museu, retratando o deus Chronos, ou Saturno, devorando um de seus filhos por medo de que um dia ele fosse destronado, tem em comum com esta pintura." },
+        { src: "../images/lasmeninas.jpg", description: "Las meninas, por Diego Velazquez, retrata até 11 personagens, como as Meninas, filhas de Filipe IV e Mariana da Áustria, que também aparecem na pintura dentro de outra pintura, e até mesmo o próprio Velázquez. O artista se retrata em primeiro plano como se fosse o primeiro selfie da história." },
+        { src: "../images/crucificacao.jpg", description: "A Crucificação, por Juan de Flandes, foi encomendado pelo Bispo Juan Rodríguez de Fonseca a Juan de Flandes, que o pintou para fazer parte do retábulo principal da Catedral de Palencia." }
     ],
     "Plaza Mayor": [
-        { src: "../images/padrao.jpg", description: "Imagem do Padrão dos Descobrimentos" },
-        { src: "../images/padrao-4.jpg", description: "Imagem frontal do Padrão dos Descobrimentos" },
-        { src: "../images/mirante.jpg", description: "Mirante do Padrão dos Descobrimentos" },
-        { src: "../images/figuras1.jpg", description: "Algumas figuras presentes no Padrão" },
-        { src: "../images/figuras.jpg", description: "Identificação de algumas figuras presentes no Padrão" },
-        { src: "../images/area.jpg", description: "Vista aérea do Padrão dos Descobrimentos" }
+        { src: "../images/plaza.jpg", description: "Imagem da Plaza Mayor" },
+        { src: "../images/plaza_filipe.jpg", description: "Estátua de Felipe III na Plaza Mayor" },
+        { src: "../images/plaza_casaPadaria.jpg", description: "A casa Padaria situada na Plaza Mayor" },
+        { src: "../images/plaza_natal.jpg", description: "Imagens do Mercado de Natal realizado na Plaza Mayor" },
+        { src: "../images/plaza_neve.jpg", description: "Imagens da Plaza Mayor depois da queda de neve" }
     ],
     "Templo de Debod": [
-        { src: "../images/mosteiro.jpg", description: "Imagem do Mosteiro dos Jerónimo" },
-        { src: "../images/mosteiro1.jpg", description: "Imagem do Mosteiro dos Jerónimo" },
-        { src: "../images/igreja.jpg", description: "Igreja no interior do Mosteiro, uma das mais belas obras arquiteturais da Europa" },
-        { src: "../images/tumulo_camoes.jpg", description: "Túmulo de Camões no interior do Mosteiro" },
-        { src: "../images/tumulo_vascoGama.jpg", description: "Túmulo de Vasco da Gama no interior do Mosteiro" },
-        { src: "../images/claustro.jpg", description: "O íncrivel Claustro do Mosteiro dos Jerónimos" }
+        { src: "../images/debod.jpg", description: "Imagem do Templo de Debod com o pôr do sol" },
+        { src: "../images/debod1.jpg", description: "Templo de Debod iluminado ao final do dia" },
+        { src: "../images/debod2.jpeg", description: "Templo de Debod iluminado ao ínicio da noite" },
+        { src: "../images/debod_aerea.jpg", description: "Imagem aérea do Templo de Debod" }
     ],
   };
 

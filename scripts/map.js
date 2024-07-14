@@ -26,8 +26,8 @@ function myMap(centerLat, centerLng, zoomLevel) {
         {lat: 38.697056, lng: -9.206528, title: 'Mosteiro Jerónimos', url: 'mosteiro.html'},
         {lat: 38.691583, lng: -9.215883, title: 'Torre Belém', url: 'torre_belem.html'},
         {lat: 38.768891, lng: -9.094406, title: 'Parque das Nações', url: 'parque_nacoes.html'},
-        {lat: 38.693615, lng: -9.205115, title: 'Padrão Descobrimentos', url: 'padrao_descobrimentos.html'},
-        {lat: 40.41831, lng: -3.71406, title: 'Palácio Real'},
+        {lat: 38.693615, lng: -9.205115, title: 'Padrão Descobrimentos', url: 'padrao_descobrimentos.html'}
+       /* {lat: 40.41831, lng: -3.71406, title: 'Palácio Real'},
         {lat: 40.41378, lng: -3.692127, title: 'Museu do Prado'},
         {lat: 40.415352, lng: -3.707398, title: 'Plaza Mayor'},
         {lat: 40.4240, lng: -3.7176, title: 'Templo de Debod'},
@@ -35,7 +35,7 @@ function myMap(centerLat, centerLng, zoomLevel) {
         {lat: 48.8462, lng: 2.3371, title: 'Jardim de Luxemburgo'},
         {lat: 48.8738, lng: 2.2950, title: 'Arco do Triunfo'},
         {lat: 48.8584, lng: 2.2945, title: 'Torre Eiffel'},
-        {lat: 48.8606, lng: 2.3376, title: 'Museu do Louvre'}
+        {lat: 48.8606, lng: 2.3376, title: 'Museu do Louvre'}*/
     ];
 
     locations.forEach(location => {
