@@ -242,13 +242,14 @@ body.green-theme {
     overflow-x: auto;
     display: flex;
     justify-content: center;
+    padding: 10px;
 }
 
 .image-list {
     display: flex;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 10px;
     width:400px;
 }
 
@@ -258,8 +259,10 @@ body.green-theme {
 }
 
 .image-list img {
-    max-width: 100px;
-    height: auto;
+    width: 100px; /* Fixed width for all images */
+    height: 100px; /* Fixed height for all images */
+    border-radius: 10px; /* Slightly rounded corners */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
 }
 
 .overlay-area {
@@ -304,7 +307,9 @@ body.green-theme {
     margin: auto;
     display: block;
     width: 80%;
+    height: 80%;
     max-width: 700px;
+    border-radius: 10px; /* Add rounding if desired */
 }
 
 /* Caption of Modal Image (Image Text) */

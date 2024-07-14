@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardContainer = document.getElementById('cardContainer');
   const cardTitleElement = document.getElementById('cardTitle');
   const cardDescriptionElement = document.getElementById('cardDescription');
+  const cardImagesElement = document.getElementById('cardImages');
   const overlayArea = document.getElementById('overlayArea');
 
-  const imageList = document.querySelectorAll('.image-list img');
   const modal = document.getElementById('imageModal');
   const modalImage = document.getElementById('modalImage');
   const modalDescription = document.getElementById('modalDescription');
@@ -23,41 +23,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const cityId = 'Lisboa';
 
-  function openModal(index) {
-    currentIndex = index;
-    modalImage.src = imageList[index].src;
-    modalDescription.textContent = imageList[index].getAttribute('data-description');
-    modal.style.display = 'block';
+  var imagesHolder = [];
+
+  const imagesMap = {
+    "Torre de Belem": [
+        { src: "../images/torre.jpeg", description: "Vista exterior da Torre de Belém" },
+        { src: "../images/torre_vista.jpg", description: "Paisagem a partir da Torre" },
+        { src: "../images/canhoes.jpg", description: "Canhões usados para proteger Lisboa, quando essa era a funcionalidade da Torre" },
+        { src: "../images/virgem.jpg", description: "Virgem na parte exterior da Torre, que olhava os navios que partiam à descoberta do Mundo" },
+        { src: "../images/sala_reis.jpg", description: "Sala dos Reis no interior da Torre" },
+        { src: "../images/capela.jpg", description: "Capela da Torre de Belém" }
+    ],
+    "Parque das Nacoes": [
+        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 1" },
+        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 2" },
+        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 3" },
+        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 4" },
+        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 5" },
+        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 6" }
+    ],
+    "Padrao dos Descobrimentos": [
+        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 1" },
+        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 2" },
+        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 3" },
+        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 4" },
+        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 5" },
+        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 6" }
+    ],
+    "Mosteiro dos Jeronimos": [
+        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 1" },
+        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 2" },
+        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 3" },
+        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 4" },
+        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 5" },
+        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 6" }
+    ],
+    // Adicione outros mapeamentos de imagens conforme necessário
+  };
+
+  function openModal(index, images) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      const modalDescription = document.getElementById('modalDescription');
+
+      console.log("... " + images.length);
+      console.log("index " + index);
+
+      modal.style.display = 'block';
+      modalImage.src = images[index].src;
+      modalDescription.textContent = images[index].description;
+      imagesHolder = images;
+      console.log("tamanho tt " + imagesHolder.length);
+      currentIndex = index; // Atualiza o índice global
   }
 
-  function showNextImage() {
-    currentIndex = (currentIndex + 1) % imageList.length;
-    openModal(currentIndex);
-  }
-
-  function showPrevImage() {
-    currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-    openModal(currentIndex);
-  }
-
-  imageList.forEach((image, index) => {
-    image.addEventListener('click', () => {
-      openModal(index);
-    });
-  });
-
-  closeButton.addEventListener('click', () => {
+  // Função para fechar o modal
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
     modal.style.display = 'none';
-  });
+  }
 
-  nextButton.addEventListener('click', showNextImage);
-  prevButton.addEventListener('click', showPrevImage);
-
-  window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
+  // Adiciona evento de clique ao botão de fechar
+  const closeModalButton = document.querySelector('#imageModal .close');
+  closeModalButton.addEventListener('click', closeModal);
 
   window.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowRight') {
@@ -68,6 +96,25 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.display = 'none';
     }
   });
+
+  nextButton.addEventListener('click', showNextImage);
+
+  // Event listener para o botão prev (imagem anterior)
+  prevButton.addEventListener('click', showPrevImage);
+
+  // Função para mostrar a próxima imagem no modal
+  function showNextImage() {
+    console.log("tamanho ttn " + imagesHolder.length);
+    currentIndex = (currentIndex + 1) % imagesHolder.length;
+    openModal(currentIndex, imagesHolder);
+  }
+
+  // Função para mostrar a imagem anterior no modal
+  function showPrevImage() {
+    console.log("tamanho ttp " + imagesHolder.length);
+    currentIndex = (currentIndex - 1 + imagesHolder.length) % imagesHolder.length;
+    openModal(currentIndex, imagesHolder);
+  }
 
   const savedThumbnails = localStorage.getItem(`thumbnails_${cityId}`);
   if (savedThumbnails) {
@@ -231,51 +278,241 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (currentTime >= 0 && currentTime < 2) {
       cardTitleElement.textContent = "Torre de Belém";
-      cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
-        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
-        "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
-        "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
-        "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+      cardDescriptionElement.textContent = "A Torre de Belém é uma fortificação localizada na freguesia de Belém, Município e \n\n" +
+      "Distrito de Lisboa, em Portugal. Na margem direita do rio Tejo, onde existiu outrora a praia de Belém, era primitivamente \n\n" +
+      "cercada pelas águas em todo o seu perímetro. Ao longo dos séculos foi envolvida pela praia, até se incorporar hoje a terra firme. \n\n" +
+      "Um dos ex libris da cidade, o monumento é um ícone da arquitetura do reinado de D. Manuel I, numa síntese entre a torre de menagem \n\n"+
+      "de tradição medieval e o baluarte moderno, onde se dispunham peças de artilharia. Juntamente com o Mosteiro dos Jerónimos, foi \n\n" +
+      "classificada em 1983 como Património Mundial da UNESCO e eleita como uma das Sete Maravilhas de Portugal em 2007."
+      
+       // Limpa o conteúdo existente
+      cardImagesElement.innerHTML = "";
+
+      // Obtém o conjunto de imagens relevante
+      const images = imagesMap["Torre de Belem"];
+
+      var index = 0;
+
+      // Event listener for images click
+      images.forEach((image, index) => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.description;
+        img.setAttribute('data-description', image.description);
+        li.appendChild(img);
+        cardImagesElement.appendChild(li);
+
+        img.addEventListener('click', () => {
+          openModal(index, images);
+        });
+      });
 
       positionOverlayArea('10%', '48%', '23%', '45%', 'block');
 
     } else if (currentTime >= 2 && currentTime < 4) {
       cardTitleElement.textContent = "Torre de Belém";
-      cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
-        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
-        "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
-        "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
-        "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+      cardDescriptionElement.textContent = "A Torre de Belém é uma fortificação localizada na freguesia de Belém, Município e \n\n" +
+      "Distrito de Lisboa, em Portugal. Na margem direita do rio Tejo, onde existiu outrora a praia de Belém, era primitivamente \n\n" +
+      "cercada pelas águas em todo o seu perímetro. Ao longo dos séculos foi envolvida pela praia, até se incorporar hoje a terra firme. \n\n" +
+      "Um dos ex libris da cidade, o monumento é um ícone da arquitetura do reinado de D. Manuel I, numa síntese entre a torre de menagem \n\n"+
+      "de tradição medieval e o baluarte moderno, onde se dispunham peças de artilharia. Juntamente com o Mosteiro dos Jerónimos, foi \n\n" +
+      "classificada em 1983 como Património Mundial da UNESCO e eleita como uma das Sete Maravilhas de Portugal em 2007."
+      
+       // Limpa o conteúdo existente
+       cardImagesElement.innerHTML = "";
+
+      // Obtém o conjunto de imagens relevante
+      const images = imagesMap["Torre de Belem"];
+
+      var index = 0;
+
+      // Event listener for images click
+      images.forEach((image, index) => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.description;
+        img.setAttribute('data-description', image.description);
+        li.appendChild(img);
+        cardImagesElement.appendChild(li);
+
+        img.addEventListener('click', () => {
+          openModal(index, images);
+        });
+      });
 
       positionOverlayArea('10%', '45%', '28%', '50%', 'block');
 
     } else if (currentTime >= 4 && currentTime < 8) {
       cardTitleElement.textContent = "Parque das Nações";
-      cardDescriptionElement.textContent = "teste2";
+      cardDescriptionElement.textContent = "Parque das Nações é uma freguesia portuguesa do município de Lisboa, pertencente à Zona \n\n" +
+      "Leste da capital, com 5,44 km² de área e 22 382 habitantes (2021). Surgiu há cerca de 25 anos, sendo considerado uma das melhores \n\n" +
+      "zonas para se morar em Lisboa. Foi construído para receber a Expo 98. Este projeto de urbanização transformou uma zona \n\n" +
+      "degradada numa das areas mais modernas de Lisboa. Têm imensas opções de entreternimento, desde parques, museus, teleférico, \n\n" +
+      "centro comercial ou diversos restaurantes.";
+      
+       // Limpa o conteúdo existente
+       cardImagesElement.innerHTML = "";
+       
+       const images = imagesMap["Parque das Nacoes"];
+ 
+       var index = 0;
+
+      // Event listener for images click
+      images.forEach((image, index) => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.description;
+        img.setAttribute('data-description', image.description);
+        li.appendChild(img);
+        cardImagesElement.appendChild(li);
+
+        img.addEventListener('click', () => {
+          openModal(index, images);
+        });
+      });
 
       positionOverlayArea('10%', '20%', '60%', '40%', 'block');
 
     } else if (currentTime >= 8 && currentTime < 11) {
       cardTitleElement.textContent = "Mosteiro dos Jerónimos";
-      cardDescriptionElement.textContent = "teste3";
+      cardDescriptionElement.textContent = "O mosteiro dos jerónimos encontra-se classificado como Monumento Nacional desde 1907. \n\n"+
+      "Foi classificado como património mundial pelo UNESCO, em 1983, juntamente com a Torre de Belém e considerado uma das 7 \n\n" +
+      "maravilhas de Portugal, em 2007. Tem, desde 2016, o estatuto de Panteão Nacional. Está localizado na freguesia de Belém \n\n" +
+      "(Município e Distrito Lisboa), região muito importante na época dos Descobrimentos, por ser de onde partiam os navios. \n\n" +
+      "Ponto culminante da arquitectura manuelina, este mosteiro é o mais notável conjunto monástico português do seu tempo e uma \n\n" +
+      "das principais igrejas-salão da Europa.Estreitamente ligado à Casa Real Portuguesa e à epopeia dos Descobrimentos, o \n\n" +
+      "Mosteiro dos Jerónimos foi, desde muito cedo, interiorizado como um dos símbolos da nação";
+
+      // Limpa o conteúdo existente
+      cardImagesElement.innerHTML = "";
+       
+      const images = imagesMap["Mosteiro dos Jeronimos"];
+
+      var index = 0;
+
+      // Event listener for images click
+      images.forEach((image, index) => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.description;
+        img.setAttribute('data-description', image.description);
+        li.appendChild(img);
+        cardImagesElement.appendChild(li);
+
+        img.addEventListener('click', () => {
+          openModal(index, images);
+        });
+      });
 
       positionOverlayArea('10%', '10%', '80%', '45%', 'block');
 
     } else if (currentTime >= 11 && currentTime < 15) {
       cardTitleElement.textContent = "Mosteiro dos Jerónimos";
-      cardDescriptionElement.textContent = "teste4";
+      cardDescriptionElement.textContent = "O mosteiro dos jerónimos encontra-se classificado como Monumento Nacional desde 1907. \n\n"+
+      "Foi classificado como património mundial pelo UNESCO, em 1983, juntamente com a Torre de Belém e considerado uma das 7 \n\n" +
+      "maravilhas de Portugal, em 2007. Tem, desde 2016, o estatuto de Panteão Nacional. Está localizado na freguesia de Belém \n\n" +
+      "(Município e Distrito Lisboa), região muito importante na época dos Descobrimentos, por ser de onde partiam os navios. \n\n" +
+      "Ponto culminante da arquitectura manuelina, este mosteiro é o mais notável conjunto monástico português do seu tempo e uma \n\n" +
+      "das principais igrejas-salão da Europa.Estreitamente ligado à Casa Real Portuguesa e à epopeia dos Descobrimentos, o \n\n" +
+      "Mosteiro dos Jerónimos foi, desde muito cedo, interiorizado como um dos símbolos da nação";
+
+      // Limpa o conteúdo existente
+      cardImagesElement.innerHTML = "";
+       
+      const images = imagesMap["Mosteiro dos Jeronimos"];
+
+      var index = 0;
+
+      // Event listener for images click
+      images.forEach((image, index) => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.description;
+        img.setAttribute('data-description', image.description);
+        li.appendChild(img);
+        cardImagesElement.appendChild(li);
+
+        img.addEventListener('click', () => {
+          openModal(index, images);
+        });
+      });
 
       positionOverlayArea('10%', '10%', '80%', '30%', 'block');
 
     } else if (currentTime >= 15 && currentTime < 19) {
       cardTitleElement.textContent = "Padrão dos Descobrimentos";
-      cardDescriptionElement.textContent = "teste2";
+      cardDescriptionElement.textContent = "O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de \n\n"+
+      "Lisboa, em Portugal. Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 por ocasião da \n\n" + 
+      "Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos portugueses. A réplica atual, \n\n" + 
+      "em betão e pedra, é posterior, tendo sido inaugurada em 1960. O monumento foi pensado inicialmente por Cottinelli Telmo como uma \n\n" +
+      "homenagem ao Infante D. Henrique. Por ocasião da Exposição do Mundo Português, em 1940, transformou-se em Padrão dos Descobrimentos, \n\n"+
+      "celebrando não apenas o Infante mas também os seus colaboradores e seguidores. Feito de materiais perecíveis, foi desmontado em \n\n" +
+      "1958 e reconstruido nos anos imediatos, em betão e pedra de lioz, por decisão de Salazar por ocasião do 5º centenário do \n\n" + 
+      "Infante. Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em cimento e pedra rosal de \n\n" + 
+      "Leiria, e as esculturas em calcário de Sintra.";
+
+      // Limpa o conteúdo existente
+      cardImagesElement.innerHTML = "";
+       
+      const images = imagesMap["Padrao dos Descobrimentos"];
+
+      var index = 0;
+
+      // Event listener for images click
+      images.forEach((image, index) => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.description;
+        img.setAttribute('data-description', image.description);
+        li.appendChild(img);
+        cardImagesElement.appendChild(li);
+
+        img.addEventListener('click', () => {
+          openModal(index, images);
+        });
+      });
 
       positionOverlayArea('10%', '30%', '20%', '40%', 'block');
 
     } else if (currentTime >= 19 && currentTime <= 22) {
       cardTitleElement.textContent = "Padrão dos Descobrimentos1";
-      cardDescriptionElement.textContent = "teste2";
+      cardDescriptionElement.textContent = "O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de \n\n"+
+      "Lisboa, em Portugal. Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 por ocasião da \n\n" + 
+      "Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos portugueses. A réplica atual, \n\n" + 
+      "em betão e pedra, é posterior, tendo sido inaugurada em 1960. O monumento foi pensado inicialmente por Cottinelli Telmo como uma \n\n" +
+      "homenagem ao Infante D. Henrique. Por ocasião da Exposição do Mundo Português, em 1940, transformou-se em Padrão dos Descobrimentos, \n\n"+
+      "celebrando não apenas o Infante mas também os seus colaboradores e seguidores. Feito de materiais perecíveis, foi desmontado em \n\n" +
+      "1958 e reconstruido nos anos imediatos, em betão e pedra de lioz, por decisão de Salazar por ocasião do 5º centenário do \n\n" + 
+      "Infante. Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em cimento e pedra rosal de \n\n" + 
+      "Leiria, e as esculturas em calcário de Sintra.";
+
+      // Limpa o conteúdo existente
+      cardImagesElement.innerHTML = "";
+       
+      const images = imagesMap["Padrao dos Descobrimentos"];
+
+      var index = 0;
+
+      // Event listener for images click
+      images.forEach((image, index) => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.description;
+        img.setAttribute('data-description', image.description);
+        li.appendChild(img);
+        cardImagesElement.appendChild(li);
+
+        img.addEventListener('click', () => {
+          openModal(index, images);
+        });
+      });
 
       positionOverlayArea('15%', '45%', '10%', '40%', 'block');
 
