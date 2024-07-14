@@ -245,11 +245,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentTime >= 0 && currentTime < 1) {
 
         cardTitleElement.textContent = "Palácio Real";
-        cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
-              "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
-              "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
-              "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
-              "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+        cardDescriptionElement.textContent = "O Palácio Real de Madrid é a residência oficial do Rei de Espanha, situado em Madrid, a capital \n\n" +
+        "espanhola, com uma área de 135 000 m² e 4318 quartos. Foi construído no mesmo local onde se encontrava um outro palácio, \n\n" +
+        "denominado de Real Alcázar de Madrid, destruído por um incêndio que durou três dias, no ano de 1734. As obras começaram a \n\n" + 
+        "6 de Abril de 1738, quando se lançou a primeira pedra. O Palácio Real de Madrid continua a ser, oficialmente, a residência \n\n" +
+        "do Rei de Espanha, apesar de, na actualidade, o Rei o utilizar somente para ocasiões de gala, almoços, recepções oficiais, \n\n" +
+        "entregas de prémios e audiências.";
     
          // Limpa o conteúdo existente
         cardImagesElement.innerHTML = "";
@@ -278,7 +279,12 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (currentTime >= 1 && currentTime < 6) {
     
           cardTitleElement.textContent = "Palácio Real";
-          cardDescriptionElement.textContent = "teste2";
+          cardDescriptionElement.textContent = "O Palácio Real de Madrid é a residência oficial do Rei de Espanha, situado em Madrid, a capital \n\n" +
+          "espanhola, com uma área de 135 000 m² e 4318 quartos. Foi construído no mesmo local onde se encontrava um outro palácio, \n\n" +
+          "denominado de Real Alcázar de Madrid, destruído por um incêndio que durou três dias, no ano de 1734. As obras começaram a \n\n" + 
+          "6 de Abril de 1738, quando se lançou a primeira pedra. O Palácio Real de Madrid continua a ser, oficialmente, a residência \n\n" +
+          "do Rei de Espanha, apesar de, na actualidade, o Rei o utilizar somente para ocasiões de gala, almoços, recepções oficiais, \n\n" +
+          "entregas de prémios e audiências.";
 
            // Limpa o conteúdo existente
           cardImagesElement.innerHTML = "";
@@ -305,7 +311,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
       }else if(currentTime >= 6 && currentTime < 9){
           cardTitleElement.textContent = "Museu do Prado";
-          cardDescriptionElement.textContent = "teste3";
+          cardDescriptionElement.textContent = "O Museu do Prado é o mais importante museu da Espanha e um dos mais importantes do mundo. \n\n" +
+          "Apresentando belas e preciosas obras de arte, localiza-se em Madrid e foi mandado construir por Carlos III. As obras de \n\n" +
+          "construção estenderam-se por muitos anos, tendo sido inaugurado somente no reinado de Fernando VII. Missa de São Gregório, \n\n"+
+          "de Adriaan Isenbrant ou A Morte de Viriato, de José de Madrazo y Agudo são 2 das muitas obras importantes presentes no Museu";
 
            // Limpa o conteúdo existente
           cardImagesElement.innerHTML = "";
@@ -332,7 +341,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
       }else if(currentTime >= 9 && currentTime < 12){
           cardTitleElement.textContent = "Plaza Mayor";
-          cardDescriptionElement.textContent = "teste4";
+          cardDescriptionElement.textContent = "A Plaza Mayor situa-se no centro da cidade de Madrid a poucos metros da Porta do Sol e da Plaza de la Villa. É \n\n"+
+          "uma praça retangular, rodeada de todos os lados de edifícios de três pisos, sendo a sua entrada apenas possível através dos nove \n\n"+
+          "pórticos. Tem 129 metros de comprimento e 94 de largura. Existem ao todo 237 varandas ao longo de toda a praça. O pórtico mais \n\n"+
+          "conhecido é o Arco de Cuchilleros, na esquina sudoeste da praça. Ao centro, no lado norte, ergue-se a Casa de la Panadería e à \n\n"+
+          "sua frente, no lado sul, a 'Casa de la Carnicería. Debaixo dos pórticos, nas suas arcadas, estão estabelecidas lojas tradicionais, \n\n"+
+          "constituindo um dos pontos turísticos de maior relevo na cidade.";
 
            // Limpa o conteúdo existente
           cardImagesElement.innerHTML = "";
@@ -359,7 +373,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
       }else if(currentTime >= 12 && currentTime < 15){
           cardTitleElement.textContent = "Templo de Debod";
-          cardDescriptionElement.textContent = "teste2";
+          cardDescriptionElement.textContent = "O Templo de Debod constitui um dos poucos testemunhos arquitectónicos núbio-egípcios \n\n"+
+          "completos que podem ser contemplados fora do Egito e o único destas características existente na Espanha.Construído no século \n\n"+
+          "IV a.C. pelo rei cuxita Adijalamani para reverenciar o deus Amom, até há apenas algumas décadas situava-se 15 km ao sul de Assuão, \n\n"+
+          "no Egito, muito próximo da primeira catarata do Nilo e do grande centro religioso da deusa Ísis, em Filas. Originalmente \n\n"+ 
+          "as paredes do templo eram decoradas com ilustrações mostrando o rei Adijalamani como um faraó egípcio doando oferendas aos \n\n"+
+          "deuses. Essas pinturas perderam muito de seu brilho natural quando o templo ficou submerso no rio de Assuão.";
 
            // Limpa o conteúdo existente
           cardImagesElement.innerHTML = "";
@@ -386,7 +405,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
       }else if(currentTime >= 15 && currentTime <= 17){
           cardTitleElement.textContent = "Templo de Debod";
-          cardDescriptionElement.textContent = "teste2";
+          cardDescriptionElement.textContent = "O Templo de Debod constitui um dos poucos testemunhos arquitectónicos núbio-egípcios \n\n"+
+          "completos que podem ser contemplados fora do Egito e o único destas características existente na Espanha.Construído no século \n\n"+
+          "IV a.C. pelo rei cuxita Adijalamani para reverenciar o deus Amom, até há apenas algumas décadas situava-se 15 km ao sul de Assuão, \n\n"+
+          "no Egito, muito próximo da primeira catarata do Nilo e do grande centro religioso da deusa Ísis, em Filas. Originalmente \n\n"+ 
+          "as paredes do templo eram decoradas com ilustrações mostrando o rei Adijalamani como um faraó egípcio doando oferendas aos \n\n"+
+          "deuses. Essas pinturas perderam muito de seu brilho natural quando o templo ficou submerso no rio de Assuão.";
 
            // Limpa o conteúdo existente
           cardImagesElement.innerHTML = "";

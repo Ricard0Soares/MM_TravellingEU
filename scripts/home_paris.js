@@ -31,44 +31,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const imagesMap = {
         "Opéra Garnier": [
-            { src: "../images/torre.jpeg", description: "Vista exterior da Torre de Belém" },
-            { src: "../images/torre_vista.jpg", description: "Paisagem a partir da Torre" },
-            { src: "../images/canhoes.jpg", description: "Canhões usados para proteger Lisboa, quando essa era a funcionalidade da Torre" },
-            { src: "../images/virgem.jpg", description: "Virgem na parte exterior da Torre, que olhava os navios que partiam à descoberta do Mundo" },
-            { src: "../images/sala_reis.jpg", description: "Sala dos Reis no interior da Torre" },
-            { src: "../images/capela.jpg", description: "Capela da Torre de Belém" }
+            { src: "../images/opera.jpg", description: "Imagem da Opéra Garnier durante o dia" },
+            { src: "../images/opera_noite.jpg", description: "Imagem da Opéra Garnier durante a noite" },
+            { src: "../images/opera_simbolos.jpg", description: "Significado dos elementos presentes na fachada da Opéra Garnier" },
+            { src: "../images/opera1.jpg", description: "Imagem da Opéra Garnier" },
+            { src: "../images/interior_opera.jpg", description: "Imagem do interior do palácio da Opéra Garnier" },
+            { src: "../images/interior_opera1.jpg", description: "Imagem do interior do palácio da Opéra Garnier" }
         ],
         "Jardim de Luxemburgo": [
-            { src: "../images/panoramica.jpg", description: "Vista Panorâmica do Parque das Nações" },
-            { src: "../images/avenida.jpg", description: "Avenida Principal do Parque das Nações" },
-            { src: "../images/torre_vasco.JPG", description: "Torre Vasco da Gama, edifício mais alto de Portugal" },
-            { src: "../images/teleferico.jpeg", description: "Teleférico com vista panorâmica do Parque das Nações" },
-            { src: "../images/centro.jpg", description: "Centro Comercial Vasco da Gama" },
-            { src: "../images/parque.jpg", description: "Jardim das Ondas, um dos muitos no Parque das Nações" }
+            { src: "../images/jardim.jpg", description: "Fonte do Jardim de Luxemburgo" },
+            { src: "../images/jardim1.jpg", description: "Vista do Jardim de Luxemburgo" },
+            { src: "../images/jardim2.jpg", description: "Ambiente verde e harmonia do Jardim de Luxemburgo" }
         ],
         "Arco do Triunfo": [
-            { src: "../images/padrao.jpg", description: "Imagem do Padrão dos Descobrimentos" },
-            { src: "../images/padrao-4.jpg", description: "Imagem frontal do Padrão dos Descobrimentos" },
-            { src: "../images/mirante.jpg", description: "Mirante do Padrão dos Descobrimentos" },
-            { src: "../images/figuras1.jpg", description: "Algumas figuras presentes no Padrão" },
-            { src: "../images/figuras.jpg", description: "Identificação de algumas figuras presentes no Padrão" },
-            { src: "../images/area.jpg", description: "Vista aérea do Padrão dos Descobrimentos" }
+            { src: "../images/arco.jpg", description: "Imagem do Arco do Triunfo" },
+            { src: "../images/arco1.jpg", description: "Imagem do Arco do Triunfo" },
+            { src: "../images/arco2.jpg", description: "Imagem ao longe do Arco do Triunfo" },
+            { src: "../images/arco3.jpg", description: "Imagem do Arco do Triunfo durante o Outono" },
+            { src: "../images/arco_noite.jpg", description: "Imagem do Arco do Triunfo durante a noite" },
+            { src: "../images/arco_area.jpg", description: "Vista aérea do Arco do Triunfo" }
         ],
         "Museu do Louvre": [
-            { src: "../images/mosteiro.jpg", description: "Imagem do Mosteiro dos Jerónimo" },
-            { src: "../images/mosteiro1.jpg", description: "Imagem do Mosteiro dos Jerónimo" },
-            { src: "../images/igreja.jpg", description: "Igreja no interior do Mosteiro, uma das mais belas obras arquiteturais da Europa" },
-            { src: "../images/tumulo_camoes.jpg", description: "Túmulo de Camões no interior do Mosteiro" },
-            { src: "../images/tumulo_vascoGama.jpg", description: "Túmulo de Vasco da Gama no interior do Mosteiro" },
-            { src: "../images/claustro.jpg", description: "O íncrivel Claustro do Mosteiro dos Jerónimos" }
+            { src: "../images/louvre.jpg", description: "Imagem do Museu do Louvre" },
+            { src: "../images/louvre_noite.jpg", description: "Imagem do Museu do Louvre ao final do dia" },
+            { src: "../images/monalisa.jpg", description: "O retrato da suposta esposa de Francesco del Giocondo é considerado o quadro mais famoso do mundo. O roubo desta tela de Leonardo da Vinci no século XIX e os mistérios sobre sua origem não param de atrair as multidões." },
+            { src: "../images/bodas.jpg", description: "As Bodas de Caná é uma história narrada no Antigo Testamento da Bíblia. O quadro encomendado ao pintor Veronese pelos monges beneditinos de um mosteiro de Veneza retoma este tema. É apreciado por sua maneira de mostrar a sociedade veneziana de sua época através de uma narrativa bíblica." },
+            { src: "../images/venusMilo.png", description: "A Vênus de Milo não tem braços, mas isso não tira nada de sua beleza. Descoberta em 1820, foi oferecida ao rei Luís XIII, que a deu ao Louvre. É uma mais das famosas representações da deusa Vênus ou Afrodite para os Gregos." },
+            { src: "../images/vitoria.jpg", description: "Com uma altura total de 5,57 metros, a Vitória de Samotrácia é uma das obras mais emblemáticas do Louvre e também uma das mais impressionantes." }
         ],
         "Torre Eiffel": [
-            { src: "../images/mosteiro.jpg", description: "Imagem do Mosteiro dos Jerónimo" },
-            { src: "../images/mosteiro1.jpg", description: "Imagem do Mosteiro dos Jerónimo" },
-            { src: "../images/igreja.jpg", description: "Igreja no interior do Mosteiro, uma das mais belas obras arquiteturais da Europa" },
-            { src: "../images/tumulo_camoes.jpg", description: "Túmulo de Camões no interior do Mosteiro" },
-            { src: "../images/tumulo_vascoGama.jpg", description: "Túmulo de Vasco da Gama no interior do Mosteiro" },
-            { src: "../images/claustro.jpg", description: "O íncrivel Claustro do Mosteiro dos Jerónimos" }
+            { src: "../images/eiffel.jpg", description: "Imagem da Torre Eiffel" },
+            { src: "../images/eiffel_night.jpg", description: "Imagem da Torre Eiffel durante a noite" },
+            { src: "../images/eiffel1.jpeg", description: "Imagem da Torre Eiffel" },
+            { src: "../images/eiffel_baixo.jpg", description: "Vista da Torre Eiffel a partir do solo" },
+            { src: "../images/elevador.jpg", description: "Elevador para subir a Torre Eiffel" },
+            { src: "../images/mirante_eiffel.jpg", description: "Vista a partir do topo da Torre Eiffel" }
         ],
     };
 
@@ -250,11 +247,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (currentTime >= 0 && currentTime < 3) {
             cardTitleElement.textContent = "Opéra Garnier";
-            cardDescriptionElement.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n" +
-                "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived\n" +
-                "not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\n\n" +
-                "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and\n" +
-                "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+            cardDescriptionElement.textContent = "A Ópera Garnier ou Palais Garnier é uma casa de ópera localizada no IX arrondissement \n\n"+
+            "de Paris, França. O edifício é considerado uma das obras-primas da arquitetura de seu tempo. Construído em estilo neobarroco, \n\n" +
+            "é o 13º teatro a hospedar a Ópera de Paris, desde sua fundação por Luís XIV, em 1669. A sua capacidade é de 1979 espectadores \n\n" +
+            "sentados. O palácio era chamado apenas de Ópera de Paris, mas, após a inauguração da Ópera da Bastilha, em 1989, passou \n\n"+
+            "a ser chamado Ópera Garnier.";
             
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -281,7 +278,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 3 && currentTime < 5) {
             cardTitleElement.textContent = "Opéra Garnier";
-            cardDescriptionElement.textContent = "teste2";
+            cardDescriptionElement.textContent = "A Ópera Garnier ou Palais Garnier é uma casa de ópera localizada no IX arrondissement \n\n"+
+            "de Paris, França. O edifício é considerado uma das obras-primas da arquitetura de seu tempo. Construído em estilo neobarroco, \n\n" +
+            "é o 13º teatro a hospedar a Ópera de Paris, desde sua fundação por Luís XIV, em 1669. A sua capacidade é de 1979 espectadores \n\n" +
+            "sentados. O palácio era chamado apenas de Ópera de Paris, mas, após a inauguração da Ópera da Bastilha, em 1989, passou \n\n"+
+            "a ser chamado Ópera Garnier.";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -308,7 +309,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 5 && currentTime < 10) {
             cardTitleElement.textContent = "Jardim de Luxemburgo";
-            cardDescriptionElement.textContent = "teste3";
+            cardDescriptionElement.textContent = "O Jardim do Luxemburgo é um grande parque público da cidade de Paris com mais de \n\n"+
+            "22,4 hectares, localizado no 6.º arrondissement. O Jardim do Luxemburgo atualmente pertence ao Senado da França, que está \n\n"+
+            "sediado no famoso Palácio do Luxemburgo.O jardim possui um enorme parterre decorado com uma coleção exuberante de \n\n"+
+            "estátuas e também com pequenos lagos destinados ao lazer infantil. O jardim inclui também um pequeno teatro de fantoches, \n\n"+
+            "um pomar e um restaurante. Fica próximo ao Teatro Odéon.";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -335,7 +340,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 10 && currentTime < 14) {
             cardTitleElement.textContent = "Jardim de Luxemburgo";
-            cardDescriptionElement.textContent = "teste4";
+            cardDescriptionElement.textContent = "O Jardim do Luxemburgo é um grande parque público da cidade de Paris com mais de \n\n"+
+            "22,4 hectares, localizado no 6.º arrondissement. O Jardim do Luxemburgo atualmente pertence ao Senado da França, que está \n\n"+
+            "sediado no famoso Palácio do Luxemburgo.O jardim possui um enorme parterre decorado com uma coleção exuberante de \n\n"+
+            "estátuas e também com pequenos lagos destinados ao lazer infantil. O jardim inclui também um pequeno teatro de fantoches, \n\n"+
+            "um pomar e um restaurante. Fica próximo ao Teatro Odéon.";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -362,7 +371,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 14 && currentTime < 16) {
             cardTitleElement.textContent = "Arco do Triunfo";
-            cardDescriptionElement.textContent = "teste2";
+            cardDescriptionElement.textContent = "O Arco do Triunfo é um monumento localizado na cidade de Paris, construído em \n\n" +
+            "comemoração às vitórias militares de Napoleão Bonaparte, o qual ordenou a sua construção em 1806, aos moldes dos arcos \n\n"+
+            "triunfais romanos. Inaugurado em 1836, a monumental obra detém, gravados, os nomes de 128 batalhas e 558 generais. Na sua \n\n"+
+            "base, situa-se o túmulo do soldado desconhecido (1920). O arco localiza-se na praça Charles de Gaulle, no encontro da avenida \n\n"+
+            "Champs-Élysées. Nas extremidades da avenida encontram-se a Praça da Concórdia e, na outra, La Défense.";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -390,7 +403,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 16 && currentTime < 21) {
             cardTitleElement.textContent = "Arco do Triunfo";
-            cardDescriptionElement.textContent = "teste2";
+            cardDescriptionElement.textContent = "O Arco do Triunfo é um monumento localizado na cidade de Paris, construído em \n\n" +
+            "comemoração às vitórias militares de Napoleão Bonaparte, o qual ordenou a sua construção em 1806, aos moldes dos arcos \n\n"+
+            "triunfais romanos. Inaugurado em 1836, a monumental obra detém, gravados, os nomes de 128 batalhas e 558 generais. Na sua \n\n"+
+            "base, situa-se o túmulo do soldado desconhecido (1920). O arco localiza-se na praça Charles de Gaulle, no encontro da avenida \n\n"+
+            "Champs-Élysées. Nas extremidades da avenida encontram-se a Praça da Concórdia e, na outra, La Défense.";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -417,7 +434,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 21 && currentTime < 24) {
             cardTitleElement.textContent = "Museu do Louvre";
-            cardDescriptionElement.textContent = "teste2";
+            cardDescriptionElement.textContent = "Louvre ou Museu do Louvre é o maior museu de arte do mundo e um monumento histórico \n\n"+
+            "em Paris, França. Um marco central da cidade, está localizado na margem direita do rio Sena, no 1º arrondissement (distrito) \n\n"+
+            "da cidade. Aproximadamente 38 mil objetos, da pré-história ao século XXI, são exibidos em uma área de 72 735 metros quadrados. \n\n"+
+            "Em 2019, o Louvre recebeu 9,6 milhões de visitantes, o que o torna o museu mais visitado do mundo. O museu está instalado no Palácio \n\n"+
+            "do Louvre, originalmente construído como o Castelo do Louvre nos séculos XII e XIII durante o reinado de Filipe II.";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -444,7 +465,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 24 && currentTime < 28) {
             cardTitleElement.textContent = "Interior Museu do Louvre";
-            cardDescriptionElement.textContent = "teste2";
+            cardDescriptionElement.textContent = "Muitas são as obras famosas e importantes presentes no Museu do Louvre, onde se destaca \n\n"+
+            "por exemplo, A jangada da Medusa, a Mona Lisa, as Bodas de caná, a Vitória de Samotrácia, a Vênus de Milo ou a Sagração de Napoleão";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -472,7 +494,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 28 && currentTime < 31) {
             cardTitleElement.textContent = "Torre Eiffel";
-            cardDescriptionElement.textContent = "teste2";
+            cardDescriptionElement.textContent = "Torre Eiffel é uma torre de treliça de ferro forjado no Champ de Mars, em Paris, \n\n"+
+            "França. Tem o nome do engenheiro Gustave Eiffel, cuja empresa projetou e construiu a torre. Foi construída de 1887 a 1889 \n\n"+
+            "como a peça central da Exposição Universal de 1889 e foi inicialmente criticada por alguns dos principais artistas e \n\n"+
+            "intelectuais franceses pelo seu design, mas tornou-se um ícone cultural global da França e uma das estruturas mais \n\n"+
+            "reconhecidas do mundo. A Torre Eiffel é o monumento pago mais visitado do mundo; 6,91 milhões de pessoas subiram na \n\n"+
+            "torre em 2015. Foi designado um monumento histórico em 1964 e foi nomeado parte do Patrimônio Mundial pela UNESCO em 1991 \n\n" +
+            "A torre tem 330 metros de altura, aproximadamente a mesma altura de um edifício de 81 andares, e é a estrutura mais alta \n\n"+
+            "de Paris. Sua base é quadrada, medindo 125 metros de cada lado.";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
@@ -500,7 +529,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else if (currentTime >= 31 && currentTime <= 34) {
             cardTitleElement.textContent = "Torre Eiffel";
-            cardDescriptionElement.textContent = "teste2";
+            cardDescriptionElement.textContent = "Torre Eiffel é uma torre de treliça de ferro forjado no Champ de Mars, em Paris, \n\n"+
+            "França. Tem o nome do engenheiro Gustave Eiffel, cuja empresa projetou e construiu a torre. Foi construída de 1887 a 1889 \n\n"+
+            "como a peça central da Exposição Universal de 1889 e foi inicialmente criticada por alguns dos principais artistas e \n\n"+
+            "intelectuais franceses pelo seu design, mas tornou-se um ícone cultural global da França e uma das estruturas mais \n\n"+
+            "reconhecidas do mundo. A Torre Eiffel é o monumento pago mais visitado do mundo; 6,91 milhões de pessoas subiram na \n\n"+
+            "torre em 2015. Foi designado um monumento histórico em 1964 e foi nomeado parte do Patrimônio Mundial pela UNESCO em 1991 \n\n" +
+            "A torre tem 330 metros de altura, aproximadamente a mesma altura de um edifício de 81 andares, e é a estrutura mais alta \n\n"+
+            "de Paris. Sua base é quadrada, medindo 125 metros de cada lado.";
 
             // Limpa o conteúdo existente
             cardImagesElement.innerHTML = "";
