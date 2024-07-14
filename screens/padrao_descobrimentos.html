@@ -27,7 +27,7 @@
 
     <div class="centered-title">
         <h1>Padrão dos Descobrimentos</h1>
-        <button id="toggleContainer">Toggle Teste Container</button>
+        <button id="toggleContainer">Ver Livro do Padrão dos Descobrimentos</button>
     </div>
 
     <div class="content">
@@ -231,12 +231,12 @@
             }
 
             //verificar em que container estamos
-            let containerState = parseInt(localStorage.getItem('containerState')) || 0;
+            let containerStatePadrao = parseInt(localStorage.getItem('containerState_padrao')) || 0;
 
            
             function updateContainerVisibility() {
                 containers.forEach((container, index) => {
-                    container.style.display = (index === containerState) ? 'block' : 'none';
+                    container.style.display = (index === containerStatePadrao) ? 'block' : 'none';
                 });
             }
 
@@ -266,10 +266,28 @@
             });
 
             toggleButton.addEventListener('click', function() {
-                containerState = (containerState + 1) % 3;
-                localStorage.setItem('containerState', containerState);
+                containerStatePadrao = (containerStatePadrao + 1) % 3;
+
+                if(containerStatePadrao == 0){
+                    toggleButton.textContent = "Ver o Livro do Padrão dos Descobrimentos";
+                } else if(containerStatePadrao == 1){
+                    toggleButton.textContent = "Ver a Galeria";
+                } else if(containerStatePadrao == 2){
+                    toggleButton.textContent = "Ver Índice de Conteúdo";
+                }
+
+                localStorage.setItem('containerState_padrao', containerStatePadrao);
                 updateContainerVisibility();
             });
+
+            // Restaurar o texto do botão com base no estado armazenado
+            if (containerStatePadrao === 0) {
+                toggleButton.textContent = "Ver o Livro do Padrão dos Descobrimentos";
+            } else if (containerStatePadrao === 1) {
+                toggleButton.textContent = "Ver a Galeria";
+            } else if (containerStatePadrao === 2) {
+                toggleButton.textContent = "Ver Índice de Conteúdo";
+            }
 
             createThumbnails();
 
@@ -329,8 +347,8 @@
 
 
             window.navigateToPage1 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStatePadrao = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_padrao', containerStatePadrao);
                 updateContainerVisibility();
 
                 currentPageIndex = 0; // Define para a página 1
@@ -338,8 +356,8 @@
             };
 
             window.navigateToPage2 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStatePadrao = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_padrao', containerStatePadrao);
                 updateContainerVisibility();
 
                 currentPageIndex = 1; // Define para a página 2
@@ -348,8 +366,8 @@
             };
 
             window.navigateToPage3 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStatePadrao = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_padrao', containerStatePadrao);
                 updateContainerVisibility();
 
                 currentPageIndex = 2; // Define para a página 3

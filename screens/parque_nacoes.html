@@ -27,7 +27,7 @@
 
     <div class="centered-title">
         <h1>Parque das Nações</h1>
-        <button id="toggleContainer">Toggle Teste Container</button>
+        <button id="toggleContainer">Ver Livro do Parque das Nações</button>
     </div>
 
     <div class="content">
@@ -234,12 +234,12 @@
             }
 
             //verificar em que container estamos
-            let containerState = parseInt(localStorage.getItem('containerState')) || 0;
+            let containerStateParque = parseInt(localStorage.getItem('containerState_parque')) || 0;
 
            
             function updateContainerVisibility() {
                 containers.forEach((container, index) => {
-                    container.style.display = (index === containerState) ? 'block' : 'none';
+                    container.style.display = (index === containerStateParque) ? 'block' : 'none';
                 });
             }
 
@@ -269,10 +269,28 @@
             });
 
             toggleButton.addEventListener('click', function() {
-                containerState = (containerState + 1) % 3;
-                localStorage.setItem('containerState', containerState);
+                containerStateParque = (containerStateParque + 1) % 3;
+
+                if(containerStateParque == 0){
+                    toggleButton.textContent = "Ver o Livro do Parque das Nações";
+                } else if(containerStateParque == 1){
+                    toggleButton.textContent = "Ver a Galeria";
+                } else if(containerStateParque == 2){
+                    toggleButton.textContent = "Ver Índice de Conteúdo";
+                }
+
+                localStorage.setItem('containerState_parque', containerStateParque);
                 updateContainerVisibility();
             });
+
+            // Restaurar o texto do botão com base no estado armazenado
+            if (containerStateParque === 0) {
+                toggleButton.textContent = "Ver o Livro do Parque das Nações";
+            } else if (containerStateParque === 1) {
+                toggleButton.textContent = "Ver a Galeria";
+            } else if (containerStateParque === 2) {
+                toggleButton.textContent = "Ver Índice de Conteúdo";
+            }
 
             createThumbnails();
 
@@ -356,8 +374,8 @@
 
 
             window.navigateToPage1 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateParque = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_parque', containerStateParque);
                 updateContainerVisibility();
 
                 currentPageIndex = 0; // Define para a página 1
@@ -365,8 +383,8 @@
             };
 
             window.navigateToPage2 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateParque = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_parque', containerStateParque);
                 updateContainerVisibility();
 
                 currentPageIndex = 1; // Define para a página 2

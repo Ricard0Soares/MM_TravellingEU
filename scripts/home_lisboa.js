@@ -35,28 +35,28 @@ document.addEventListener("DOMContentLoaded", () => {
         { src: "../images/capela.jpg", description: "Capela da Torre de Belém" }
     ],
     "Parque das Nacoes": [
-        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 1" },
-        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 2" },
-        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 3" },
-        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 4" },
-        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 5" },
-        { src: "../images/capela.jpg", description: "Descrição da imagem do Parque das Nações 6" }
+        { src: "../images/panoramica.jpg", description: "Vista Panorâmica do Parque das Nações" },
+        { src: "../images/avenida.jpg", description: "Avenida Principal do Parque das Nações" },
+        { src: "../images/torre_vasco.JPG", description: "Torre Vasco da Gama, edifício mais alto de Portugal" },
+        { src: "../images/teleferico.jpeg", description: "Teleférico com vista panorâmica do Parque das Nações" },
+        { src: "../images/centro.jpg", description: "Centro Comercial Vasco da Gama" },
+        { src: "../images/parque.jpg", description: "Jardim das Ondas, um dos muitos no Parque das Nações" }
     ],
     "Padrao dos Descobrimentos": [
-        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 1" },
-        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 2" },
-        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 3" },
-        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 4" },
-        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 5" },
-        { src: "../images/torre.jpeg", description: "Descrição da imagem do Parque das Nações 6" }
+        { src: "../images/padrao.jpg", description: "Imagem do Padrão dos Descobrimentos" },
+        { src: "../images/padrao-4.jpg", description: "Imagem frontal do Padrão dos Descobrimentos" },
+        { src: "../images/mirante.jpg", description: "Mirante do Padrão dos Descobrimentos" },
+        { src: "../images/figuras1.jpg", description: "Algumas figuras presentes no Padrão" },
+        { src: "../images/figuras.jpg", description: "Identificação de algumas figuras presentes no Padrão" },
+        { src: "../images/area.jpg", description: "Vista aérea do Padrão dos Descobrimentos" }
     ],
     "Mosteiro dos Jeronimos": [
-        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 1" },
-        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 2" },
-        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 3" },
-        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 4" },
-        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 5" },
-        { src: "../images/sala_reis.jpg", description: "Descrição da imagem do Parque das Nações 6" }
+        { src: "../images/mosteiro.jpg", description: "Imagem do Mosteiro dos Jerónimo" },
+        { src: "../images/mosteiro1.jpg", description: "Imagem do Mosteiro dos Jerónimo" },
+        { src: "../images/igreja.jpg", description: "Igreja no interior do Mosteiro, uma das mais belas obras arquiteturais da Europa" },
+        { src: "../images/tumulo_camoes.jpg", description: "Túmulo de Camões no interior do Mosteiro" },
+        { src: "../images/tumulo_vascoGama.jpg", description: "Túmulo de Vasco da Gama no interior do Mosteiro" },
+        { src: "../images/claustro.jpg", description: "O íncrivel Claustro do Mosteiro dos Jerónimos" }
     ],
     // Adicione outros mapeamentos de imagens conforme necessário
   };

@@ -27,7 +27,7 @@
 
     <div class="centered-title">
         <h1>Mosteiro dos Jerónimos</h1>
-        <button id="toggleContainer">Toggle Teste Container</button>
+        <button id="toggleContainer">Ver Livro do Mosteiro</button>
     </div>  
 
     <div class="content">
@@ -44,7 +44,7 @@
 
         </div>
         <div class="index-container">
-            <h2>Content Index</h2>
+            <h2>Índice de Conteúdos</h2>
             <ul>
                 <li><a href="#" id="section1" data-time="0">1. Introdução</a></li>
                 <li><a href="#" id="section2" data-time="13">2. Ermida de Santa Maria de Belém - Antes do Mosteiro</a></li>
@@ -184,7 +184,7 @@
         </div>
 
         <div class="image-container" style="display: none;">
-            <h2>Photo Gallery</h2>
+            <h2>Galeria</h2>
             <div class="row" id="photoGalleryRow1"></div>
         </div>
 
@@ -301,12 +301,12 @@
             }
 
             //verificar em que container estamos
-            let containerState = parseInt(localStorage.getItem('containerState')) || 0;
+            let containerStateMosteiro = parseInt(localStorage.getItem('containerState_mosteiro')) || 0;
 
            
             function updateContainerVisibility() {
                 containers.forEach((container, index) => {
-                    container.style.display = (index === containerState) ? 'block' : 'none';
+                    container.style.display = (index === containerStateMosteiro) ? 'block' : 'none';
                 });
             }
 
@@ -336,10 +336,28 @@
             });
 
             toggleButton.addEventListener('click', function() {
-                containerState = (containerState + 1) % 3;
-                localStorage.setItem('containerState', containerState);
+                containerStateMosteiro = (containerStateMosteiro + 1) % 3;
+
+                if(containerStateMosteiro == 0){
+                    toggleButton.textContent = "Ver o Livro do Mosteiro";
+                } else if(containerStateMosteiro == 1){
+                    toggleButton.textContent = "Ver a Galeria";
+                } else if(containerStateMosteiro == 2){
+                    toggleButton.textContent = "Ver Índice de Conteúdo";
+                }
+
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
                 updateContainerVisibility();
             });
+
+            // Restaurar o texto do botão com base no estado armazenado
+            if (containerStateMosteiro === 0) {
+                toggleButton.textContent = "Ver o Livro do Mosteiro";
+            } else if (containerStateMosteiro === 1) {
+                toggleButton.textContent = "Ver a Galeria";
+            } else if (containerStateMosteiro === 2) {
+                toggleButton.textContent = "Ver Índice de Conteúdo";
+            }
 
             createThumbnails();
 
@@ -449,8 +467,8 @@
 
 
             window.navigateToPage1 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateMosteiro = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
                 updateContainerVisibility();
 
                 currentPageIndex = 0; // Define para a página 1
@@ -458,8 +476,8 @@
             };
 
             window.navigateToPage2 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateMosteiro = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
                 updateContainerVisibility();
 
                 currentPageIndex = 1; // Define para a página 2
@@ -468,8 +486,8 @@
             };
 
             window.navigateToPage3 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateMosteiro = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
                 updateContainerVisibility();
 
                 currentPageIndex = 2; // Define para a página 3
@@ -478,8 +496,8 @@
             };
 
             window.navigateToPage4 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateMosteiro = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
                 updateContainerVisibility();
 
                 currentPageIndex = 3; // Define para a página 4
@@ -488,8 +506,8 @@
             };
 
             window.navigateToPage5 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateMosteiro = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
                 updateContainerVisibility();
 
                 currentPageIndex = 4; // Define para a página 5
@@ -498,8 +516,8 @@
             };
 
             window.navigateToPage6 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateMosteiro = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
                 updateContainerVisibility();
 
                 currentPageIndex = 5; // Define para a página 6
@@ -508,8 +526,8 @@
             };
 
             window.navigateToPage7 = function() {
-                containerState = 1; // Define o containerState para 1 para mostrar a teste-container
-                localStorage.setItem('containerState', containerState);
+                containerStateMosteiro = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
                 updateContainerVisibility();
 
                 currentPageIndex = 6; // Define para a página 7
