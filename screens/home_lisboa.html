@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/home_cities.css">
     <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
 
-</head>"
+</head>
 <body onload="myMap(38.71667, -9.139, 6)">
     <nav class="navbar">
         <div class="logo"><a href="home.html">TravellingEU</a></div>
@@ -90,8 +90,6 @@
     <script src="../scripts/home_lisboa.js"></script>
 
     <script>
-
-        // Seleciona os elementos relevantes
         const cardContainer = document.getElementById('cardContainer');
         const secondEllipseContainer = document.querySelector('.second-ellipse-container');
         const overlayArea = document.getElementById('overlayArea');
@@ -100,7 +98,7 @@
         const imageContainer = document.getElementById('image-container');
         const thumbnails = document.getElementById('thumbnails');
 
-        // Função para abrir o cardContainer e desfocar o second-ellipse-container
+        //abrir o cardContainer e desfocar o second-ellipse-container
         function openCardContainer() {
             cardContainer.style.display = 'block';
             secondEllipseContainer.classList.add('blur'); 
@@ -108,7 +106,8 @@
             imageContainer.classList.add('blur');
             thumbnails.classList.add('blur');
         }
-        // Função para fechar o cardContainer e remover o desfoque
+
+        // fechar o cardContainer e remover o desfoque
         function closeCardContainer() {
             cardContainer.style.display = 'none';
             secondEllipseContainer.classList.remove('blur');
@@ -117,10 +116,10 @@
             thumbnails.classList.remove('blur');
         }
 
-        // Evento para abrir o cardContainer quando overlayArea é clicada
+        //abrir o cardContainer quando overlayArea é clicada
         overlayArea.addEventListener('click', openCardContainer);
 
-        // Evento para fechar o cardContainer quando o botão de fechar é clicado
+        //fechar o cardContainer quando o botão de fechar é clicado
         closeCardButton.addEventListener('click', closeCardContainer);
 
         

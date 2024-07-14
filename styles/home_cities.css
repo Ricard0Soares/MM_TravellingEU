@@ -5,28 +5,6 @@ body {
     padding: 0;
 }
 
-/* Default theme */
-body.default-theme {
-    background-image: url('../images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #ffffff;
-}
-
-/* Dark theme */
-body.dark-theme {
-    background-color: #121212;
-    background-image: none;
-    color: #ffffff;
-}
-
-/* green theme */
-body.green-theme {
-    background-color: #d5ffd5; /* green background */
-    background-image: none;
-    color: #ffffff;
-}
-
 .logo a {
     text-decoration: none;
     color: white;
@@ -54,26 +32,12 @@ body.green-theme {
     color: white;
 }
 
-.dark-theme .intro-text {
-    margin-top: 20px;
-    font-size: 27px;
-    color: white;
-    text-align: center;
-}
-
-.green-theme .intro-text {
-    margin-top: 20px;
-    font-size: 27px;
-    color: black;
-    text-align: center;
-}
-
 .content-container{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     margin: 20px;
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
 #googleMap{
@@ -85,7 +49,7 @@ body.green-theme {
     flex: 2;
     border-radius: 145px;
     background-color: rgba(128, 116, 116, 0.5);
-    margin-bottom: 20px; /* Adjust as needed */
+    margin-bottom: 20px;
     backdrop-filter: blur(10px);
     display: flex;
     flex-wrap: wrap;
@@ -113,16 +77,16 @@ body.green-theme {
 }
 
 .image-container {
-    flex: 1 1 300px; /* Example: flex-grow flex-shrink flex-basis */
-    max-width: 300px; /* Adjust based on thumbnail size */
-    margin: 10px; /* Adjust spacing between containers */
+    flex: 1 1 300px; 
+    max-width: 300px; 
+    margin: 10px;
     text-align: center;
 }
 
 .video-container {
-    flex: 2 1 600px; /* Example: flex-grow flex-shrink flex-basis */
-    max-width: 600px; /* Adjust based on video size */
-    margin: 10px; /* Adjust spacing between containers */
+    flex: 2 1 600px; 
+    max-width: 600px; 
+    margin: 10px;
     position: relative;
 }
 
@@ -137,7 +101,7 @@ body.green-theme {
 }
 
 #myVideo.blur {
-    filter: blur(10px); /* Desfoque aplicado quando necessário */
+    filter: blur(10px); 
 }
 
 #image-container.blur{
@@ -186,7 +150,7 @@ body.green-theme {
 }
 
 .active-card {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.9); /* Example box shadow */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
 .card-body {
@@ -238,7 +202,7 @@ body.green-theme {
 }
 
 .image-list-container {
-    width: 100%; /* Adjust based on the desired width */
+    width: 100%;
     overflow-x: auto;
     display: flex;
     justify-content: center;
@@ -259,10 +223,10 @@ body.green-theme {
 }
 
 .image-list img {
-    width: 100px; /* Fixed width for all images */
-    height: 100px; /* Fixed height for all images */
-    border-radius: 10px; /* Slightly rounded corners */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
+    width: 100px; 
+    height: 100px; 
+    border-radius: 10px; 
+    object-fit: cover;
 }
 
 .overlay-area {
@@ -290,16 +254,15 @@ body.green-theme {
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    padding-top: 60px; /* Location of the box */
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    width: 100%;
+    height: 100%; 
+    overflow: auto; /* scroll */
+    background-color: rgba(0,0,0,0.9);
 }
 
 /* Modal Content (image) */
@@ -309,7 +272,7 @@ body.green-theme {
     width: 80%;
     height: 80%;
     max-width: 700px;
-    border-radius: 10px; /* Add rounding if desired */
+    border-radius: 10px;
 }
 
 /* Caption of Modal Image (Image Text) */
@@ -390,4 +353,44 @@ body.green-theme {
 .prev:hover,
 .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+
+/* theme change */
+
+/* Default theme */
+body.default-theme {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+}
+
+/* Dark theme */
+body.dark-theme {
+    background-color: #121212;
+    background-image: none;
+    color: #ffffff;
+}
+
+/* green theme */
+body.green-theme {
+    background-color: #d5ffd5; /* green background */
+    background-image: none;
+    color: #ffffff;
+}
+
+.dark-theme .intro-text {
+    margin-top: 20px;
+    font-size: 27px;
+    color: white;
+    text-align: center;
+}
+
+.green-theme .intro-text {
+    margin-top: 20px;
+    font-size: 27px;
+    color: black;
+    text-align: center;
 }

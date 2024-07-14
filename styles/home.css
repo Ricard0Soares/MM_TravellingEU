@@ -5,36 +5,6 @@ body{
     color: #000000;
 }
 
-
-/* Default theme */
-body.default-theme {
-    background-image: url('../images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #ffffff;
-}
-
-/* Dark theme */
-body.dark-theme {
-    background-color: #121212;
-    background-image: none;
-    color: #ffffff;
-}
-
-/* green theme */
-body.green-theme {
-    background-color: #d5ffd5; 
-    background-image: none;
-    color: #ffffff;
-}
-
-/* Blue theme */
-body.blue-theme {
-    background-color: #b5ade6; /* Light blue background */
-    background-image: none;
-    color: #ffffff;
-}
-
 .logo a {
     text-decoration: none;
     color: white;
@@ -157,7 +127,7 @@ path:hover {
     font-weight: 600;
 }
 
-.green-theme .logo a, .blue-theme .logo a{
+.green-theme .logo a{
     text-decoration: none;
     color: black;
     cursor: default;
@@ -230,4 +200,27 @@ path:hover {
     padding: 5px;
     border-radius: 5px;
     pointer-events: none;
+}
+
+/* background */
+/* Default theme */
+body.default-theme {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+}
+
+/* Dark theme */
+body.dark-theme {
+    background-color: #121212;
+    background-image: none;
+    color: #ffffff;
+}
+
+/* green theme */
+body.green-theme {
+    background-color: #d5ffd5; 
+    background-image: none;
+    color: #ffffff;
 }

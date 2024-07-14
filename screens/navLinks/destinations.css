@@ -40,7 +40,7 @@ body{
     align-items: center;
     height: 300px;
     width: 1400px; 
-    margin: 0 auto; /* Centraliza horizontalmente */
+    margin: 0 auto;
     background-color: rgba(128, 116, 116, 0.5);
     backdrop-filter: blur(10px);
     border-radius: 50px;

@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { src: "../images/tumulo_vascoGama.jpg", description: "Túmulo de Vasco da Gama no interior do Mosteiro" },
         { src: "../images/claustro.jpg", description: "O íncrivel Claustro do Mosteiro dos Jerónimos" }
     ],
-    // Adicione outros mapeamentos de imagens conforme necessário
+    
   };
 
   function openModal(index, images) {
@@ -150,10 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cardBodyDiv.appendChild(cardText);
     cardDiv.appendChild(cardBodyDiv);
 
-    // Store time as data attribute
     cardDiv.setAttribute('data-time', time);
 
-    // Add click event listener to highlight the card
+    //highlight card
     cardDiv.addEventListener("click", () => {
       video.currentTime = time;
       video.play();
@@ -170,9 +169,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function highlightCard(currentTime) {
     const cards = document.querySelectorAll('.card');
-    let highlightedCard = null; // Variável para armazenar a card destacada
+    let highlightedCard = null; // store highlighted card
     
-    // Encontrar a card que está atualmente destacada
+    // find highlighted card
     cards.forEach(card => {
       const cardTime = parseFloat(card.getAttribute('data-time'));
       if (currentTime >= cardTime && currentTime < cardTime + 2) {
@@ -180,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   
-    // Se encontrou uma card para destacar, realça apenas ela
+    // if finds new card to highlight, highlight 
     if (highlightedCard) {
       cards.forEach(card => {
         if (card === highlightedCard) {
@@ -204,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const imageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight).data;
           video.removeEventListener('seeked', captureFrame);
           resolve({ dataURL, time, imageData });
-        }, 100); // Adjust the timeout duration as needed
+        }, 100);
       }, { once: true });
     });
   }
@@ -285,15 +284,14 @@ document.addEventListener("DOMContentLoaded", () => {
       "de tradição medieval e o baluarte moderno, onde se dispunham peças de artilharia. Juntamente com o Mosteiro dos Jerónimos, foi \n\n" +
       "classificada em 1983 como Património Mundial da UNESCO e eleita como uma das Sete Maravilhas de Portugal em 2007."
       
-       // Limpa o conteúdo existente
+      // Limpa o conteúdo existente
       cardImagesElement.innerHTML = "";
 
-      // Obtém o conjunto de imagens relevante
       const images = imagesMap["Torre de Belem"];
 
       var index = 0;
 
-      // Event listener for images click
+      // click nas imagens
       images.forEach((image, index) => {
         const li = document.createElement('li');
         const img = document.createElement('img');
@@ -322,12 +320,11 @@ document.addEventListener("DOMContentLoaded", () => {
        // Limpa o conteúdo existente
        cardImagesElement.innerHTML = "";
 
-      // Obtém o conjunto de imagens relevante
       const images = imagesMap["Torre de Belem"];
 
       var index = 0;
 
-      // Event listener for images click
+      // click nas imagens
       images.forEach((image, index) => {
         const li = document.createElement('li');
         const img = document.createElement('img');
@@ -359,7 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
  
        var index = 0;
 
-      // Event listener for images click
+      // click nas imagens
       images.forEach((image, index) => {
         const li = document.createElement('li');
         const img = document.createElement('img');
@@ -393,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       var index = 0;
 
-      // Event listener for images click
+      // click nas imagens
       images.forEach((image, index) => {
         const li = document.createElement('li');
         const img = document.createElement('img');
@@ -427,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       var index = 0;
 
-      // Event listener for images click
+      // click nas imagens
       images.forEach((image, index) => {
         const li = document.createElement('li');
         const img = document.createElement('img');
@@ -463,7 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       var index = 0;
 
-      // Event listener for images click
+      // click nas imagens
       images.forEach((image, index) => {
         const li = document.createElement('li');
         const img = document.createElement('img');
@@ -499,7 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       var index = 0;
 
-      // Event listener for images click
+      // click nas imagens
       images.forEach((image, index) => {
         const li = document.createElement('li');
         const img = document.createElement('img');

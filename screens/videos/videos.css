@@ -144,17 +144,17 @@ body{
     font-size: 16px;
     border: none;
     cursor: pointer;
-    padding: 16px; /* Adjust padding for spacing */
-    display: flex; /* Use flexbox for centering */
-    align-items: center; /* Align items vertically */
-    justify-content: space-between; /* Spread items horizontally */
+    padding: 16px; 
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
     background-size: 15px;
 }
 
 .arrow {
     position: absolute;
-    right: -30px; /* Ajuste a posição horizontal conforme necessário */
-    top: 50%; /* Alinha verticalmente no centro */
+    right: -30px; 
+    top: 50%; 
     transform: translateY(-50%); /* Corrige o alinhamento vertical */
 }
 

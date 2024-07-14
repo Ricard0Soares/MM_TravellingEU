@@ -26,45 +26,6 @@
         </ul>
     </nav>
 
-    <div class="search-container">
-        <input type="search" onchange="navigateToDestination()" placeholder="Search..." 
-                list="search-suggestions" autocomplete="on" class="search-bar">
-        <datalist id="search-suggestions">
-            <option value="Lisboa">
-            <option value="Porto">
-            <option value="Aveiro">
-            <option value="Paris">
-        </datalist>
-        <div class="intro-text">Europe on The Palm of Your Hand</div>
-    </div>
-
-    <!--<div class="ellipse-container">
-        <div class="image-container">
-            <img src="images/aveiro.png" alt="cidade1">
-            <span>Aveiro</span>
-        </div>
-        <div class="image-container">
-            <a href="lisboa.html">
-                <img src="images/lisboa.png" alt="cidade2">
-                <span>Lisboa</span>
-            </a>
-        </div>
-        <div class="image-container">
-            <img src="images/paris.png" alt="cidade3">
-            <span>Paris</span>
-        </div>
-    </div>-->
-
-   <!-- <div class="settings-menu">
-        <h2>Configurations</h2>
-        <label for="theme-select">Skin:</label>
-        <select id="theme-select" onchange="applyTheme()">
-            <option value="default">Default</option>
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-        </select>
-    </div>-->
-
     <div class="content-container">
         <div id="googleMap" style="width:30%;height: 500px;"></div>
 
@@ -93,13 +54,8 @@
                     <h2 id="cardTitle"></h2>
                     <p id="cardDescription"></p>
                     <div class="image-list-container">
-                        <ul class="image-list">
-                            <li><img src="../images/image_3.png" alt="cidade1" data-description="Description for cidade1"></li>
-                            <li><img src="../images/image_4.png" alt="cidade2" data-description="Description for cidade2"></li>
-                            <li><img src="../images/image_5.png" alt="cidade3" data-description="Description for cidade3"></li>
-                            <li><img src="../images/image_3.png" alt="cidade4" data-description="Description for cidade4"></li>
-                            <li><img src="../images/image_4.png" alt="cidade5" data-description="Description for cidade5"></li>
-                            <li><img src="../images/image_5.png" alt="cidade6" data-description="Description for cidade6"></li>
+                        <ul id="cardImages" class="image-list">
+                            
                         </ul>
                     </div>
                 </div>
@@ -125,31 +81,29 @@
     <script src="../scripts/home_paris.js"></script>
 
     <script>
-
-        // Seleciona os elementos relevantes
         const cardContainer = document.getElementById('cardContainer');
         const secondEllipseContainer = document.querySelector('.second-ellipse-container');
         const overlayArea = document.getElementById('overlayArea');
         const myVideo = document.getElementById('myVideo');
         const closeCardButton = document.getElementById('closeCard');
 
-        // Função para abrir o cardContainer e desfocar o second-ellipse-container
+        //abrir o cardContainer e desfocar o second-ellipse-container
         function openCardContainer() {
             cardContainer.style.display = 'block';
             secondEllipseContainer.classList.add('blur'); 
             myVideo.classList.add('blur');
         }
-        // Função para fechar o cardContainer e remover o desfoque
+        //fechar o cardContainer e remover o desfoque
         function closeCardContainer() {
             cardContainer.style.display = 'none';
             secondEllipseContainer.classList.remove('blur');
             myVideo.classList.remove('blur');
         }
 
-        // Evento para abrir o cardContainer quando overlayArea é clicada
+        //abrir o cardContainer quando overlayArea é clicada
         overlayArea.addEventListener('click', openCardContainer);
 
-        // Evento para fechar o cardContainer quando o botão de fechar é clicado
+        //fechar o cardContainer quando o botão de fechar é clicado
         closeCardButton.addEventListener('click', closeCardContainer);
 
         function myMap() {

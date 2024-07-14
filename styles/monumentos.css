@@ -6,36 +6,6 @@ body {
     padding: 0;
 }
 
-/* Default theme */
-body.default-theme {
-    background-image: url('../images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #ffffff;
-}
-
-/* Dark theme */
-body.dark-theme {
-    background-color: #121212;
-    background-image: none;
-    color: #ffffff;
-}
-
-/* green theme */
-body.green-theme {
-    background-color: #d5ffd5; /* green background */
-    background-image: none;
-}
-
-/* Elements in green theme */
-.green-theme .centered-title {
-    color: black;
-}
-
-.green-theme .teste-container h2 {
-    color: black;
-}
-
 /* Layout for the content */
 .content {
     display: flex;
@@ -60,8 +30,8 @@ body.green-theme {
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
-    margin-top: 0; /* Remove a margem superior adicional */
-    overflow-y: auto; /* Habilita a rolagem vertical */
+    margin-top: 0; /* remove a margem superior adicional */
+    overflow-y: auto; /* scroll vertical */
 }
 
 .index-container, .image-container, .teste-container {
@@ -108,16 +78,16 @@ body.green-theme {
 
 .index-container ul .sub-list {
     margin-top: 0;
-    padding-left: 20px; /* Recuo para os subitens */
+    padding-left: 20px;
 }
 
 .index-container ul .sub-list li {
-    margin-bottom: 5px; /* Espaçamento entre os subitens */
+    margin-bottom: 5px;
 }
 
 .centered-title {
     text-align: center;
-    margin-top: 100px; /* Espaçamento acima do título */
+    margin-top: 100px; 
     font-size: 28px;
     font-weight: bold;
     color: white;
@@ -134,7 +104,7 @@ body.green-theme {
     width: 100%;
     height: auto;
     margin-bottom: 20px;
-    display: block; /* Ensures the image is displayed as a block element */
+    display: block;
 }
 
 .pagination-controls {
@@ -181,11 +151,10 @@ body.green-theme {
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
-    /* Posicionamento do texto do tooltip */
     position: absolute;
     z-index: 1;
-    top: 0; /* Ajuste a posição conforme necessário */
-    left: 110%; /* Ajuste a posição conforme necessário */
+    top: 0;
+    left: 110%;
 }
 
 .video-overlay:hover .hoverText {
@@ -194,6 +163,38 @@ body.green-theme {
 
 /* Estilos para o GIF */
 .video-overlay img {
-    width: 100px; /* Ajuste o tamanho conforme necessário */
+    width: 100px;
     cursor: pointer;
+}
+
+/* theme change */
+
+/* Default theme */
+body.default-theme {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+}
+
+/* Dark theme */
+body.dark-theme {
+    background-color: #121212;
+    background-image: none;
+    color: #ffffff;
+}
+
+/* green theme */
+body.green-theme {
+    background-color: #d5ffd5; /* green background */
+    background-image: none;
+}
+
+/* Elements in green theme */
+.green-theme .centered-title {
+    color: black;
+}
+
+.green-theme .teste-container h2 {
+    color: black;
 }
