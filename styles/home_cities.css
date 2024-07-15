@@ -348,3 +348,11 @@ body {
 .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+.default-theme .image-container p{
+    color:white;
+}
+
+.dark-theme .image-container p{
+    color:white;
+}

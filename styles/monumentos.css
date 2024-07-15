@@ -89,8 +89,11 @@ body {
     text-align: center;
     margin-top: 100px; 
     font-size: 28px;
-    font-weight: bold;
     color: white;
+}
+
+.centered-title h1{
+    font-weight: bold;
 }
 
 /* Specific style for the toggle button */
@@ -183,6 +186,27 @@ body.default-theme {
     background-color: #ffffff;
 }
 
+.default-theme .content p{
+    color:black;
+}
+
+.default-theme .index-container h2{
+    color: black;
+}
+
+.default-theme .teste-container h3{
+    color: black;
+}
+
+.default-theme .teste-container h2{
+    color: black;
+}
+
+.default-theme .image-container h2{
+    color: black;
+}
+
+
 /* Dark theme */
 body.dark-theme {
     background-color: #121212;
@@ -190,17 +214,53 @@ body.dark-theme {
     color: #ffffff;
 }
 
+.dark-theme .content p{
+    color:black;
+}
+
+.dark-theme .index-container h2{
+    color: black;
+}
+
+.dark-theme .teste-container h3{
+    color: black;
+}
+
+.dark-theme .teste-container h2{
+    color: black;
+}
+
+.dark-theme .image-container h2{
+    color: black;
+}
+
+
 /* green theme */
 body.green-theme {
     background-color: #d5ffd5; /* green background */
     background-image: none;
 }
 
-/* Elements in green theme */
-.green-theme .centered-title {
+.green-theme .content p{
+    color:black;
+}
+
+.green-theme .index-container h2{
     color: black;
 }
 
-.green-theme .teste-container h2 {
+.green-theme .teste-container h3{
+    color: black;
+}
+
+.green-theme .teste-container h2{
+    color: black;
+}
+
+.green-theme .image-container h2{
+    color: black;
+}
+
+.green-theme .centered-title {
     color: black;
 }
