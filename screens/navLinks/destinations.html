@@ -40,19 +40,19 @@
     </div>
 
     <div class="ellipse-container">
-        <div class="image-container">
+        <div class="image-container fade-in">
             <a href="monumentos_portugal.html">
                 <img src="../../images/lisboa.png" alt="Lisboa">
             </a>
             <span>Lisboa</span>
         </div>
-        <div class="image-container">
+        <div class="image-container fade-in">
             <a href="../home_madrid.html">
                 <img src="../../images/madrid.png" alt="Madrid">
             </a>
             <span>Madrid</span>
         </div>
-        <div class="image-container">
+        <div class="image-container fade-in">
             <a href="../home_paris.html">
                 <img src="../../images/paris.png" alt="Paris">
             </a>
@@ -62,7 +62,14 @@
     
     <script src = "../../scripts/searchbarDestinations.js"></script>
     <script src="../../scripts/theme.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageContainers = document.querySelectorAll('.image-container');
+            imageContainers.forEach((container, index) => {
+                container.style.animationDelay = `${index * 0.3}s`;
+                container.classList.add('fade-in');
+            });
+        });
+    </script>
 </body>
-
 </html>

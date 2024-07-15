@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset = "utf-8">
-    <meta name="viewport" content = "width=device-width, initial-scale=1">
-    <link rel ="stylesheet" type="text/css" href="monumentos_portugal.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="monumentos_portugal.css">
     <link rel="stylesheet" type="text/css" href="../../styles/navBar.css">
 </head>
 <body>
@@ -42,28 +42,28 @@
     <div class="monumentos"><a href="destinations.html">Lisboa</a> - Monumentos</div>
 
     <div class="ellipse-container">
-        <div class="image-container">
+        <div class="image-container fade-in">
             <a href="../mosteiro.html">
                 <img src="../../images/mosteiro.jpg" alt="Mosteiro" style="border-radius: 10px;">
             </a>
             <span>Mosteiro dos Jerónimos</span>
         </div>
 
-        <div class="image-container">
+        <div class="image-container fade-in">
             <a href="../padrao_descobrimentos.html">
                 <img src="../../images/padrao-4.jpg" alt="Padrão dos Descobrimentos" style="border-radius: 10px;">
             </a>
             <span>Padrão dos Descobrimentos</span>
         </div>
 
-        <div class="image-container">
+        <div class="image-container fade-in">
             <a href="../parque_nacoes.html">
                 <img src="../../images/teleferico.jpeg" alt="Parque das Nações" style="border-radius: 10px;">
             </a>
             <span>Parque das Nações</span>
         </div>
 
-        <div class="image-container">
+        <div class="image-container fade-in">
             <a href="../torre_belem.html">
                 <img src="../../images/torre.jpeg" alt="Torre de Belém" style="border-radius: 10px;">
             </a>
@@ -71,9 +71,16 @@
         </div>
     </div>
     
-    <script src = "../../scripts/searchbarDestinations.js"></script>
+    <script src="../../scripts/searchbarDestinations.js"></script>
     <script src="../../scripts/theme.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageContainers = document.querySelectorAll('.image-container');
+            imageContainers.forEach((container, index) => {
+                container.style.animationDelay = `${index * 0.3}s`;
+                container.classList.add('fade-in');
+            });
+        });
+    </script>
 </body>
-
 </html>
