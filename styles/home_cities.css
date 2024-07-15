@@ -5,12 +5,6 @@ body {
     padding: 0;
 }
 
-.logo a {
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-}
-
 .search-container {
     text-align: center;
     padding: 100px 0;
@@ -353,44 +347,4 @@ body {
 .prev:hover,
 .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
-}
-
-
-
-/* theme change */
-
-/* Default theme */
-body.default-theme {
-    background-image: url('../images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #ffffff;
-}
-
-/* Dark theme */
-body.dark-theme {
-    background-color: #121212;
-    background-image: none;
-    color: #ffffff;
-}
-
-/* green theme */
-body.green-theme {
-    background-color: #d5ffd5; /* green background */
-    background-image: none;
-    color: #ffffff;
-}
-
-.dark-theme .intro-text {
-    margin-top: 20px;
-    font-size: 27px;
-    color: white;
-    text-align: center;
-}
-
-.green-theme .intro-text {
-    margin-top: 20px;
-    font-size: 27px;
-    color: black;
-    text-align: center;
 }

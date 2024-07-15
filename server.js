@@ -6,14 +6,20 @@ const port = 3000;
 // Serve arquivos estáticos do diretório atual
 app.use(express.static('.'));
 
-const filePath = path.join(__dirname, 'screens', 'home.html');
+const filePath = path.join(__dirname, 'project','screens', 'home.html');
+
 
 // Rota padrão para servir o home.html
 app.get('/', (req, res) => {
+    res.redirect('/screens/home.html');
+});
+
+app.get('/screens/home.html', (req, res) => {
     res.sendFile(filePath);
 });
 
 app.listen(port, () => {
+    console.log("filepath ->  " + filePath);
     console.log(`Servidor local rodando em http://localhost:${port}`);
 });
 
