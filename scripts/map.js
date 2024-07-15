@@ -21,8 +21,6 @@ function myMap(centerLat, centerLng, zoomLevel) {
         {lat: 38.71667, lng: -9.139, title: 'Lisbon', url: 'home_lisboa.html', isBigger: true},
         {lat: 48.8566, lng: 2.3522, title: 'Paris', url: 'home_paris.html', isBigger: true},
         {lat: 40.416775, lng: -3.703790, title: 'Madrid', url: 'home_madrid.html', isBigger: true},
-        {lat: 41.902782, lng: 12.496366, title: 'Rome', url: 'home_roma.html'},
-        {lat: 37.983810, lng: 23.727539, title: 'Athens', url: 'home_atenas.html'},
         {lat: 38.697056, lng: -9.206528, title: 'Mosteiro Jerónimos', url: 'mosteiro.html'},
         {lat: 38.691583, lng: -9.215883, title: 'Torre Belém', url: 'torre_belem.html'},
         {lat: 38.768891, lng: -9.094406, title: 'Parque das Nações', url: 'parque_nacoes.html'},

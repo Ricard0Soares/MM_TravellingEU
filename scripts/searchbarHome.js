@@ -3,14 +3,10 @@ function navigateToDestination(){
     var selectedOption = input.value;
     if(selectedOption =="Lisboa"){
         window.location.href = "home_lisboa.html";
-    } else if(selectedOption == "Atenas"){
-        window.location.href = "home_atenas.html";
-    }else if(selectedOption == "Madrid"){
+    } else if(selectedOption == "Madrid"){
         window.location.href = "home_madrid.html";
     }else if(selectedOption == "Paris"){
         window.location.href = "home_paris.html";
-    }else if(selectedOption == "Roma"){
-        window.location.href = "home_roma.html";
     }else if(selectedOption == "Mosteiro dos Jerónimos"){
         window.location.href = "mosteiro.html";
     }else if(selectedOption == "Padrão dos Descobrimentos"){
