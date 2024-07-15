@@ -10,10 +10,10 @@
     <nav class="navbar">
         <div class="logo"><a href="../home.html">TravellingEU</a></div>
         <ul class="nav-links">
-            <li><a href="../navLinks/destinations.html">Destinations</a></li>
-            <li><a href="videos.html">Videos</a></li>
-            <li><a href="../navLinks/howitworks.html">How it works</a></li>
-            <li><a href="../navLinks/aboutus.html">About Us</a></li>
+            <li><a href="../navLinks/destinations.html">Destinos</a></li>
+            <li><a href="videos.html">Vídeos</a></li>
+            <li><a href="../navLinks/howitworks.html">Como funciona?</a></li>
+            <li><a href="../navLinks/aboutus.html">Sobre nós</a></li>
             <li class="dropdown">
                 <select id="theme-selector" onchange="switchTheme(this.value)">
                     <option value="default">Default</option>
@@ -25,7 +25,7 @@
     </nav>
 
     <div class="videos">
-        <a id="videos-title">Videos</a>
+        <a id="videos-title">Vídeos</a>
         <div class="dropdown-container">
             <div class="dropdown-wrapper">
                 <div class="dropdown">
@@ -110,9 +110,9 @@
                 const filterValue = this.getAttribute('data-value');
 
                 if (filterValue === 'all') {
-                    videosTitle.textContent = 'Videos';
+                    videosTitle.textContent = 'Vídeos';
                 } else {
-                    videosTitle.textContent = `Videos - ${filterValue}`;
+                    videosTitle.textContent = `Vídeos - ${filterValue}`;
                 }
 
                 // Mostra apenas os vídeos correspondentes ao filtro selecionado
