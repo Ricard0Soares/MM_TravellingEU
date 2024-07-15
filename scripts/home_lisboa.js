@@ -4,9 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas.getContext("2d");
   const thumbnailWidth = 300;
   const thumbnailHeight = 120;
-  const listOfMonuments = ['Torre de Belém', 'Torre de Belém', 'Parque das Nações', 'Parque das Nações', 'Mosteiro Jerónimos', 'Padrão dos Descobrimentos'];
+  const frames = [0, 5, 6, 9, 16];
+  const listOfMonuments = ['Torre de Belém', 'Parque das Nações', 'Parque das Nações', 'Mosteiro Jerónimos', 'Padrão dos Descobrimentos'];
   let counter = 0;
+  let currentActiveCard = null;
 
+  const infoCard = document.getElementById('infoCard');
   const cardContainer = document.getElementById('cardContainer');
   const cardTitleElement = document.getElementById('cardTitle');
   const cardDescriptionElement = document.getElementById('cardDescription');
@@ -14,14 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const playIconElement = document.getElementById('playIcon');
   const overlayArea = document.getElementById('overlayArea');
 
+ 
   const modal = document.getElementById('imageModal');
   const modalImage = document.getElementById('modalImage');
   const modalDescription = document.getElementById('modalDescription');
   const closeButton = document.querySelector('.close');
   const prevButton = document.querySelector('.prev');
   const nextButton = document.querySelector('.next');
-  let currentIndex = 0;
 
+  let currentIndex = 0;
   const cityId = 'Lisboa';
 
   var imagesHolder = [];
@@ -63,9 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach((element, index) => {
-                element.style.animationDelay = `${index * 0.3}s`;
-                element.classList.add('fade-in-animation');
+          fadeElements.forEach((element, index) => {
+              element.style.animationDelay = `${index * 0.3}s`;
+              element.classList.add('fade-in-animation');
   });
 
   function openModal(index, images) {
@@ -84,13 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
       currentIndex = index; // Atualiza o índice global
   }
 
-  // Função para fechar o modal
+  //fechar o modal
   function closeModal() {
     const modal = document.getElementById('imageModal');
     modal.style.display = 'none';
   }
 
-  // Adiciona evento de clique ao botão de fechar
+  //botão de fechar
   const closeModalButton = document.querySelector('#imageModal .close');
   closeModalButton.addEventListener('click', closeModal);
 
@@ -123,449 +127,417 @@ document.addEventListener("DOMContentLoaded", () => {
     openModal(currentIndex, imagesHolder);
   }
 
-  const savedThumbnails = localStorage.getItem(`thumbnails_${cityId}`);
-  if (savedThumbnails) {
-    loadThumbnailsFromStorage(JSON.parse(savedThumbnails));
-  } else {
-    detectChanges();
-  }
-
   function createCard(targetDivId, frame, time) {
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'card';
-    cardDiv.style.width = '8rem';
-    cardDiv.style.height = '6rem';
-    cardDiv.style.background = 'none';
-    cardDiv.style.border = 'none';
-    cardDiv.style.margin = '0.5rem'; // Adds margin around each card
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'card';
+      cardDiv.style.width = '8rem';
+      cardDiv.style.height = '6rem';
+      cardDiv.style.background = 'none';
+      cardDiv.style.border = 'none';
+      cardDiv.style.margin = '0.5rem'; // Adds margin around each card
 
-    frame.className = 'card-img-top';
+      frame.className = 'card-img-top';
 
-    const cardBodyDiv = document.createElement('div');
-    cardBodyDiv.className = 'card-body';
-    cardBodyDiv.style.textAlign = 'center';
-    cardBodyDiv.style.padding = '0.1rem';
+      const cardBodyDiv = document.createElement('div');
+      cardBodyDiv.className = 'card-body';
+      cardBodyDiv.style.textAlign = 'center';
+      cardBodyDiv.style.padding = '0.1rem';
 
-    const cardText = document.createElement('p');
-    cardText.className = 'card-text';
-    cardText.style.color = 'white';
-    cardText.style.marginTop = '0.1rem';
-    cardText.style.fontSize = '12px';
-    cardText.textContent = listOfMonuments[counter];
+      const cardText = document.createElement('p');
+      cardText.className = 'card-text';
+      cardText.style.color = 'white';
+      cardText.style.marginTop = '0.1rem';
+      cardText.style.fontSize = '12px';
+      cardText.textContent = listOfMonuments[counter];
 
-    cardDiv.appendChild(frame);
-    cardBodyDiv.appendChild(cardText);
-    cardDiv.appendChild(cardBodyDiv);
+      cardDiv.appendChild(frame);
+      cardBodyDiv.appendChild(cardText);
+      cardDiv.appendChild(cardBodyDiv);
 
-    cardDiv.setAttribute('data-time', time);
+      // Adicionar o atributo data-time para facilitar a comparação
+      cardDiv.setAttribute('data-time', time);
 
-    //highlight card
-    cardDiv.addEventListener("click", () => {
-      video.currentTime = time;
-      video.play();
+      cardDiv.addEventListener("click", () => {
+          video.currentTime = time;
+          video.play();
+  
+          // Destacar card ativo
+          highlightCard(time);
+      });
 
-      // Highlight active card
-      highlightCard(time);
-    });
+      const targetDiv = document.getElementById(targetDivId);
+      targetDiv.appendChild(cardDiv);
 
-    const targetDiv = document.getElementById(targetDivId);
-    targetDiv.appendChild(cardDiv);
-
-    counter = (counter + 1) % listOfMonuments.length;
+      counter = (counter + 1) % listOfMonuments.length;
   }
 
   function highlightCard(currentTime) {
-    const cards = document.querySelectorAll('.card');
-    let highlightedCard = null; // store highlighted card
-    
-    // find highlighted card
-    cards.forEach(card => {
-      const cardTime = parseFloat(card.getAttribute('data-time'));
-      if (currentTime >= cardTime && currentTime < cardTime + 2) {
-        highlightedCard = card;
+      const cards = document.querySelectorAll('.card');
+      
+      let highlightedCard = null;
+      
+      for (let i = 0; i < frames.length - 1; i++) {
+          const start = frames[i];
+          const end = frames[i + 1];
+          
+          if (currentTime >= start && currentTime < end) {
+              highlightedCard = cards[i];
+              break;
+          }
       }
-    });
-  
-    // if finds new card to highlight, highlight 
-    if (highlightedCard) {
-      cards.forEach(card => {
-        if (card === highlightedCard) {
-          card.classList.add('active-card');
-        } else {
-          card.classList.remove('active-card');
-        }
-      });
-    }
+      
+      if (currentTime >= frames[frames.length - 1]) {
+          highlightedCard = cards[frames.length - 1];
+      }
+      
+      if (highlightedCard) {
+          cards.forEach(card => {
+              if (card === highlightedCard) {
+                  card.classList.add('active-card');
+              } else {
+                  card.classList.remove('active-card');
+              }
+          });
+      }
   }
-  
-  
 
   function generateThumbnail(time) {
-    return new Promise((resolve) => {
-      video.currentTime = time;
-      video.addEventListener('seeked', function captureFrame() {
-        setTimeout(() => {
-          ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
-          const dataURL = canvas.toDataURL();
-          const imageData = ctx.getImageData(0, 0, thumbnailWidth, thumbnailHeight).data;
-          video.removeEventListener('seeked', captureFrame);
-          resolve({ dataURL, time, imageData });
-        }, 100);
-      }, { once: true });
-    });
+      return new Promise((resolve) => {
+          video.currentTime = time;
+          video.addEventListener('seeked', function captureFrame() {
+              setTimeout(() => {
+                  canvas.width = thumbnailWidth;
+                  canvas.height = thumbnailHeight;
+                  ctx.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
+                  const dataURL = canvas.toDataURL();
+                  video.removeEventListener('seeked', captureFrame);
+                  resolve({ dataURL, time });
+              }, 100);
+          }, { once: true });
+      });
   }
 
-  async function detectChanges() {
-    let lastImageData = null;
-    const interval = 1;
-    let thumbnails = [];
+  async function createThumbnails() {
+      let storedThumbnails = JSON.parse(localStorage.getItem('thumbnails_Lisboa'));
 
-    video.addEventListener('loadeddata', async () => {
-      const duration = video.duration;
-      for (let t = 0; t < duration; t += interval) {
-        const { dataURL, time, imageData } = await generateThumbnail(t);
-        const img = new Image();
-        img.src = dataURL;
-        img.width = thumbnailWidth;
-        img.height = thumbnailHeight;
-        img.classList.add("thumbnail");
-        img.setAttribute('data-time', time);
-
-        if (!lastImageData) {
-          createCard('thumbnails', img, time);
-          lastImageData = imageData;
-          thumbnails.push({ dataURL, time });
-        } else {
-          if (hasSignificantChange(lastImageData, imageData)) {
-            createCard('thumbnails', img, time);
-            lastImageData = imageData;
-            thumbnails.push({ dataURL, time });
-          }
-        }
+      if (!storedThumbnails) {
+          storedThumbnails = await generateAndStoreThumbnails();
       }
-      video.currentTime = 0;
-      localStorage.setItem(`thumbnails_${cityId}`, JSON.stringify(thumbnails));
-    });
+
+      loadThumbnailsFromStorage(storedThumbnails);
+  }
+
+  async function generateAndStoreThumbnails() {
+      const storedThumbnails = [];
+      for (let i = 0; i < frames.length; i++) {
+          const { dataURL, time } = await generateThumbnail(frames[i]);
+          storedThumbnails.push({ dataURL, time });
+      }
+      localStorage.setItem('thumbnails_Lisboa', JSON.stringify(storedThumbnails));
+      return storedThumbnails;
   }
 
   function loadThumbnailsFromStorage(thumbnails) {
-    thumbnails.forEach(({ dataURL, time }) => {
-      const img = new Image();
-      img.src = dataURL;
-      img.width = thumbnailWidth;
-      img.height = thumbnailHeight;
-      img.classList.add("thumbnail");
-      img.setAttribute('data-time', time);
-      createCard('thumbnails', img, time);
-    });
+      thumbnails.forEach(({ dataURL, time }) => {
+          const img = new Image();
+          img.src = dataURL;
+          img.width = thumbnailWidth;
+          img.height = thumbnailHeight;
+          img.classList.add("thumbnail");
+          createCard('thumbnails', img, time);
+      });
   }
 
-  function hasSignificantChange(data1, data2) {
-    let changedPixels = 0;
-    const threshold = 100; // change threshold per pixel
-    const maxChangedPixels = 0.6 * data1.length / 4;
-
-    for (let i = 0; i < data1.length; i += 4) {
-      const diff = Math.abs(data1[i] - data2[i]) +
-        Math.abs(data1[i + 1] - data2[i + 1]) +
-        Math.abs(data1[i + 2] - data2[i + 2]);
-
-      if (diff > threshold) {
-        changedPixels++;
-      }
-    }
-
-    return changedPixels > maxChangedPixels;
-  }
+  createThumbnails();
 
   video.addEventListener('timeupdate', () => {
-    const currentTime = video.currentTime;
-    highlightCard(currentTime);
+      const currentTime = video.currentTime;
+      highlightCard(currentTime);
 
-    if (currentTime >= 0 && currentTime < 2) {
-      cardTitleElement.textContent = "Torre de Belém";
-      cardDescriptionElement.textContent = "A Torre de Belém é uma fortificação localizada na freguesia de Belém, Município e \n\n" +
-      "Distrito de Lisboa, em Portugal. Na margem direita do rio Tejo, onde existiu outrora a praia de Belém, era primitivamente \n\n" +
-      "cercada pelas águas em todo o seu perímetro. Ao longo dos séculos foi envolvida pela praia, até se incorporar hoje a terra firme. \n\n" +
-      "Um dos ex libris da cidade, o monumento é um ícone da arquitetura do reinado de D. Manuel I, numa síntese entre a torre de menagem \n\n"+
-      "de tradição medieval e o baluarte moderno, onde se dispunham peças de artilharia. Juntamente com o Mosteiro dos Jerónimos, foi \n\n" +
-      "classificada em 1983 como Património Mundial da UNESCO e eleita como uma das Sete Maravilhas de Portugal em 2007."
-      
-      // Limpa o conteúdo existente
-      cardImagesElement.innerHTML = "";
-
-      const images = imagesMap["Torre de Belem"];
-
-      // Adicionando evento de clique ao ícone de play
-      playIconElement.addEventListener('click', () => {
-        window.location.href = 'torre_belem.html';
-      });
-
-      var index = 0;
-
-      // click nas imagens
-      images.forEach((image, index) => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.description;
-        img.setAttribute('data-description', image.description);
-        li.appendChild(img);
-        cardImagesElement.appendChild(li);
-
-        img.addEventListener('click', () => {
-          openModal(index, images);
+      if (currentTime >= 0 && currentTime < 2) {
+        cardTitleElement.textContent = "Torre de Belém";
+        cardDescriptionElement.textContent = "A Torre de Belém é uma fortificação localizada na freguesia de Belém, Município e \n\n" +
+        "Distrito de Lisboa, em Portugal. Na margem direita do rio Tejo, onde existiu outrora a praia de Belém, era primitivamente \n\n" +
+        "cercada pelas águas em todo o seu perímetro. Ao longo dos séculos foi envolvida pela praia, até se incorporar hoje a terra firme. \n\n" +
+        "Um dos ex libris da cidade, o monumento é um ícone da arquitetura do reinado de D. Manuel I, numa síntese entre a torre de menagem \n\n"+
+        "de tradição medieval e o baluarte moderno, onde se dispunham peças de artilharia. Juntamente com o Mosteiro dos Jerónimos, foi \n\n" +
+        "classificada em 1983 como Património Mundial da UNESCO e eleita como uma das Sete Maravilhas de Portugal em 2007."
+        
+        // Limpa o conteúdo existente
+        cardImagesElement.innerHTML = "";
+  
+        const images = imagesMap["Torre de Belem"];
+  
+        // Adicionando evento de clique ao ícone de play
+        playIconElement.addEventListener('click', () => {
+          window.location.href = 'torre_belem.html';
         });
-      });
-
-      positionOverlayArea('10%', '48%', '23%', '45%', 'block');
-
-    } else if (currentTime >= 2 && currentTime < 4) {
-      cardTitleElement.textContent = "Torre de Belém";
-      cardDescriptionElement.textContent = "A Torre de Belém é uma fortificação localizada na freguesia de Belém, Município e \n\n" +
-      "Distrito de Lisboa, em Portugal. Na margem direita do rio Tejo, onde existiu outrora a praia de Belém, era primitivamente \n\n" +
-      "cercada pelas águas em todo o seu perímetro. Ao longo dos séculos foi envolvida pela praia, até se incorporar hoje a terra firme. \n\n" +
-      "Um dos ex libris da cidade, o monumento é um ícone da arquitetura do reinado de D. Manuel I, numa síntese entre a torre de menagem \n\n"+
-      "de tradição medieval e o baluarte moderno, onde se dispunham peças de artilharia. Juntamente com o Mosteiro dos Jerónimos, foi \n\n" +
-      "classificada em 1983 como Património Mundial da UNESCO e eleita como uma das Sete Maravilhas de Portugal em 2007."
-      
-       // Limpa o conteúdo existente
-       cardImagesElement.innerHTML = "";
-
-      const images = imagesMap["Torre de Belem"];
-
-      // Adicionando evento de clique ao ícone de play
-      playIconElement.addEventListener('click', () => {
-        window.location.href = 'torre_belem.html';
-      });
-
-      var index = 0;
-
-      // click nas imagens
-      images.forEach((image, index) => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.description;
-        img.setAttribute('data-description', image.description);
-        li.appendChild(img);
-        cardImagesElement.appendChild(li);
-
-        img.addEventListener('click', () => {
-          openModal(index, images);
+  
+        var index = 0;
+  
+        // click nas imagens
+        images.forEach((image, index) => {
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = image.src;
+          img.alt = image.description;
+          img.setAttribute('data-description', image.description);
+          li.appendChild(img);
+          cardImagesElement.appendChild(li);
+  
+          img.addEventListener('click', () => {
+            openModal(index, images);
+          });
         });
-      });
-
-      positionOverlayArea('10%', '45%', '28%', '50%', 'block');
-
-    } else if (currentTime >= 4 && currentTime < 8) {
-      cardTitleElement.textContent = "Parque das Nações";
-      cardDescriptionElement.textContent = "Parque das Nações é uma freguesia portuguesa do município de Lisboa, pertencente à Zona \n\n" +
-      "Leste da capital, com 5,44 km² de área e 22 382 habitantes (2021). Surgiu há cerca de 25 anos, sendo considerado uma das melhores \n\n" +
-      "zonas para se morar em Lisboa. Foi construído para receber a Expo 98. Este projeto de urbanização transformou uma zona \n\n" +
-      "degradada numa das areas mais modernas de Lisboa. Têm imensas opções de entreternimento, desde parques, museus, teleférico, \n\n" +
-      "centro comercial ou diversos restaurantes.";
-      
-       // Limpa o conteúdo existente
-       cardImagesElement.innerHTML = "";
-       
-       const images = imagesMap["Parque das Nacoes"];
-
-       // Adicionando evento de clique ao ícone de play
-      playIconElement.addEventListener('click', () => {
-        window.location.href = 'parque_nacoes.html';
-      });
- 
-       var index = 0;
-
-      // click nas imagens
-      images.forEach((image, index) => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.description;
-        img.setAttribute('data-description', image.description);
-        li.appendChild(img);
-        cardImagesElement.appendChild(li);
-
-        img.addEventListener('click', () => {
-          openModal(index, images);
+  
+        positionOverlayArea('10%', '48%', '23%', '45%', 'block');
+  
+      } else if (currentTime >= 2 && currentTime < 4) {
+        cardTitleElement.textContent = "Torre de Belém";
+        cardDescriptionElement.textContent = "A Torre de Belém é uma fortificação localizada na freguesia de Belém, Município e \n\n" +
+        "Distrito de Lisboa, em Portugal. Na margem direita do rio Tejo, onde existiu outrora a praia de Belém, era primitivamente \n\n" +
+        "cercada pelas águas em todo o seu perímetro. Ao longo dos séculos foi envolvida pela praia, até se incorporar hoje a terra firme. \n\n" +
+        "Um dos ex libris da cidade, o monumento é um ícone da arquitetura do reinado de D. Manuel I, numa síntese entre a torre de menagem \n\n"+
+        "de tradição medieval e o baluarte moderno, onde se dispunham peças de artilharia. Juntamente com o Mosteiro dos Jerónimos, foi \n\n" +
+        "classificada em 1983 como Património Mundial da UNESCO e eleita como uma das Sete Maravilhas de Portugal em 2007."
+        
+         // Limpa o conteúdo existente
+         cardImagesElement.innerHTML = "";
+  
+        const images = imagesMap["Torre de Belem"];
+  
+        // Adicionando evento de clique ao ícone de play
+        playIconElement.addEventListener('click', () => {
+          window.location.href = 'torre_belem.html';
         });
-      });
-
-      positionOverlayArea('10%', '20%', '60%', '40%', 'block');
-
-    } else if (currentTime >= 8 && currentTime < 11) {
-      cardTitleElement.textContent = "Mosteiro dos Jerónimos";
-      cardDescriptionElement.textContent = "O mosteiro dos jerónimos encontra-se classificado como Monumento Nacional desde 1907. \n\n"+
-      "Foi classificado como património mundial pelo UNESCO, em 1983, juntamente com a Torre de Belém e considerado uma das 7 \n\n" +
-      "maravilhas de Portugal, em 2007. Tem, desde 2016, o estatuto de Panteão Nacional. Está localizado na freguesia de Belém \n\n" +
-      "(Município e Distrito Lisboa), região muito importante na época dos Descobrimentos, por ser de onde partiam os navios. \n\n" +
-      "Ponto culminante da arquitectura manuelina, este mosteiro é o mais notável conjunto monástico português do seu tempo e uma \n\n" +
-      "das principais igrejas-salão da Europa.Estreitamente ligado à Casa Real Portuguesa e à epopeia dos Descobrimentos, o \n\n" +
-      "Mosteiro dos Jerónimos foi, desde muito cedo, interiorizado como um dos símbolos da nação";
-
-      // Limpa o conteúdo existente
-      cardImagesElement.innerHTML = "";
-       
-      const images = imagesMap["Mosteiro dos Jeronimos"];
-
-      // Adicionando evento de clique ao ícone de play
-      playIconElement.addEventListener('click', () => {
-        window.location.href = 'mosteiro.html';
-      });
-
-      var index = 0;
-
-      // click nas imagens
-      images.forEach((image, index) => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.description;
-        img.setAttribute('data-description', image.description);
-        li.appendChild(img);
-        cardImagesElement.appendChild(li);
-
-        img.addEventListener('click', () => {
-          openModal(index, images);
+  
+        var index = 0;
+  
+        // click nas imagens
+        images.forEach((image, index) => {
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = image.src;
+          img.alt = image.description;
+          img.setAttribute('data-description', image.description);
+          li.appendChild(img);
+          cardImagesElement.appendChild(li);
+  
+          img.addEventListener('click', () => {
+            openModal(index, images);
+          });
         });
-      });
-
-      positionOverlayArea('10%', '10%', '80%', '45%', 'block');
-
-    } else if (currentTime >= 11 && currentTime < 15) {
-      cardTitleElement.textContent = "Mosteiro dos Jerónimos";
-      cardDescriptionElement.textContent = "O mosteiro dos jerónimos encontra-se classificado como Monumento Nacional desde 1907. \n\n"+
-      "Foi classificado como património mundial pelo UNESCO, em 1983, juntamente com a Torre de Belém e considerado uma das 7 \n\n" +
-      "maravilhas de Portugal, em 2007. Tem, desde 2016, o estatuto de Panteão Nacional. Está localizado na freguesia de Belém \n\n" +
-      "(Município e Distrito Lisboa), região muito importante na época dos Descobrimentos, por ser de onde partiam os navios. \n\n" +
-      "Ponto culminante da arquitectura manuelina, este mosteiro é o mais notável conjunto monástico português do seu tempo e uma \n\n" +
-      "das principais igrejas-salão da Europa.Estreitamente ligado à Casa Real Portuguesa e à epopeia dos Descobrimentos, o \n\n" +
-      "Mosteiro dos Jerónimos foi, desde muito cedo, interiorizado como um dos símbolos da nação";
-
-      // Limpa o conteúdo existente
-      cardImagesElement.innerHTML = "";
-       
-      const images = imagesMap["Mosteiro dos Jeronimos"];
-
-      // Adicionando evento de clique ao ícone de play
-      playIconElement.addEventListener('click', () => {
-        window.location.href = 'mosteiro.html';
-      });
-
-      var index = 0;
-
-      // click nas imagens
-      images.forEach((image, index) => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.description;
-        img.setAttribute('data-description', image.description);
-        li.appendChild(img);
-        cardImagesElement.appendChild(li);
-
-        img.addEventListener('click', () => {
-          openModal(index, images);
+  
+        positionOverlayArea('10%', '45%', '28%', '50%', 'block');
+  
+      } else if (currentTime >= 4 && currentTime < 8) {
+        cardTitleElement.textContent = "Parque das Nações";
+        cardDescriptionElement.textContent = "Parque das Nações é uma freguesia portuguesa do município de Lisboa, pertencente à Zona \n\n" +
+        "Leste da capital, com 5,44 km² de área e 22 382 habitantes (2021). Surgiu há cerca de 25 anos, sendo considerado uma das melhores \n\n" +
+        "zonas para se morar em Lisboa. Foi construído para receber a Expo 98. Este projeto de urbanização transformou uma zona \n\n" +
+        "degradada numa das areas mais modernas de Lisboa. Têm imensas opções de entreternimento, desde parques, museus, teleférico, \n\n" +
+        "centro comercial ou diversos restaurantes.";
+        
+         // Limpa o conteúdo existente
+         cardImagesElement.innerHTML = "";
+         
+         const images = imagesMap["Parque das Nacoes"];
+  
+         // Adicionando evento de clique ao ícone de play
+        playIconElement.addEventListener('click', () => {
+          window.location.href = 'parque_nacoes.html';
         });
-      });
-
-      positionOverlayArea('10%', '10%', '80%', '35%', 'block');
-
-    } else if (currentTime >= 15 && currentTime < 19) {
-      cardTitleElement.textContent = "Padrão dos Descobrimentos";
-      cardDescriptionElement.textContent = "O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de \n\n"+
-      "Lisboa, em Portugal. Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 por ocasião da \n\n" + 
-      "Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos portugueses. A réplica atual, \n\n" + 
-      "em betão e pedra, é posterior, tendo sido inaugurada em 1960. O monumento foi pensado inicialmente por Cottinelli Telmo como uma \n\n" +
-      "homenagem ao Infante D. Henrique. Por ocasião da Exposição do Mundo Português, em 1940, transformou-se em Padrão dos Descobrimentos, \n\n"+
-      "celebrando não apenas o Infante mas também os seus colaboradores e seguidores. Feito de materiais perecíveis, foi desmontado em \n\n" +
-      "1958 e reconstruido nos anos imediatos, em betão e pedra de lioz, por decisão de Salazar por ocasião do 5º centenário do \n\n" + 
-      "Infante. Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em cimento e pedra rosal de \n\n" + 
-      "Leiria, e as esculturas em calcário de Sintra.";
-
-      // Limpa o conteúdo existente
-      cardImagesElement.innerHTML = "";
-       
-      const images = imagesMap["Padrao dos Descobrimentos"];
-
-      // Adicionando evento de clique ao ícone de play
-      playIconElement.addEventListener('click', () => {
-        window.location.href = 'padrao_descobrimentos.html';
-      });
-
-      var index = 0;
-
-      // click nas imagens
-      images.forEach((image, index) => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.description;
-        img.setAttribute('data-description', image.description);
-        li.appendChild(img);
-        cardImagesElement.appendChild(li);
-
-        img.addEventListener('click', () => {
-          openModal(index, images);
+   
+         var index = 0;
+  
+        // click nas imagens
+        images.forEach((image, index) => {
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = image.src;
+          img.alt = image.description;
+          img.setAttribute('data-description', image.description);
+          li.appendChild(img);
+          cardImagesElement.appendChild(li);
+  
+          img.addEventListener('click', () => {
+            openModal(index, images);
+          });
         });
-      });
-
-      positionOverlayArea('10%', '30%', '20%', '40%', 'block');
-
-    } else if (currentTime >= 19 && currentTime <= 22) {
-      cardTitleElement.textContent = "Padrão dos Descobrimentos1";
-      cardDescriptionElement.textContent = "O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de \n\n"+
-      "Lisboa, em Portugal. Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 por ocasião da \n\n" + 
-      "Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos portugueses. A réplica atual, \n\n" + 
-      "em betão e pedra, é posterior, tendo sido inaugurada em 1960. O monumento foi pensado inicialmente por Cottinelli Telmo como uma \n\n" +
-      "homenagem ao Infante D. Henrique. Por ocasião da Exposição do Mundo Português, em 1940, transformou-se em Padrão dos Descobrimentos, \n\n"+
-      "celebrando não apenas o Infante mas também os seus colaboradores e seguidores. Feito de materiais perecíveis, foi desmontado em \n\n" +
-      "1958 e reconstruido nos anos imediatos, em betão e pedra de lioz, por decisão de Salazar por ocasião do 5º centenário do \n\n" + 
-      "Infante. Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em cimento e pedra rosal de \n\n" + 
-      "Leiria, e as esculturas em calcário de Sintra.";
-
-      // Limpa o conteúdo existente
-      cardImagesElement.innerHTML = "";
-       
-      const images = imagesMap["Padrao dos Descobrimentos"];
-
-      // Adicionando evento de clique ao ícone de play
-      playIconElement.addEventListener('click', () => {
-        window.location.href = 'padrao_descobrimentos.html';
-      });
-
-      var index = 0;
-
-      // click nas imagens
-      images.forEach((image, index) => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.description;
-        img.setAttribute('data-description', image.description);
-        li.appendChild(img);
-        cardImagesElement.appendChild(li);
-
-        img.addEventListener('click', () => {
-          openModal(index, images);
+  
+        positionOverlayArea('10%', '20%', '60%', '40%', 'block');
+  
+      } else if (currentTime >= 8 && currentTime < 11) {
+        cardTitleElement.textContent = "Mosteiro dos Jerónimos";
+        cardDescriptionElement.textContent = "O mosteiro dos jerónimos encontra-se classificado como Monumento Nacional desde 1907. \n\n"+
+        "Foi classificado como património mundial pelo UNESCO, em 1983, juntamente com a Torre de Belém e considerado uma das 7 \n\n" +
+        "maravilhas de Portugal, em 2007. Tem, desde 2016, o estatuto de Panteão Nacional. Está localizado na freguesia de Belém \n\n" +
+        "(Município e Distrito Lisboa), região muito importante na época dos Descobrimentos, por ser de onde partiam os navios. \n\n" +
+        "Ponto culminante da arquitectura manuelina, este mosteiro é o mais notável conjunto monástico português do seu tempo e uma \n\n" +
+        "das principais igrejas-salão da Europa.Estreitamente ligado à Casa Real Portuguesa e à epopeia dos Descobrimentos, o \n\n" +
+        "Mosteiro dos Jerónimos foi, desde muito cedo, interiorizado como um dos símbolos da nação";
+  
+        // Limpa o conteúdo existente
+        cardImagesElement.innerHTML = "";
+         
+        const images = imagesMap["Mosteiro dos Jeronimos"];
+  
+        // Adicionando evento de clique ao ícone de play
+        playIconElement.addEventListener('click', () => {
+          window.location.href = 'mosteiro.html';
         });
-      });
-
-      positionOverlayArea('15%', '45%', '10%', '40%', 'block');
-
-    } else {
-      overlayArea.style.display = 'none';
-    }
+  
+        var index = 0;
+  
+        // click nas imagens
+        images.forEach((image, index) => {
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = image.src;
+          img.alt = image.description;
+          img.setAttribute('data-description', image.description);
+          li.appendChild(img);
+          cardImagesElement.appendChild(li);
+  
+          img.addEventListener('click', () => {
+            openModal(index, images);
+          });
+        });
+  
+        positionOverlayArea('10%', '10%', '80%', '45%', 'block');
+  
+      } else if (currentTime >= 11 && currentTime < 15) {
+        cardTitleElement.textContent = "Mosteiro dos Jerónimos";
+        cardDescriptionElement.textContent = "O mosteiro dos jerónimos encontra-se classificado como Monumento Nacional desde 1907. \n\n"+
+        "Foi classificado como património mundial pelo UNESCO, em 1983, juntamente com a Torre de Belém e considerado uma das 7 \n\n" +
+        "maravilhas de Portugal, em 2007. Tem, desde 2016, o estatuto de Panteão Nacional. Está localizado na freguesia de Belém \n\n" +
+        "(Município e Distrito Lisboa), região muito importante na época dos Descobrimentos, por ser de onde partiam os navios. \n\n" +
+        "Ponto culminante da arquitectura manuelina, este mosteiro é o mais notável conjunto monástico português do seu tempo e uma \n\n" +
+        "das principais igrejas-salão da Europa.Estreitamente ligado à Casa Real Portuguesa e à epopeia dos Descobrimentos, o \n\n" +
+        "Mosteiro dos Jerónimos foi, desde muito cedo, interiorizado como um dos símbolos da nação";
+  
+        // Limpa o conteúdo existente
+        cardImagesElement.innerHTML = "";
+         
+        const images = imagesMap["Mosteiro dos Jeronimos"];
+  
+        // Adicionando evento de clique ao ícone de play
+        playIconElement.addEventListener('click', () => {
+          window.location.href = 'mosteiro.html';
+        });
+  
+        var index = 0;
+  
+        // click nas imagens
+        images.forEach((image, index) => {
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = image.src;
+          img.alt = image.description;
+          img.setAttribute('data-description', image.description);
+          li.appendChild(img);
+          cardImagesElement.appendChild(li);
+  
+          img.addEventListener('click', () => {
+            openModal(index, images);
+          });
+        });
+  
+        positionOverlayArea('10%', '10%', '80%', '35%', 'block');
+  
+      } else if (currentTime >= 15 && currentTime < 19) {
+        cardTitleElement.textContent = "Padrão dos Descobrimentos";
+        cardDescriptionElement.textContent = "O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de \n\n"+
+        "Lisboa, em Portugal. Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 por ocasião da \n\n" + 
+        "Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos portugueses. A réplica atual, \n\n" + 
+        "em betão e pedra, é posterior, tendo sido inaugurada em 1960. O monumento foi pensado inicialmente por Cottinelli Telmo como uma \n\n" +
+        "homenagem ao Infante D. Henrique. Por ocasião da Exposição do Mundo Português, em 1940, transformou-se em Padrão dos Descobrimentos, \n\n"+
+        "celebrando não apenas o Infante mas também os seus colaboradores e seguidores. Feito de materiais perecíveis, foi desmontado em \n\n" +
+        "1958 e reconstruido nos anos imediatos, em betão e pedra de lioz, por decisão de Salazar por ocasião do 5º centenário do \n\n" + 
+        "Infante. Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em cimento e pedra rosal de \n\n" + 
+        "Leiria, e as esculturas em calcário de Sintra.";
+  
+        // Limpa o conteúdo existente
+        cardImagesElement.innerHTML = "";
+         
+        const images = imagesMap["Padrao dos Descobrimentos"];
+  
+        // Adicionando evento de clique ao ícone de play
+        playIconElement.addEventListener('click', () => {
+          window.location.href = 'padrao_descobrimentos.html';
+        });
+  
+        var index = 0;
+  
+        // click nas imagens
+        images.forEach((image, index) => {
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = image.src;
+          img.alt = image.description;
+          img.setAttribute('data-description', image.description);
+          li.appendChild(img);
+          cardImagesElement.appendChild(li);
+  
+          img.addEventListener('click', () => {
+            openModal(index, images);
+          });
+        });
+  
+        positionOverlayArea('10%', '30%', '20%', '40%', 'block');
+  
+      } else if (currentTime >= 19 && currentTime <= 22) {
+        cardTitleElement.textContent = "Padrão dos Descobrimentos1";
+        cardDescriptionElement.textContent = "O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de \n\n"+
+        "Lisboa, em Portugal. Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 por ocasião da \n\n" + 
+        "Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos portugueses. A réplica atual, \n\n" + 
+        "em betão e pedra, é posterior, tendo sido inaugurada em 1960. O monumento foi pensado inicialmente por Cottinelli Telmo como uma \n\n" +
+        "homenagem ao Infante D. Henrique. Por ocasião da Exposição do Mundo Português, em 1940, transformou-se em Padrão dos Descobrimentos, \n\n"+
+        "celebrando não apenas o Infante mas também os seus colaboradores e seguidores. Feito de materiais perecíveis, foi desmontado em \n\n" +
+        "1958 e reconstruido nos anos imediatos, em betão e pedra de lioz, por decisão de Salazar por ocasião do 5º centenário do \n\n" + 
+        "Infante. Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em cimento e pedra rosal de \n\n" + 
+        "Leiria, e as esculturas em calcário de Sintra.";
+  
+        // Limpa o conteúdo existente
+        cardImagesElement.innerHTML = "";
+         
+        const images = imagesMap["Padrao dos Descobrimentos"];
+  
+        // Adicionando evento de clique ao ícone de play
+        playIconElement.addEventListener('click', () => {
+          window.location.href = 'padrao_descobrimentos.html';
+        });
+  
+        var index = 0;
+  
+        // click nas imagens
+        images.forEach((image, index) => {
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = image.src;
+          img.alt = image.description;
+          img.setAttribute('data-description', image.description);
+          li.appendChild(img);
+          cardImagesElement.appendChild(li);
+  
+          img.addEventListener('click', () => {
+            openModal(index, images);
+          });
+        });
+  
+        positionOverlayArea('15%', '45%', '10%', '40%', 'block');
+  
+      } else {
+        overlayArea.style.display = 'none';
+      }
   });
 
   function positionOverlayArea(top, left, width, height, display) {
-    overlayArea.style.top = top;
-    overlayArea.style.left = left;
-    overlayArea.style.width = width;
-    overlayArea.style.height = height;
-    overlayArea.style.display = display;
+      overlayArea.style.top = top;
+      overlayArea.style.left = left;
+      overlayArea.style.width = width;
+      overlayArea.style.height = height;
+      overlayArea.style.display = display;
   }
 
   overlayArea.addEventListener('mouseenter', (event) => {
@@ -586,43 +558,43 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   overlayArea.addEventListener('mouseleave', () => {
-    hideHoverMessage();
+      hideHoverMessage();
   });
 
   overlayArea.addEventListener('click', () => {
-    cardContainer.style.display = 'block';
-    video.pause();
+      cardContainer.style.display = 'block';
+      video.pause();
   });
 
   function showHoverMessage(event, message) {
-    const hoverMessage = document.createElement('div');
-    hoverMessage.textContent = message;
-    hoverMessage.classList.add('hover-message');
-    document.body.appendChild(hoverMessage);
+      const hoverMessage = document.createElement('div');
+      hoverMessage.textContent = message;
+      hoverMessage.classList.add('hover-message');
+      document.body.appendChild(hoverMessage);
 
-    updateHoverMessagePosition(event);
+      updateHoverMessagePosition(event);
 
-    function updateHoverMessagePosition(event) {
-      hoverMessage.style.top = event.clientY + 'px';
-      hoverMessage.style.left = event.clientX + 'px';
-    }
+      function updateHoverMessagePosition(event) {
+          hoverMessage.style.top = event.clientY + 'px';
+          hoverMessage.style.left = event.clientX + 'px';
+      }
 
-    document.addEventListener('mousemove', updateHoverMessagePosition);
+      document.addEventListener('mousemove', updateHoverMessagePosition);
 
-    setTimeout(() => {
-      hoverMessage.remove();
-      document.removeEventListener('mousemove', updateHoverMessagePosition);
-    }, 5000);
+      setTimeout(() => {
+          hoverMessage.remove();
+          document.removeEventListener('mousemove', updateHoverMessagePosition);
+      }, 5000);
   }
 
   function hideHoverMessage() {
-    const hoverMessage = document.querySelector('.hover-message');
-    if (hoverMessage) {
-      hoverMessage.remove();
-    }
+      const hoverMessage = document.querySelector('.hover-message');
+      if (hoverMessage) {
+          hoverMessage.remove();
+      }
   }
 
   video.addEventListener('play', () => {
-    cardContainer.style.display = 'none';
+      cardContainer.style.display = 'none';
   });
 });

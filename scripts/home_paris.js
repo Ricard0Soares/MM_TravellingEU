@@ -176,17 +176,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function highlightCard(currentTime) {
         const cards = document.querySelectorAll('.card');
+        
         let highlightedCard = null;
         
-        // find highlighted card
-        cards.forEach(card => {
-            const cardTime = parseFloat(card.getAttribute('data-time'));
-            if (currentTime >= cardTime && currentTime < cardTime + 2) {
-                highlightedCard = card;
+        for (let i = 0; i < frames.length - 1; i++) {
+            const start = frames[i];
+            const end = frames[i + 1];
+            
+            if (currentTime >= start && currentTime < end) {
+                highlightedCard = cards[i];
+                break;
             }
-        });
-      
-        // if finds card to highlight, highlights
+        }
+        
+        if (currentTime >= frames[frames.length - 1]) {
+            highlightedCard = cards[frames.length - 1];
+        }
+        
         if (highlightedCard) {
             cards.forEach(card => {
                 if (card === highlightedCard) {
