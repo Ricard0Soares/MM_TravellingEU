@@ -25,25 +25,34 @@
     </nav>
 
     <div class="howitworks">
-        <h1>Como funciona?</h1>
+        <h1 class="fade-in">Como funciona?</h1>
         
-        <div class="step">
+        <div class="step fade-in">
             <img src="../../images/map.png" alt="Image 1">
             <p>Aceda virtualmente às centenas de destinos turísticos que temos disponíveis!</p>
         </div>
         
-        <div class="step">
+        <div class="step fade-in">
             <img src="../../images/search.png" alt="Image 2">
             <p>Explore os seus destinos e locais favoritos e obtenha mais informações sobre eles!</p>
         </div>
         
-        <div class="step">
+        <div class="step fade-in">
             <img src="../../images/baggage.png" alt="Image 3">
             <p>Obtenha ajuda para escolher as suas próximas férias na vida real!</p>
         </div>
     </div>
 
     <script src="../../scripts/theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.3}s`;
+                element.classList.add('fade-in-animation');
+            });
+        });
+    </script>
     
     
 

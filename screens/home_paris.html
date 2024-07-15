@@ -31,7 +31,7 @@
 
         <div class="second-ellipse-container">
             
-            <div class="image-container">
+            <div id="image-container" class="image-container">
                 <p>PARIS</p>
                 <img src="../images/paris.png" alt="lisboa">
                 <span>Paris é a capital e a mais populosa cidade da França, com uma população estimada, em 2020, de 2 148 271 habitantes
@@ -89,6 +89,8 @@
     <script>
         const cardContainer = document.getElementById('cardContainer');
         const secondEllipseContainer = document.querySelector('.second-ellipse-container');
+        const imageContainer = document.getElementById('image-container');
+        const thumbnails = document.getElementById('thumbnails');
         const overlayArea = document.getElementById('overlayArea');
         const myVideo = document.getElementById('myVideo');
         const closeCardButton = document.getElementById('closeCard');
@@ -98,12 +100,16 @@
             cardContainer.style.display = 'block';
             secondEllipseContainer.classList.add('blur'); 
             myVideo.classList.add('blur');
+            imageContainer.classList.add('blur');
+            thumbnails.classList.add('blur');
         }
         //fechar o cardContainer e remover o desfoque
         function closeCardContainer() {
             cardContainer.style.display = 'none';
             secondEllipseContainer.classList.remove('blur');
             myVideo.classList.remove('blur');
+            imageContainer.classList.remove('blur');
+            thumbnails.classList.remove('blur');
         }
 
         //abrir o cardContainer quando overlayArea é clicada

@@ -77,6 +77,27 @@ body{
     transform-origin: bottom left;
 }
 
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-animation {
+    animation: fadeIn 1s forwards;
+}
+
 
 /* Default theme */
 body.default-theme {
