@@ -349,6 +349,29 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-animation {
+    animation: fadeIn 1s forwards;
+}
+
+
+
 .default-theme .image-container p{
     color:white;
 }
