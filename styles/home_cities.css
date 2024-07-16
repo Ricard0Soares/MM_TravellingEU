@@ -1,0 +1,381 @@
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;   
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+.search-container {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.search-bar {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 500px;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+.intro-text {
+    margin-top: 20px;
+    font-size: 30px;
+    color: white;
+}
+
+.content-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 20px;
+    margin-top: 120px;
+}
+
+#googleMap{
+    flex: 1;
+    margin-right: 20px;
+}
+
+.second-ellipse-container {
+    flex: 2;
+    border-radius: 145px;
+    background-color: rgba(128, 116, 116, 0.5);
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1500px;
+    max-height: 1100px;
+    padding: 20px;
+}
+
+.image-container,
+.video-container {
+    position: relative;
+    text-align: center;
+    max-height: px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-container img{
+    width: 40%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.image-container {
+    flex: 1 1 300px; 
+    max-width: 300px; 
+    margin: 10px;
+    text-align: center;
+}
+
+.video-container {
+    flex: 2 1 600px; 
+    max-width: 600px; 
+    margin: 10px;
+    position: relative;
+}
+
+
+#myVideo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-radius: 60px;
+}
+
+#myVideo.blur {
+    filter: blur(10px); 
+}
+
+#image-container.blur{
+    filter:blur(10px);
+}
+
+#thumbnails.blur{
+    filter: blur(10px);
+}
+
+
+.image-container span {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+    word-wrap: break-word;
+    color: white;
+}
+
+.image-container p{
+    font-size:30px;
+    color:black;
+    font-weight: bold;
+}
+
+.video-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#thumbnails{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.thumbnail{
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.active-card {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
+
+.card-body {
+    padding: 0.1rem; /* reduce space */
+}
+.card-text {
+    margin-top: 0.1rem; /*reduce space */
+}
+
+.info-card {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.card-container {
+    margin-top: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 80%;
+    z-index: 100;
+    display: none;
+    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 101; /* Colocado acima do z-index do cardContainer */
+}
+
+.close-button:hover {
+    color: red;
+}
+
+.image-list-container {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.image-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 10px;
+    width:400px;
+}
+
+.image-list li {
+    flex: 1 0 auto; /* Allow images to flex and prevent shrinking */
+    margin: 0 10px;
+}
+
+.image-list img {
+    width: 100px; 
+    height: 100px; 
+    border-radius: 10px; 
+    object-fit: cover;
+}
+
+.overlay-area {
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.0);
+    z-index: 2;
+    display: none;
+}
+
+.hover-message {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; /* scroll */
+    background-color: rgba(0,0,0,0.9);
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    height: 80%;
+    max-width: 700px;
+    border-radius: 10px;
+}
+
+/* Caption of Modal Image (Image Text) */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption { 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.modal-description {
+    color: #fff;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 700px;
+    font-size: 18px;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Navigation arrows */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-animation {
+    animation: fadeIn 1s forwards;
+}
+
+
+
+.default-theme .image-container p{
+    color:white;
+}
+
+.dark-theme .image-container p{
+    color:white;
+}

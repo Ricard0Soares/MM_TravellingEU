@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../styles/home_cities.css">
+    <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
+
+</head>
+<body onload="myMap(38.71667, -9.139, 6)">
+    <nav class="navbar">
+        <div class="logo"><a href="home.html">TravellingEU</a></div>
+        <ul class="nav-links">
+            <li><a href="navLinks/destinations.html">Destinos</a></li>
+            <li><a href="videos/videos.html">Vídeos</a></li>
+            <li><a href="navLinks/howitworks.html">Como funciona?</a></li>
+            <li><a href="navLinks/aboutus.html">Sobre nós</a></li>
+            <li class="dropdown">
+                <select id="theme-selector" onchange="switchTheme(this.value)">
+                    <option value="default">Default</option>
+                    <option value="dark">Escuro</option>
+                    <option value="green">Verde</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-container">
+        <div class="fade-in" id="googleMap" style="width:30%;height: 500px;"></div>
+
+        <div class="second-ellipse-container fade-in">
+            
+            <div id="image-container" class="image-container">
+                <p>LISBOA</p>
+                <img src="../images/lisboa.png" alt="lisboa">
+                <span>Lisboa é a capital e maior cidade de Portugal, com uma população estimada 
+                    de 548.703 habitantes em 2022 dentro dos seus limites administrativos numa 
+                    área de cerca de 100 quilómetros quadrados.
+                    É uma cidade bastante visitada, com bastantes pontos turísticos a ter em conta, como 
+                    a <a href="torre_belem.html">Torre de Belém</a>, localizada na margem do Rio Tejo, o 
+                    <a href="parque_nacoes.html">Parque das Nações</a>, onde se realizou a Expo '98, 
+                    o <a href="mosteiro.html">Mosteiro dos Jerónimos</a>, Património Mundial pela UNESCO, ou, entre outros,
+                    o <a href="padrao_descobrimentos.html">Padrão dos Descobrimentos</a>, homenagem aos Descobrimentos Portugueses.
+                </span>
+            </div>     
+    
+            <div id="video-container" class="video-container">
+                <video id="myVideo" controls muted>
+                    <source src="../videos/lisboa.mp4" type="video/mp4">
+                </video>
+
+                
+
+                <div id="overlayArea" class="overlay-area"></div>
+
+
+                <canvas id="overlayCanvas"></canvas>
+
+                <div id="infoCard" class="info-card"></div>
+
+                <div id="cardContainer" class="card-container">
+                    <span id="closeCard" class="close-button">&times;</span>
+                    <h2 id="cardTitle">
+                        
+                    </h2>
+                    <img id="playIcon" src="../images/clip1.png" alt="Play Icon" style="width: 24px; height: 24px; align-items: center; margin-bottom: 5px;">
+                    
+                    <p id="cardDescription"></p>
+                    <div class="image-list-container">
+                        <ul id="cardImages" class="image-list">
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Modal structure -->
+                <div id="imageModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <div id="modalDescription" class="modal-description"></div>
+                    <a class="prev">&lt;</a>
+                    <a class="next">&gt;</a>
+                </div>
+
+                
+            </div>
+
+            <div id="thumbnails" class="thumbnails"></div>
+            
+        </div>
+    </div>
+
+    <script src="../scripts/home_lisboa.js"></script>
+
+    <script>
+        const cardContainer = document.getElementById('cardContainer');
+        const secondEllipseContainer = document.querySelector('.second-ellipse-container');
+        const overlayArea = document.getElementById('overlayArea');
+        const myVideo = document.getElementById('myVideo');
+        const closeCardButton = document.getElementById('closeCard');
+        const imageContainer = document.getElementById('image-container');
+        const thumbnails = document.getElementById('thumbnails');
+
+        //abrir o cardContainer e desfocar o second-ellipse-container
+        function openCardContainer() {
+            cardContainer.style.display = 'block';
+            secondEllipseContainer.classList.add('blur'); 
+            myVideo.classList.add('blur');
+            imageContainer.classList.add('blur');
+            thumbnails.classList.add('blur');
+        }
+
+        // fechar o cardContainer e remover o desfoque
+        function closeCardContainer() {
+            cardContainer.style.display = 'none';
+            secondEllipseContainer.classList.remove('blur');
+            myVideo.classList.remove('blur');
+            imageContainer.classList.remove('blur');
+            thumbnails.classList.remove('blur');
+        }
+
+        //abrir o cardContainer quando overlayArea é clicada
+        overlayArea.addEventListener('click', openCardContainer);
+
+        //fechar o cardContainer quando o botão de fechar é clicado
+        closeCardButton.addEventListener('click', closeCardContainer);
+
+        
+    </script>
+        
+        
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap"></script>
+    <script src="../scripts/map.js"></script>
+    <script src="../scripts/searchbarHome.js"></script>
+    <script src="../scripts/theme.js"></script>
+    <!--<script src="./settings.js"></script>-->
+</body>
+</html>

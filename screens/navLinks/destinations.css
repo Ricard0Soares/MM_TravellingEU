@@ -1,0 +1,138 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;   
+    color: #000000;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    cursor: default;
+}
+
+.search-container {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.search-bar {
+    padding: 17px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 500px;
+    background-image: url('../../images/image_2.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    margin-top: 30px;
+}
+
+.destinations {
+    margin-top: 30px;
+    font-size: 30px;
+    color: white;
+}
+
+.ellipse-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 300px;
+    width: 1400px; 
+    margin: 0 auto;
+    background-color: rgba(128, 116, 116, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+}
+
+.image-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.image-container img {
+    max-width: 200px;
+    height: 200px;
+}
+
+.image-container span {
+    margin-top: 5px;
+}
+
+.nav-links a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Define a animação de fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplica a animação de fade-in aos elementos com a classe .fade-in */
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+
+/* Default theme */
+body.default-theme {
+    background-image: url('../../images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+}
+
+/* Dark theme */
+body.dark-theme {
+    background-color: #121212;
+    background-image: none;
+    color: #ffffff;
+}
+
+/* green theme */
+body.green-theme {
+    background-color: #d5ffd5; /* green background */
+    background-image: none;
+    color: #ffffff;
+}
+
+body.green-theme .destinations{
+    color:black;
+}
+
+
+
+

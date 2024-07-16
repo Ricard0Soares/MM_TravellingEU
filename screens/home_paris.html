@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../styles/home_cities.css">
+    <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
+
+</head>
+<body onload="myMap(48.8566, 2.3522, 6)">
+    <nav class="navbar">
+        <div class="logo"><a href="home.html">TravellingEU</a></div>
+        <ul class="nav-links">
+            <li><a href="navLinks/destinations.html">Destinos</a></li>
+            <li><a href="videos/videos.html">Vídeos</a></li>
+            <li><a href="navLinks/howitworks.html">Como funciona?</a></li>
+            <li><a href="navLinks/aboutus.html">Sobre nós</a></li>
+            <li class="dropdown">
+                <select id="theme-selector" onchange="switchTheme(this.value)">
+                    <option value="default">Default</option>
+                    <option value="dark">Escuro</option>
+                    <option value="green">Verde</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-container">
+        <div class="fade-in" id="googleMap" style="width:30%;height: 500px;"></div>
+
+        <div class="second-ellipse-container fade-in">
+            
+            <div id="image-container" class="image-container">
+                <p>PARIS</p>
+                <img src="../images/paris.png" alt="lisboa">
+                <span>Paris é a capital e a mais populosa cidade da França, com uma população estimada, em 2020, de 2 148 271 habitantes
+                     numa área de 105 quilômetros quadrados.
+                     Desde o século XVII, Paris é um dos principais centros de finanças, diplomacia, comércio, moda, ciência e artes da 
+                     Europa. A cidade de Paris é o centro e sede de governo da região administrativa de Ilha de França, que tem uma 
+                     população estimada em 2020 de 12 278 210 habitantes, ou cerca de 18% da população da França.
+                     De acordo com a Pesquisa de Custo de Vida da Economist Intelligence Unit em 2018, Paris era a segunda cidade 
+                     mais cara do mundo.</span>
+            </div>     
+    
+            <div id="video-container" class="video-container">
+                <video id="myVideo" controls muted>
+                    <source src="../videos/paris.mp4" type="video/mp4">
+                </video>
+
+                <div id="overlayArea" class="overlay-area"></div>
+
+
+                <canvas id="overlayCanvas"></canvas>
+
+                <div id="infoCard" class="info-card"></div>
+
+                <div id="cardContainer" class="card-container">
+                    <span id="closeCard" class="close-button">&times;</span>
+                    <h2 id="cardTitle"></h2>
+                    <p id="cardDescription"></p>
+                    <div class="image-list-container">
+                        <ul id="cardImages" class="image-list">
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Modal structure -->
+                <div id="imageModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <div id="modalDescription" class="modal-description"></div>
+                    <a class="prev">&lt;</a>
+                    <a class="next">&gt;</a>
+                </div>
+            </div>
+
+            <div id="thumbnails" class="thumbnails">
+
+    
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="../scripts/home_paris.js"></script>
+
+    <script>
+        const cardContainer = document.getElementById('cardContainer');
+        const secondEllipseContainer = document.querySelector('.second-ellipse-container');
+        const imageContainer = document.getElementById('image-container');
+        const thumbnails = document.getElementById('thumbnails');
+        const overlayArea = document.getElementById('overlayArea');
+        const myVideo = document.getElementById('myVideo');
+        const closeCardButton = document.getElementById('closeCard');
+
+        //abrir o cardContainer e desfocar o second-ellipse-container
+        function openCardContainer() {
+            cardContainer.style.display = 'block';
+            secondEllipseContainer.classList.add('blur'); 
+            myVideo.classList.add('blur');
+            imageContainer.classList.add('blur');
+            thumbnails.classList.add('blur');
+        }
+        //fechar o cardContainer e remover o desfoque
+        function closeCardContainer() {
+            cardContainer.style.display = 'none';
+            secondEllipseContainer.classList.remove('blur');
+            myVideo.classList.remove('blur');
+            imageContainer.classList.remove('blur');
+            thumbnails.classList.remove('blur');
+        }
+
+        //abrir o cardContainer quando overlayArea é clicada
+        overlayArea.addEventListener('click', openCardContainer);
+
+        //fechar o cardContainer quando o botão de fechar é clicado
+        closeCardButton.addEventListener('click', closeCardContainer);
+
+        </script>
+        
+        
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap"></script>
+    <script src="../scripts/map.js"></script>
+    <script src="../scripts/searchbarHome.js"></script>
+    <script src="../scripts/theme.js"></script>
+    <!--<script src="./settings.js"></script>-->
+</body>
+</html>

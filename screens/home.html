@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravellingEU</title>
+    <link rel="stylesheet" type="text/css" href="../styles/home.css">
+    <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
+
+</head>
+<body onload="myMap(38.71667, -9.139, 3)">
+    <nav class="navbar">
+        <div class="logo"><a href="home.html">TravellingEU</a></div>
+        <ul class="nav-links">
+            <li><a href="navLinks/destinations.html">Destinos</a></li>
+            <li><a href="videos/videos.html">Vídeos</a></li>
+            <li><a href="navLinks/howitworks.html">Como funciona?</a></li>
+            <li><a href="navLinks/aboutus.html">Sobre nós</a></li>
+            <li class="dropdown">
+                <select id="theme-selector" onchange="switchTheme(this.value)">
+                    <option value="default">Default</option>
+                    <option value="dark">Escuro</option>
+                    <option value="green">Verde</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="search-container">
+        <div class="intro-text">A Europa na Palma da sua Mão</div>
+        <input type="search" onchange="navigateToDestination()" placeholder="Search..." 
+                list="search-suggestions" autocomplete="on" class="search-bar">
+        <datalist id="search-suggestions">
+            <option value="Lisboa">
+            <option value="Madrid">
+            <option value="Paris">
+            <option value="Mosteiro dos Jerónimos">
+            <option value="Padrão dos Descobrimentos">
+            <option value="Parque das Nações">
+            <option value="Torre de Belém">
+        </datalist>
+        
+    </div>
+
+    <div id="googleMap" style="width: 70%; height: 350px; margin-top: 1px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto;"></div>
+
+    <script src="../scripts/map.js"></script>
+    <!--<script src="../scripts/tooltip.js"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap" defer></script>
+    <script src="../scripts/searchbarHome.js"></script>
+    <script src="../scripts/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../styles/monumentos.css">
+    <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
+</head>
+<body onload="myMap(38.697056, -9.206528, 12)">
+    <nav class="navbar">
+        <div class="logo"><a href="home.html">TravellingEU</a></div>
+        <ul class="nav-links">
+            <li><a href="navLinks/destinations.html">Destinos</a></li>
+            <li><a href="videos/videos.html">Vídeos</a></li>
+            <li><a href="navLinks/howitworks.html">Como funciona?</a></li>
+            <li><a href="navLinks/aboutus.html">Sobre nós</a></li>
+            <li class="dropdown">
+                <select id="theme-selector" onchange="switchTheme(this.value)">
+                    <option value="default">Default</option>
+                    <option value="dark">Escuro</option>
+                    <option value="green">Verde</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="centered-title fade-in">
+        <h1>Mosteiro dos Jerónimos</h1>
+        <button id="toggleContainer">Ver Livro do Mosteiro</button>
+    </div>  
+
+    <div class="content fade-in">
+        <div class="video-container">
+            <video id="myVideo" controls>
+                <source src="../videos/mosteiro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div id="overlay" class="video-overlay" onclick="updateOverlayContent()">
+                <img id="myGif" src="../images/question.gif" alt="Help">
+                <span class="hoverText">Saber mais sobre a Introdução!</span>
+            </div>
+
+        </div>
+        <div class="index-container">
+            <h2>Índice de Conteúdos</h2>
+            <ul>
+                <li><a href="#" id="section1" data-time="0">1. Introdução</a></li>
+                <li><a href="#" id="section2" data-time="13">2. Ermida de Santa Maria de Belém - Antes do Mosteiro</a></li>
+                <li><a href="#" id="section3" data-time="20">3. Motivação para a construção</a></li>
+                <li><a href="#" id="section4" data-time="28">4. Portal Sul</a></li>
+                <li><a href="#" id="section5" data-time="41">5. Igreja de Santa Maria de Belém, símbolo da arquitetura</a></li>
+                <li><a href="#" id="section6" data-time="53">6. Túmulos de Vasco da Gama e Camões</a></li>
+                <li><a href="#" id="section7" data-time="63">7. Claustro</a></li>
+                <li><a href="#" id="section8" data-time="78">8. Túmulo de Fernando Pessoa</a></li>
+
+            </ul>
+        </div>
+
+        <div class="teste-container">
+            <div class="page" id="page1">
+                <h2>Mosteiro dos Jerónimos</h2>
+                <h3>Introdução</h3>
+                <p>
+                    O mosteiro dos jerónimos encontra-se classificado como Monumento Nacional desde 1907. Foi classificado como 
+                    património mundial pelo UNESCO, em 1983, juntamente com a <a href="torre_belem.html">Torre de Belém</a> e 
+                    considerado uma das 7 maravilhas de Portugal, em 2007. Tem, desde 2016, o estatuto de Panteão Nacional.
+                    <img id="clip1" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+                <p>
+                    Está localizado na freguesia de Belém (Município e Distrito de <a href="home_lisboa.html">Lisboa</a>, em Portugal), 
+                    região muito importante na época dos Descobrimentos, por ser de onde partiam os navios.
+                    <img id="clip2" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+                <p>Ponto culminante da arquitectura manuelina, este mosteiro é o mais notável conjunto monástico português do seu 
+                    tempo e uma das principais igrejas-salão da Europa.</p>
+                <p>Estreitamente ligado à Casa Real Portuguesa e à epopeia dos Descobrimentos, o Mosteiro dos Jerónimos foi, desde 
+                    muito cedo, "interiorizado como um dos símbolos da nação"</p>
+            </div>
+
+            <div class="page" id="page2" style="display: none;">
+                <h2>Mosteiro dos Jerónimos</h2>
+                <h3>
+                    Antes do Mosteiro - Ermida de Santa Maria de Belém
+                    <img id="clip3" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </h3>
+                <p>O Restelo, zona onde se encontra atualmente o Mosteiro, cresceu sob o impulso do comércio marítimo e da produção 
+                    naval, que viria a ter grande importância estratégica e logística no que se refere à protecção das vias marítimas 
+                    portuguesas, transformando-se posteriormente num grande porto comercial e abrigo para os navegantes.</p>
+                <p>A Conquista de Ceuta (1415), das Índias e costa da Africa deram grande impulso à expansão marítima portuguesa 
+                    e consequentemente ao crescimento deste porto, então denominado Restelo. Entretanto, tal crescimento não foi 
+                    acompanhado pelo desenvolvimento das infraestruturas necessárias, o que torna a população, já massacrada pelas 
+                    dificuldades em alto mar, mais vulnerável às doenças.</p>
+                <p>Para atender a estas novas demandas o Infante Dom Henrique, em 1452, ordenou a construção da Ermida de Santa Maria 
+                    de Belém e ainda serviços de canalização de água, casas para habitação do presbitério e terrenos para produção 
+                    agrícola.</p>
+                <p>Nessa igreja, os grandes navegadores como Pedro Álvares Cabral, Vasco da Gama e outros, faziam vigílias antes de 
+                    partirem para as suas grandes viagens marítimas.</p>
+            </div>
+            <div class="page" id="page3" style="display: none;">
+                <h2>Mosteiro dos Jerónimos</h2>
+                <h3>
+                    Construção do Mosteiro
+                    <img id="clip4" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </h3>
+                <p>Em 1496, ainda antes da descoberta do caminho marítimo para a Índia por Vasco da Gama, D. Manuel I fez um pedido 
+                    à Santa Sé para que lhe fosse concedida autorização para se erigir um grande mosteiro no lugar da velha ermida da 
+                    Ordem de Cristo à entrada de Lisboa, junto às margens do Tejo. 
+                    Tendo recebido essa autorização em 23 de Junho, do mesmo ano, pela bula "Eximiae devotionis" expedida pelo papa 
+                    Alexandre VI</p>
+                <p>O mosteiro deveria ter capacidade para albergar 100 religiosos e onde deveria ser dada continuidade aos serviços 
+                    públicos anteriormente prestados aos navegantes pela Ordem de Cristo.</p>
+                <p>A construção iniciou-se em 1501, para celebrar o retorno de Vasco da Gama das índias e demorou cerca de 
+                    100 anos a ser finalizada.</p>
+            </div>
+
+            <div class="page" id="page4" style="display: none;">
+                <h2>Mosteiro dos Jerónimos</h2>
+                <h3>
+                    Portal Sul
+                    <img id="clip5" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </h3>
+                <p>Construído ao longo de dois anos (1517, 1518) por João de Castilho e seus oficiais, o Portal sul é uma das peças 
+                    mais ricas da arquitetura portuguesa do gótico tardio.</p>
+                <p>A sua estrutura atinge os 32 metros de altura e mais de 12 de largura, apresentando-se como uma verdadeira 
+                    «porta da cristandade» de características triunfais</p>
+                <p>É o centro visual da fachada, possuindo mais de 40 figuras alusivas à historia sagrada e historia de Portugal, além
+                    das armas nacionais.</p>
+                <p>
+                    Na base do portal dispõem-se os doze apóstolos; nos botaréus, os que vaticinaram o nascimento de Cristo 
+                    (sibilas e profetas); ao centro, a Virgem com o Menino; a coroar o conjunto, quatro Padres ou Doutores da Igreja e, 
+                    no topo, São Miguel, o Anjo Custódio do Reino. 
+                    Mais abaixo, em posição central entre as duas portas de entrada, a estátua do Infante D. Henrique, antepassado do 
+                    rei D. Manuel. Nos tímpanos figuram duas cenas da vida de S. Jerónimo.
+                    <img id="clip6" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+            </div>
+
+            <div class="page" id="page5" style="display: none;">
+                <h2>Mosteiro dos Jerónimos</h2>
+                <h3>Igreja</h3>
+                <p>
+                    Ao passar pela Porta Principal, o visitante entra na Igreja de Santa Maria de Belém, dona de uma arquitetura 
+                    impressionante, sendo considerada uma das igrejas salão da Europa.
+                    <img id="clip7" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+            </div>
+
+            <div class="page" id="page6" style="display: none;">
+                <h2>Mosteiro dos Jerónimos</h2>
+                <h3>Túmulos</h3>
+                <p>
+                    Aqui estão os túmulos de Vasco da Gama e Luis Vaz de Camões, decorados com símbolos da vida e dos feitos destas 
+                    personalidades.
+                    <img id="clip8" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+                <p>
+                    Também o túmulo de Fernando Pessoa se encontra presente no Mosteiro, visto ser um visitante frequente do monumento.
+                    <img id="clip10" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </p>
+            </div>
+
+            <div class="page" id="page7" style="display: none;">
+                <h2>Mosteiro dos Jerónimos</h2>
+                <h3>
+                    Claustro
+                    <img id="clip9" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </h3>
+                <p>O claustro dos Jerónimos é o primeiro no seu género em Portugal, possuindo dois andares abobadados e uma planta 
+                    quadrada, de cantos cortados, formando um octógono virtual. É considerado uma obra-prima da arquitetura mundial e 
+                    constitui um depoimento estético de extraordinária beleza.</p>
+                <p>O claustro faz uma síntese de géneros e estilos diversos, refletindo uma interpretação eficaz dos princípios do 
+                    gótico tardio, do renascimento experimental, de caráter decorativo, e do renascimento maduro ou alto renascimento.</p>
+                <p>Conjuga símbolos religiosos (entre os quais elementos da Paixão de Cristo), régios (escudo régio, esfera armilar, 
+                    cruz da Ordem Militar de Cristo) e elementos naturalistas (cordas e motivos vegetalistas que coabitam com um 
+                    imaginário ainda medieval, de animais fantásticos).</p>
+            </div>
+        
+            <div class="pagination-controls">
+                <button id="prevPage" onclick="prevPage()">Anterior</button>
+                <button id="nextPage" onclick="nextPage()">Seguinte</button>
+            </div>
+        </div>
+
+        <div class="image-container" style="display: none;">
+            <h2>Galeria</h2>
+            <div class="row" id="photoGalleryRow1"></div>
+        </div>
+
+    </div>
+    
+    <div class="fade-in" id="googleMap" style="width: 70%; height: 400px; margin-top: 30px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto;"></div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('myVideo');
+            const links = document.querySelectorAll('.index-container ul li a');
+            const times = Array.from(links).map(link => parseFloat(link.getAttribute('data-time')));
+            const toggleButton = document.getElementById('toggleContainer');
+            const containers = document.querySelectorAll('.index-container, .teste-container, .image-container');
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            const thumbnailWidth = 300;
+            const thumbnailHeight = 120;
+            const frames = [5, 9, 12, 20, 28, 42, 50, 55, 64, 76, 79]; // List of specific times to capture frames
+            const imageContainer = document.querySelector('.image-container');
+
+            const pages = document.querySelectorAll('.teste-container .page');
+            let currentPageIndex = 0;
+
+            const overlay = document.getElementById('overlay');
+            var hoverText = document.querySelector('#overlay .hoverText');
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.3}s`;
+                element.classList.add('fade-in-animation');
+            });
+
+            function showPage(index) {
+                pages.forEach((page, i) => {
+                    page.style.display = (i === index) ? 'block' : 'none';
+                });
+                updatePaginationControls();
+            }
+
+            function updatePaginationControls() {
+                document.getElementById('prevPage').disabled = (currentPageIndex === 0);
+                document.getElementById('nextPage').disabled = (currentPageIndex === pages.length - 1);
+            }
+
+            window.nextPage = function() {
+                if (currentPageIndex < pages.length - 1) {
+                    currentPageIndex++;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            window.prevPage = function() {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            showPage(currentPageIndex);
+
+            function generateThumbnail(time) {
+                return new Promise((resolve) => {
+                    video.currentTime = time;
+                    video.addEventListener('seeked', function captureFrame() {
+                        setTimeout(() => {
+                            context.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
+                            const dataURL = canvas.toDataURL();
+                            video.removeEventListener('seeked', captureFrame);
+                            resolve({ dataURL, time });
+                        }, 100);
+                    }, { once: true });
+                });
+            }
+
+            async function createThumbnails() {
+                let storedThumbnails = JSON.parse(localStorage.getItem('images_mosteiros'));
+
+                if (!storedThumbnails) {
+                    storedThumbnails = await generateAndStoreThumbnails();
+                }
+
+                storedThumbnails.forEach(thumbnail => {
+                    createThumbnail(thumbnail.dataURL, thumbnail.time);
+                });
+            }
+
+            async function generateAndStoreThumbnails() {
+                const storedThumbnails = [];
+                for (let i = 0; i < frames.length; i++) {
+                    const { dataURL, time } = await generateThumbnail(frames[i]);
+                    storedThumbnails.push({ dataURL, time });
+                }
+                localStorage.setItem('images_mosteiros', JSON.stringify(storedThumbnails));
+                return storedThumbnails;
+            }
+
+            function createThumbnail(dataURL, time) {
+                const img = document.createElement('img');
+                img.src = dataURL;
+                img.alt = 'Thumbnail';
+                img.setAttribute('data-time', time);
+                img.classList.add('img-fluid');
+
+                const colDiv = document.createElement('div');
+                colDiv.classList.add('col-md-4');
+                colDiv.appendChild(img);
+
+                imageContainer.querySelector('.row').appendChild(colDiv);
+
+                //clicar na foto e navegar para o momento do video
+                img.addEventListener('click', function(){
+                    const clickTime = parseFloat(this.getAttribute('data-time'));
+                    video.currentTime = clickTime;
+                    video.play();
+
+                    highlightImage(clickTime);
+                })
+            }
+
+            function highlightImage(currentTime) {
+                const images = imageContainer.querySelectorAll('img[data-time]');
+                let highlightedImage = null;
+
+                for (let i = 0; i < frames.length; i++) {
+                    const startTime = frames[i];
+                    const endTime = frames[i + 1] || Infinity; // Use Infinity if there's no next frame time
+
+                    if (currentTime >= startTime && currentTime < endTime) {
+                        highlightedImage = images[i];
+                        break;
+                    }
+                }
+
+                images.forEach(image => {
+                    if (image === highlightedImage) {
+                        image.classList.add('active-card');
+                    } else {
+                        image.classList.remove('active-card');
+                    }
+                });
+            }
+
+            //verificar em que container estamos
+            let containerStateMosteiro = parseInt(localStorage.getItem('containerState_mosteiro')) || 0;
+
+           
+            function updateContainerVisibility() {
+                containers.forEach((container, index) => {
+                    container.style.display = (index === containerStateMosteiro) ? 'block' : 'none';
+                });
+            }
+
+            updateContainerVisibility();
+
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const time = this.getAttribute('data-time');
+                    video.currentTime = time;
+                    video.play();
+                });
+            });
+
+            video.addEventListener('timeupdate', function() {
+                let currentTime = video.currentTime;
+                highlightImage(currentTime);
+                let activeIndex = times.findIndex(time => currentTime < time) - 1;
+                if (activeIndex === -2) activeIndex = times.length - 1;
+
+                links.forEach((link, index) => {
+                    if (index === activeIndex) {
+                        link.classList.add('highlight');
+                    } else {
+                        link.classList.remove('highlight');
+                    }
+                });
+            });
+
+            //trocar conteudo do botao conforme o container seguinte
+            toggleButton.addEventListener('click', function() {
+                containerStateMosteiro = (containerStateMosteiro + 1) % 3;
+
+                if(containerStateMosteiro == 0){
+                    toggleButton.textContent = "Ver o Livro do Mosteiro";
+                } else if(containerStateMosteiro == 1){
+                    toggleButton.textContent = "Ver a Galeria";
+                } else if(containerStateMosteiro == 2){
+                    toggleButton.textContent = "Ver Índice de Conteúdo";
+                }
+
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
+                updateContainerVisibility();
+            });
+
+            // restaurar conteudo do botao com base no estado armazenado
+            if (containerStateMosteiro === 0) {
+                toggleButton.textContent = "Ver o Livro do Mosteiro";
+            } else if (containerStateMosteiro === 1) {
+                toggleButton.textContent = "Ver a Galeria";
+            } else if (containerStateMosteiro === 2) {
+                toggleButton.textContent = "Ver Índice de Conteúdo";
+            }
+
+            createThumbnails();
+
+
+            document.getElementById('clip1').addEventListener('click', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+
+            document.getElementById('clip2').addEventListener('click', function() {
+                video.currentTime = 8;
+                video.play();
+            });
+
+            document.getElementById('clip3').addEventListener('click', function() {
+                video.currentTime = 14;
+                video.play();
+            });
+
+            document.getElementById('clip4').addEventListener('click', function() {
+                video.currentTime = 21.5;
+                video.play();
+            });
+
+            document.getElementById('clip5').addEventListener('click', function() {
+                video.currentTime = 28;
+                video.play();
+            });
+
+            document.getElementById('clip6').addEventListener('click', function() {
+                video.currentTime = 35;
+                video.play();
+            });
+
+            document.getElementById('clip7').addEventListener('click', function() {
+                video.currentTime = 41.5;
+                video.play();
+            });
+
+            document.getElementById('clip8').addEventListener('click', function() {
+                video.currentTime = 54;
+                video.play();
+            });
+
+            document.getElementById('clip9').addEventListener('click', function() {
+                video.currentTime = 63;
+                video.play();
+            });
+
+            document.getElementById('clip10').addEventListener('click', function() {
+                video.currentTime = 78;
+                video.play();
+            });
+
+            function updateOverlayContent() {
+                if (video.currentTime >= 2 && video.currentTime <= 7) {
+                    overlay.onclick = navigateToPage1;
+                    hoverText.textContent="Saber mais sobre o Mosteiro!";
+                } else if (video.currentTime >= 16 && video.currentTime <= 19) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Saber mais sobre a Ermida de Santa Maria de Belém!";
+                    
+                } else if (video.currentTime >= 22 && video.currentTime <= 26) {
+                    overlay.onclick = navigateToPage3;
+                    hoverText.textContent = "Saber mais sobre a construção do Mosteiro!";
+                    
+                } else if (video.currentTime >= 30 && video.currentTime <= 37) {
+                    overlay.onclick = navigateToPage4;
+                    hoverText.textContent = "Mais informação sobre o Portal Sul!";
+                } 
+                else if (video.currentTime >= 41 && video.currentTime <= 46) {
+                    overlay.onclick = navigateToPage5;
+                    hoverText.textContent = "Mais informação sobre a Igreja!";
+                } 
+                else if (video.currentTime >= 55 && video.currentTime <= 60) {
+                    overlay.onclick = navigateToPage6;
+                    hoverText.textContent = "Mais sobre os túmulos de Vasco da Gama e Camões!";
+                }
+                else if (video.currentTime >= 65 && video.currentTime <= 73) {
+                    overlay.onclick = navigateToPage7;
+                    hoverText.textContent = "Saber mais sobre o Claustro do Mosteiro!";
+                }
+                else if (video.currentTime >= 78 && video.currentTime <= 83) {
+                    overlay.onclick = navigateToPage6;
+                    hoverText.textContent = "Mais sobre o túmulo de Fernando Pessoa!";
+                }
+                else {
+                    overlay.style.display = 'none';
+                }
+            }
+
+            video.addEventListener('timeupdate', function() {
+                if ((video.currentTime >= 2 && video.currentTime <= 7) || 
+                (video.currentTime >= 16 && video.currentTime <= 19) || 
+                (video.currentTime >= 22 && video.currentTime <= 26) ||
+                (video.currentTime >= 30 && video.currentTime <= 37) ||
+                (video.currentTime >= 41 && video.currentTime <= 46) ||
+                (video.currentTime >= 55 && video.currentTime <= 60) ||
+                (video.currentTime >= 65 && video.currentTime <= 73) ||
+                (video.currentTime >= 78 && video.currentTime <= 83)){
+                    overlay.style.display = 'block';
+                    updateOverlayContent();
+                } else {
+                    overlay.style.display = 'none';
+                }
+            });
+
+
+            window.navigateToPage1 = function() {
+                containerStateMosteiro = 1; // mostra teste-container
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
+                updateContainerVisibility();
+
+                currentPageIndex = 0; // Define para a página 1
+                showPage(currentPageIndex);
+            };
+
+            window.navigateToPage2 = function() {
+                containerStateMosteiro = 1;
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
+                updateContainerVisibility();
+
+                currentPageIndex = 1; // Define para a página 2
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage3 = function() {
+                containerStateMosteiro = 1;
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
+                updateContainerVisibility();
+
+                currentPageIndex = 2; // Define para a página 3
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage4 = function() {
+                containerStateMosteiro = 1;
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
+                updateContainerVisibility();
+
+                currentPageIndex = 3; // Define para a página 4
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage5 = function() {
+                containerStateMosteiro = 1;
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
+                updateContainerVisibility();
+
+                currentPageIndex = 4; // Define para a página 5
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage6 = function() {
+                containerStateMosteiro = 1;
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
+                updateContainerVisibility();
+
+                currentPageIndex = 5; // Define para a página 6
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage7 = function() {
+                containerStateMosteiro = 1;
+                localStorage.setItem('containerState_mosteiro', containerStateMosteiro);
+                updateContainerVisibility();
+
+                currentPageIndex = 6; // Define para a página 7
+                showPage(currentPageIndex);
+
+            };
+
+
+        });
+
+        
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap"></script>
+    <script src="../scripts/map.js"></script>
+    <script src="../scripts/searchbarHome.js"></script>
+    <script src="../scripts/theme.js"></script>
+</body>
+</html>

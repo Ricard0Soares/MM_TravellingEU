@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../styles/monumentos.css">
+    <link rel="stylesheet" type="text/css" href="../styles/navBar.css">
+</head>
+<body onload="myMap(38.693615, -9.205115, 12)">
+    <nav class="navbar">
+        <div class="logo"><a href="home.html">TravellingEU</a></div>
+        <ul class="nav-links">
+            <li><a href="navLinks/destinations.html">Destinos</a></li>
+            <li><a href="videos/videos.html">Vídeos</a></li>
+            <li><a href="navLinks/howitworks.html">Como funciona?</a></li>
+            <li><a href="navLinks/aboutus.html">Sobre nós</a></li>
+            <li class="dropdown">
+                <select id="theme-selector" onchange="switchTheme(this.value)">
+                    <option value="default">Default</option>
+                    <option value="dark">Escuro</option>
+                    <option value="green">Verde</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="centered-title fade-in">
+        <h1>Padrão dos Descobrimentos</h1>
+        <button id="toggleContainer">Ver Livro do Padrão dos Descobrimentos</button>
+    </div>
+
+    <div class="content fade-in">
+        <div class="video-container">
+            <video id="myVideo" controls>
+                <source src="../videos/padrao.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div id="overlay" class="video-overlay" onclick="updateOverlayContent()">
+                <img id="myGif" src="../images/question.gif" alt="Help">
+                <span class="hoverText">Saber mais sobre a Introdução!</span>
+            </div>
+        </div>
+        <div class="index-container">
+            <h2>Índice de Conteúdo</h2>
+            <ul>
+                <li><a href="#" id="section1" data-time="0">1. Introdução</a></li>
+                <li><a href="#" id="section2" data-time="11">2. Reconstrução - Homenagem ao Infante D.Henrique</a></li>
+                <li><a href="#" id="section3" data-time="16">3. Material</a></li>
+                <li><a href="#" id="section4" data-time="22">4. Contexto Histórico</a></li>
+                <li>
+                    <a href="#" id="section5" data-time="38">5. Significado do Monumento</a>
+                    <ul class="sub-list">
+                        <li><a href="#" id="section5.1" data-time="41">5.1. Infante D.Henrique</a></li>
+                        <li><a href="#" id="section5.2" data-time="43">5.2. Outras Personalidades Homenageadas</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="teste-container">
+            <div class="page" id="page1">
+                <h2>Padrão dos Descobrimentos</h2>
+                <h3>
+                    Introdução
+                    <img id="clip1" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px;">
+                </h3>
+                <p>O Padrão dos Descobrimentos localiza-se na freguesia de Belém, na cidade e Distrito de <a href="home_lisboa.html">Lisboa</a>, 
+                    em Portugal. A conceção arquitetónica é de Cottinelli Telmo e as esculturas são de Leopoldo de Almeida.
+                </p>
+                <p>Em posição destacada na margem direita do rio Tejo, o monumento original, em materiais perecíveis, foi erguido em 1940 
+                    por ocasião da Exposição do Mundo Português para homenagear as figuras históricas envolvidas nos Descobrimentos 
+                    portugueses. A réplica atual, em betão e pedra, é posterior, tendo sido inaugurada em 1960.
+                    <img id="clip2" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px; cursor: pointer;">
+                </p>
+            </div>
+            <div class="page" id="page2" style="display: none;">
+                <h2>Padrão dos Descobrimentos</h2>
+                <h3>Construção e Materiais</h3>
+                <p>O monumento foi pensado inicialmente por Cottinelli Telmo como uma homenagem ao Infante D. Henrique, na 
+                    sequência de vários projetos e concursos para Sagres, realizados ao longo dos anos sem que nenhum chegasse 
+                    a ser construido.</p>
+                <p>Por ocasião da Exposição do Mundo Português, em 1940, transformou-se em Padrão dos Descobrimentos, celebrando 
+                    não apenas o Infante mas também os seus colaboradores e seguidores.</p>
+                <p>Feito de materiais perecíveis, foi desmontado em 1958 e reconstruido nos anos imediatos, em betão e pedra de lioz, 
+                    por decisão de Salazar que, por ocasião do 5º centenário do Infante, contrariou o resultado de mais um concurso 
+                    henriquino para Sagres.</p>
+                <p>Assim, O Padrão dos descobrimentos seria erguido no local de implantação original, em Belém, com orçamento inferior ao desse concurso.</p>
+                <p>Foi reconstruído em cimento e pedra rosal de Leiria, e as esculturas em calcário de Sintra.
+                    <img id="clip3" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px; cursor: pointer;">
+                </p>
+            </div>
+            <div class="page" id="page3" style="display: none;">
+                <h2>Padrão dos Descobrimentos</h2>
+                <h3>Contexto Histórico e Significado</h3>
+                <p>O Padrao evoca a expansão ultramarina portuguesa, representando o passado glorioso, simbolizando a grandeza da 
+                    obra do Infante D. Henrique, grande impulsionador das Descobertas.
+                    <img id="clip4" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px; cursor: pointer;">
+                </p>
+                <p>O monumento simboliza uma caravela ao mar. 
+                Na proa, encontra-se a estátua do Infante D.Henrique, com uma caravela na mão direita e um mapa na esquerda.</p>
+                <p>Ao longo do monumento do lado este e oeste, o Infante está seguido por 32 personalidades da historia ultramarina e 
+                    da cultura da época, como por exemplo o Rei D.Afonso V (impulsionador das primeiras descobertas), Vasco da Gama (descobriu o 
+                    caminho marítimo para a India) ou Pedro Álvares Cabral (que descobriu o brasil), entre outras personalidades como
+                    Fernão de Magalhães ou Bartolomeu Dias.
+                    <img id="clip5" src="../images/clip.png" alt="Clip Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 8px; cursor: pointer;">
+                </p>
+            </div>
+        
+            <div class="pagination-controls">
+                <button id="prevPage" onclick="prevPage()">Anterior</button>
+                <button id="nextPage" onclick="nextPage()">Seguinte</button>
+            </div>
+        </div>
+
+        <div class="image-container" style="display: none;">
+            <h2>Galeria</h2>
+            <div class="row" id="photoGalleryRow1"></div>
+        </div>
+    </div>
+    
+    <div class="fade-in" id="googleMap" style="width: 70%; height: 400px; margin-top: 30px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('myVideo');
+            const links = document.querySelectorAll('.index-container ul li a');
+            const times = Array.from(links).map(link => parseFloat(link.getAttribute('data-time')));
+            const toggleButton = document.getElementById('toggleContainer');
+            const containers = document.querySelectorAll('.index-container, .teste-container, .image-container');
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            const thumbnailWidth = 300;
+            const thumbnailHeight = 120;
+            const frames = [5, 11, 16, 22, 24, 35, 42, 48]; // List of specific times to capture frames
+            const imageContainer = document.querySelector('.image-container');
+
+            const pages = document.querySelectorAll('.teste-container .page');
+            let currentPageIndex = 0;
+
+
+            const overlay = document.getElementById('overlay');
+            var hoverText = document.querySelector('#overlay .hoverText');
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.3}s`;
+                element.classList.add('fade-in-animation');
+            });
+
+            function showPage(index) {
+                pages.forEach((page, i) => {
+                    page.style.display = (i === index) ? 'block' : 'none';
+                });
+                updatePaginationControls();
+            }
+
+            function updatePaginationControls() {
+                document.getElementById('prevPage').disabled = (currentPageIndex === 0);
+                document.getElementById('nextPage').disabled = (currentPageIndex === pages.length - 1);
+            }
+
+            window.nextPage = function() {
+                if (currentPageIndex < pages.length - 1) {
+                    currentPageIndex++;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            window.prevPage = function() {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    showPage(currentPageIndex);
+                }
+            }
+
+            showPage(currentPageIndex);
+
+            function generateThumbnail(time) {
+                return new Promise((resolve) => {
+                    video.currentTime = time;
+                    video.addEventListener('seeked', function captureFrame() {
+                        setTimeout(() => {
+                            context.drawImage(video, 0, 0, thumbnailWidth, thumbnailHeight);
+                            const dataURL = canvas.toDataURL();
+                            video.removeEventListener('seeked', captureFrame);
+                            resolve({ dataURL, time });
+                        }, 100);
+                    }, { once: true });
+                });
+            }
+
+            async function createThumbnails() {
+                let storedThumbnails = JSON.parse(localStorage.getItem('images_padrao'));
+
+                if (!storedThumbnails) {
+                    storedThumbnails = await generateAndStoreThumbnails();
+                }
+
+                storedThumbnails.forEach(thumbnail => {
+                    createThumbnail(thumbnail.dataURL, thumbnail.time);
+                });
+            }
+
+            async function generateAndStoreThumbnails() {
+                const storedThumbnails = [];
+                for (let i = 0; i < frames.length; i++) {
+                    const { dataURL, time } = await generateThumbnail(frames[i]);
+                    storedThumbnails.push({ dataURL, time });
+                }
+                localStorage.setItem('images_padrao', JSON.stringify(storedThumbnails));
+                return storedThumbnails;
+            }
+
+            function createThumbnail(dataURL, time) {
+                const img = document.createElement('img');
+                img.src = dataURL;
+                img.alt = 'Thumbnail';
+                img.setAttribute('data-time', time);
+                img.classList.add('img-fluid');
+
+                const colDiv = document.createElement('div');
+                colDiv.classList.add('col-md-4');
+                colDiv.appendChild(img);
+
+                imageContainer.querySelector('.row').appendChild(colDiv);
+
+                //clicar na foto e navegar para o momento do video
+                img.addEventListener('click', function(){
+                    const clickTime = parseFloat(this.getAttribute('data-time'));
+                    video.currentTime = clickTime;
+                    video.play();
+
+                    highlightImage(clickTime);
+                })
+            }
+
+            function highlightImage(currentTime) {
+                const images = imageContainer.querySelectorAll('img[data-time]');
+                let highlightedImage = null;
+
+                for (let i = 0; i < frames.length; i++) {
+                    const startTime = frames[i];
+                    const endTime = frames[i + 1] || Infinity; // Use Infinity if there's no next frame time
+
+                    if (currentTime >= startTime && currentTime < endTime) {
+                        highlightedImage = images[i];
+                        break;
+                    }
+                }
+
+                images.forEach(image => {
+                    if (image === highlightedImage) {
+                        image.classList.add('active-card');
+                    } else {
+                        image.classList.remove('active-card');
+                    }
+                });
+            }
+
+            //verificar em que container estamos
+            let containerStatePadrao = parseInt(localStorage.getItem('containerState_padrao')) || 0;
+
+           
+            function updateContainerVisibility() {
+                containers.forEach((container, index) => {
+                    container.style.display = (index === containerStatePadrao) ? 'block' : 'none';
+                });
+            }
+
+            updateContainerVisibility();
+
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const time = this.getAttribute('data-time');
+                    video.currentTime = time;
+                    video.play();
+                });
+            });
+
+            video.addEventListener('timeupdate', function() {
+                let currentTime = video.currentTime;
+                highlightImage(currentTime);
+                let activeIndex = times.findIndex(time => currentTime < time) - 1;
+                if (activeIndex === -2) activeIndex = times.length - 1;
+
+                links.forEach((link, index) => {
+                    if (index === activeIndex) {
+                        link.classList.add('highlight');
+                    } else {
+                        link.classList.remove('highlight');
+                    }
+                });
+            });
+
+            toggleButton.addEventListener('click', function() {
+                containerStatePadrao = (containerStatePadrao + 1) % 3;
+
+                if(containerStatePadrao == 0){
+                    toggleButton.textContent = "Ver o Livro do Padrão dos Descobrimentos";
+                } else if(containerStatePadrao == 1){
+                    toggleButton.textContent = "Ver a Galeria";
+                } else if(containerStatePadrao == 2){
+                    toggleButton.textContent = "Ver Índice de Conteúdo";
+                }
+
+                localStorage.setItem('containerState_padrao', containerStatePadrao);
+                updateContainerVisibility();
+            });
+
+            // Restaurar o texto do botão com base no estado armazenado
+            if (containerStatePadrao === 0) {
+                toggleButton.textContent = "Ver o Livro do Padrão dos Descobrimentos";
+            } else if (containerStatePadrao === 1) {
+                toggleButton.textContent = "Ver a Galeria";
+            } else if (containerStatePadrao === 2) {
+                toggleButton.textContent = "Ver Índice de Conteúdo";
+            }
+
+            createThumbnails();
+
+            document.getElementById('clip1').addEventListener('click', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+
+            document.getElementById('clip2').addEventListener('click', function() {
+                video.currentTime = 10;
+                video.play();
+            });
+
+            document.getElementById('clip3').addEventListener('click', function() {
+                video.currentTime = 16;
+                video.play();
+            });
+
+            document.getElementById('clip4').addEventListener('click', function() {
+                video.currentTime = 23;
+                video.play();
+            });
+
+            document.getElementById('clip5').addEventListener('click', function() {
+                video.currentTime = 38;
+                video.play();
+            });
+
+
+            function updateOverlayContent() {
+                if (video.currentTime >= 2 && video.currentTime <= 7) {
+                    overlay.onclick = navigateToPage1;
+                    hoverText.textContent="Saber mais sobre o Padrão!";
+                } else if (video.currentTime >= 11 && video.currentTime <= 15) {
+                    overlay.onclick = navigateToPage2;
+                    hoverText.textContent = "Saber mais sobre a Construção!";
+                    
+                } else if (video.currentTime >= 24 && video.currentTime <= 29) {
+                    overlay.onclick = navigateToPage3;
+                    hoverText.textContent = "Saber mais sobre o Contexto Histórico do Padrão!";
+                    
+                } else if (video.currentTime >= 40 && video.currentTime <= 45) {
+                    overlay.onclick = navigateToPage3;
+                    hoverText.textContent = "Significado do Padrão e dos elementos constituintes!";
+                } 
+                else {
+                    overlay.style.display = 'none';
+                }
+            }
+
+            video.addEventListener('timeupdate', function() {
+                if ((video.currentTime >= 2 && video.currentTime <= 7) || 
+                (video.currentTime >= 11 && video.currentTime <= 15) || 
+                (video.currentTime >= 24 && video.currentTime <= 29) ||
+                (video.currentTime >= 40 && video.currentTime <= 45)){
+                    overlay.style.display = 'block';
+                    updateOverlayContent();
+                } else {
+                    overlay.style.display = 'none';
+                }
+            });
+
+
+            window.navigateToPage1 = function() {
+                containerStatePadrao = 1; // Define o containerState para 1 para mostrar a teste-container
+                localStorage.setItem('containerState_padrao', containerStatePadrao);
+                updateContainerVisibility();
+
+                currentPageIndex = 0; // Define para a página 1
+                showPage(currentPageIndex);
+            };
+
+            window.navigateToPage2 = function() {
+                containerStatePadrao = 1;
+                localStorage.setItem('containerState_padrao', containerStatePadrao);
+                updateContainerVisibility();
+
+                currentPageIndex = 1; // Define para a página 2
+                showPage(currentPageIndex);
+
+            };
+
+            window.navigateToPage3 = function() {
+                containerStatePadrao = 1;
+                localStorage.setItem('containerState_padrao', containerStatePadrao);
+                updateContainerVisibility();
+
+                currentPageIndex = 2; // Define para a página 3
+                showPage(currentPageIndex);
+
+            };
+
+
+
+        });
+
+        
+    </script>
+
+    <script src="../scripts/searchbarHome.js"></script>
+    <script src="../scripts/theme.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyHFkVsSAlQtIGDIKrQJcYY0U1TdrlS4s&callback=myMap"></script>
+    <script src="../scripts/map.js"></script>
+    <script src="../scripts/searchbarHome.js"></script>
+    <script src="../scripts/theme.js"></script>
+
+</body>
+</html>
