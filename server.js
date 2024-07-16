@@ -19,7 +19,6 @@ app.get('/screens/home.html', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log("filepath ->  " + filePath);
     console.log(`Servidor local rodando em http://localhost:${port}`);
 });
 
